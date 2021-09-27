@@ -5,48 +5,38 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
-    //Current Color
-    public CurrentColor currentColor = CurrentColor.RED;
+    //Current color
+    public HitLineEnum hitLineColor = HitLineEnum.RED;
 
     //Components
-    private Renderer renderer;
+    private Renderer _renderer;
 
     private void Awake()
     {
-        renderer = GetComponent<Renderer>();
-    }
-
-    void Start()
-    {
-        
+        _renderer = GetComponent<Renderer>();
     }
 
     public void OnChangeColorRed(InputValue value)
     {
-        currentColor = CurrentColor.RED;
-        renderer.material.SetColor("_BaseColor", new Color32(184, 15, 10, 255));
-        Debug.Log(renderer.material.GetColor("_Color"));
-        Debug.Log("Pressed Red");
+        hitLineColor = HitLineEnum.RED;
+        _renderer.material.SetColor("_BaseColor", HitLineColor.red);
     }
     
         public void OnChangeColorGreen(InputValue value)
     {
-        currentColor = CurrentColor.GREEN;
-        renderer.material.SetColor("_BaseColor", new Color32(50, 205, 50, 255));
-        Debug.Log("Pressed Green");
+        hitLineColor = HitLineEnum.GREEN;
+        _renderer.material.SetColor("_BaseColor", HitLineColor.green);
     }
 
     public void OnChangeColorBlue(InputValue value)
     {
-        currentColor = CurrentColor.BLUE;
-        renderer.material.SetColor("_BaseColor", new Color32(65, 105, 225, 255));
-        Debug.Log("Pressed Blue");
+        hitLineColor = HitLineEnum.BLUE;
+        _renderer.material.SetColor("_BaseColor", HitLineColor.blue);
     }
 
-    public void OnChangeColorPurple(InputValue value)
+    public void OnChangeColorYellow(InputValue value)
     {
-        currentColor = CurrentColor.PURPLE;
-        renderer.material.SetColor("_BaseColor", new Color32(102, 51, 153, 255));
-        Debug.Log("Pressed Purple");
+        hitLineColor = HitLineEnum.YELLOW;
+        _renderer.material.SetColor("_BaseColor", HitLineColor.yellow);
     }
 }

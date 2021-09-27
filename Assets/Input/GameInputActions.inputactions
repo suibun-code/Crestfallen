@@ -38,7 +38,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ChangeColorPurple",
+                    "name": "ChangeColorYellow",
                     "type": "Button",
                     "id": "be35f4b3-6b04-4b8d-a3e5-ad50be3e39bd",
                     "expectedControlType": "Button",
@@ -95,7 +95,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "ChangeColorPurple",
+                    "action": "ChangeColorYellow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
