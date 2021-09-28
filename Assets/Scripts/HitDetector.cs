@@ -38,13 +38,21 @@ public class HitDetector : MonoBehaviour
 
             if (hitLine.hitLineColor == Player.playerLineColor)
             {
-                Debug.Log("Hit");
+                ScoreTracker.instance.combo += 1;
+                ScoreTracker.instance.scoreMultiplier = 1 + ScoreTracker.instance.combo / 9.0f;
+                ScoreTracker.instance.score += 1 * ScoreTracker.instance.scoreMultiplier;
+
                 Destroy(gObject);
             }
             else
             {
-                Debug.Log("Wrong Color");
+                ScoreTracker.instance.combo = 0;
+                ScoreTracker.instance.scoreMultiplier = 1;
             }
+
+            ScoreTracker.instance.scoreText.SetText("Score: " + ScoreTracker.instance.score);
+            ScoreTracker.instance.comboText.SetText("Combo: " + ScoreTracker.instance.combo);
+            ScoreTracker.instance.scoreMultiplierText.SetText("Score Multiplier: " + ScoreTracker.instance.scoreMultiplier + "x");
         }
     }
 }

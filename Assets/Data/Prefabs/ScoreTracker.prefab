@@ -46,3 +46,6 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   comboText: {fileID: 0}
   scoreMultiplierText: {fileID: 0}
+  score: 0
+  combo: 0
+  scoreMultiplier: 1
