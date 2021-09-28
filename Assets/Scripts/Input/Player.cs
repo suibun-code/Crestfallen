@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     //Current color
-    public LineColorEnum playerLineColor = LineColorEnum.RED;
+    public static LineColorEnum playerLineColor = LineColorEnum.RED;
 
     //Components
     private Renderer _renderer;
