@@ -139,4 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226e3c52bb7842844a83fd2274a5cf32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentColor: 0
+  playerLineColor: 0

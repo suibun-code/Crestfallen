@@ -8,7 +8,7 @@ public class HitLineBehaviour : MonoBehaviour
     public float hitLineSpeed = 20.0f;
 
     //Current color
-    public HitLineEnum hitLineColor = HitLineEnum.RED;
+    public LineColorEnum hitLineColor = LineColorEnum.RED;
 
     //Components
     private Renderer _renderer;
@@ -26,23 +26,23 @@ public class HitLineBehaviour : MonoBehaviour
         transform.Translate(0.0f, 0.0f, -hitLineSpeed * Time.deltaTime);
     }
 
-    public void SetColor(HitLineEnum color)
+    public void SetColor(LineColorEnum color)
     {
         switch (color)
         {
-            case HitLineEnum.RED:
+            case LineColorEnum.RED:
                 _renderer.material.SetColor("_BaseColor", HitLineColor.red);
                 break;
 
-            case HitLineEnum.GREEN:
+            case LineColorEnum.GREEN:
                 _renderer.material.SetColor("_BaseColor", HitLineColor.green);
                 break;
 
-            case HitLineEnum.BLUE:
+            case LineColorEnum.BLUE:
                 _renderer.material.SetColor("_BaseColor", HitLineColor.blue);
                 break;
 
-            case HitLineEnum.YELLOW:
+            case LineColorEnum.YELLOW:
                 _renderer.material.SetColor("_BaseColor", HitLineColor.yellow);
                 break;
         }
