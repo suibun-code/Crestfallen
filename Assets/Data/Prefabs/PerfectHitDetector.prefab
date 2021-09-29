@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1136407265384700874}
   - component: {fileID: 1136407265384700875}
   - component: {fileID: 1136407265384700873}
+  - component: {fileID: 2064770647}
   m_Layer: 0
   m_Name: PerfectHitDetector
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd82ecb2fc85dda498e2716c9e880a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLineHit: {fileID: 0}
 --- !u!65 &1136407265384700875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -88,3 +90,19 @@ MonoBehaviour:
   m_DefaultActionMap: Normal
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!54 &2064770647
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136407265384700869}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

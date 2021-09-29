@@ -112,6 +112,28 @@
                 },
                 {
                     "name": "",
+                    "id": "82b4e7f5-8abe-4d1a-afbb-23f8e1dd17ee",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Strum",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "514a7050-c777-4546-9821-f12421040392",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Strum",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "af7010b9-e79a-4513-9054-5c84935e066b",
                     "path": "<Keyboard>/escape",
                     "interactions": "",

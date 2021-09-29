@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 public class HitDetector : MonoBehaviour
 {
     private ScoreTracker scoreTracker;
-
     private BoxCollider hitCollider;
+
+    public Animator playerLineHit;
 
     List<GameObject> currentCollisions = new List<GameObject>();
 
@@ -29,6 +30,9 @@ public class HitDetector : MonoBehaviour
 
     public void OnStrum(InputValue value)
     {
+        AudioManager.instance.Play();
+        playerLineHit.Play(0);
+
         foreach (GameObject gObject in currentCollisions)
         {
             if (gObject == null)
@@ -52,7 +56,7 @@ public class HitDetector : MonoBehaviour
 
             ScoreTracker.instance.scoreText.SetText("Score: " + ScoreTracker.instance.score);
             ScoreTracker.instance.comboText.SetText("Combo: " + ScoreTracker.instance.combo);
-            ScoreTracker.instance.scoreMultiplierText.SetText("Score Multiplier: " + ScoreTracker.instance.scoreMultiplier + "x");
+            ScoreTracker.instance.scoreMultiplierText.SetText("Score Multiplier: " + ScoreTracker.instance.scoreMultiplier.ToString("F2") + "x");
         }
     }
 }
