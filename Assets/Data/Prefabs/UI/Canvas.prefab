@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4480008603006086746, guid: d2331f3a422931644ae85e4f8feba3f0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 4480008603006086746, guid: d2331f3a422931644ae85e4f8feba3f0, type: 3}
       propertyPath: m_SizeDelta.y
@@ -438,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7404902102177800260, guid: 9a83d612e6fa2914fae1d2a4baca4e16, type: 3}
       propertyPath: m_text
-      value: 'Combo Multiplier: 1x'
+      value: 'Score Multiplier: 1.00x'
       objectReference: {fileID: 0}
     - target: {fileID: 7404902102177800261, guid: 9a83d612e6fa2914fae1d2a4baca4e16, type: 3}
       propertyPath: m_Pivot.x

@@ -149,6 +149,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerLineHit
       objectReference: {fileID: 0}
+    - target: {fileID: 6134161431486118543, guid: 95bb487417f5af449b9574ecfac8bdf7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 68f50a456a295da4bb147cc0c77f3d69, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95bb487417f5af449b9574ecfac8bdf7, type: 3}
 --- !u!4 &809426501383930077 stripped

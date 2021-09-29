@@ -21,7 +21,10 @@ public class HitLineBehaviour : MonoBehaviour
     void Update()
     {
         if (transform.position.z <= 0.0f)
+        {
+            ScoreTracker.instance.ResetCombo();
             Destroy(gameObject);
+        }
 
         transform.Translate(0.0f, 0.0f, -hitLineSpeed * Time.deltaTime);
     }

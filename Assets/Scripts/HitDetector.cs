@@ -50,13 +50,10 @@ public class HitDetector : MonoBehaviour
             }
             else
             {
-                ScoreTracker.instance.combo = 0;
-                ScoreTracker.instance.scoreMultiplier = 1;
+                ScoreTracker.instance.ResetCombo();
             }
 
-            ScoreTracker.instance.scoreText.SetText("Score: " + ScoreTracker.instance.score);
-            ScoreTracker.instance.comboText.SetText("Combo: " + ScoreTracker.instance.combo);
-            ScoreTracker.instance.scoreMultiplierText.SetText("Score Multiplier: " + ScoreTracker.instance.scoreMultiplier.ToString("F2") + "x");
+            ScoreTracker.instance.UpdateTexts();
         }
     }
 }
