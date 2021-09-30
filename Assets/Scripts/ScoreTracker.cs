@@ -28,8 +28,8 @@ public class ScoreTracker : Singleton<ScoreTracker>
 
     public void ResetCombo()
     {
-        //combo = 0;
-        //scoreMultiplier = 1;
+        combo = 0;
+        scoreMultiplier = 1;
         UpdateTexts();
     }
 
