@@ -46,7 +46,10 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   comboText: {fileID: 0}
   scoreMultiplierText: {fileID: 0}
+  accuracyText: {fileID: 0}
   score: 0
   combo: 0
   scoreMultiplier: 1
-  scoreOnHit: 100
+  scoreOnPerfect: 100
+  scoreOnGreat: 50
+  scoreOnBad: 30

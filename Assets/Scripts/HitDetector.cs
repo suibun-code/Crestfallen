@@ -5,17 +5,11 @@ using UnityEngine.InputSystem;
 
 public class HitDetector : MonoBehaviour
 {
-    private ScoreTracker scoreTracker;
-    private BoxCollider hitCollider;
+    public int accuracy = 0;
 
     public Animator playerLineHit;
 
     List<GameObject> currentCollisions = new List<GameObject>();
-
-    void Start()
-    {
-        hitCollider = GetComponent<BoxCollider>();
-    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -42,11 +36,27 @@ public class HitDetector : MonoBehaviour
 
             if (hitLine.hitLineColor == Player.playerLineColor)
             {
-                ScoreTracker.instance.Hit();
+                switch(accuracy)
+                {
+                    case 0:
+                        ScoreTracker.instance.HitPerfect();
+                        break;
+                    case 1:
+                        ScoreTracker.instance.HitGreat();
+                        break;
+                    case 2:
+                        ScoreTracker.instance.HitBad();
+                        break;
+                }
+
                 Destroy(gObject);
             }
             else
+            {
                 ScoreTracker.instance.ResetCombo();
+                ScoreTracker.instance.HitMiss();
+                Destroy(gObject);
+            }
 
             ScoreTracker.instance.UpdateTexts();
         }

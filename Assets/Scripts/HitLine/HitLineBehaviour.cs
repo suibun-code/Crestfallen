@@ -20,9 +20,10 @@ public class HitLineBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.z <= 0.0f)
+        if (transform.position.z <= 3.4f)
         {
             ScoreTracker.instance.ResetCombo();
+            ScoreTracker.instance.HitMiss();
             Destroy(gameObject);
         }
 

@@ -9,21 +9,57 @@ public class ScoreTracker : Singleton<ScoreTracker>
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI comboText;
     public TextMeshProUGUI scoreMultiplierText;
+    public TextMeshProUGUI accuracyText;
 
     //Player variables
     public int score = 0;
     public int combo = 0;
     public int scoreMultiplier = 1;
 
-    public int scoreOnHit;
+    public int scoreOnPerfect = 100;
+    public int scoreOnGreat = 50;
+    public int scoreOnBad = 30;
 
-    public void Hit()
+    public void HitPerfect()
     {
         if (scoreMultiplier < 10)
             scoreMultiplier += 1;
 
         combo += 1;
-        score += scoreOnHit * ScoreTracker.instance.scoreMultiplier;
+        score += scoreOnPerfect * ScoreTracker.instance.scoreMultiplier;
+
+        accuracyText.SetText("Perfect");
+        accuracyText.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
+
+    }
+
+    public void HitGreat()
+    {
+        if (scoreMultiplier < 10)
+            scoreMultiplier += 1;
+
+        combo += 1;
+        score += scoreOnGreat * ScoreTracker.instance.scoreMultiplier;
+
+        accuracyText.SetText("Great");
+        accuracyText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+    }
+
+    public void HitBad()
+    {
+        if (scoreMultiplier < 10)
+            scoreMultiplier += 1;
+
+        combo += 1;
+        score += scoreOnBad * ScoreTracker.instance.scoreMultiplier;
+
+        accuracyText.SetText("Bad");
+        accuracyText.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+    }
+    public void HitMiss()
+    {
+        accuracyText.SetText("Miss");
+        accuracyText.color = new Color(0.66f, 0.18f, 0.85f, 1.0f);
     }
 
     public void ResetCombo()
