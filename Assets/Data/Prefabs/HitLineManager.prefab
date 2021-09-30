@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawning: 1
-  spawnRateInSeconds: 1
-  hitLineSpeed: 30
+  spawnRateInSeconds: 0.5
+  hitLineSpeed: 20
   prefab: {fileID: 8950019971884370335, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}

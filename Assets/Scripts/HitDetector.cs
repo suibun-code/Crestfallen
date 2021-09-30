@@ -42,16 +42,11 @@ public class HitDetector : MonoBehaviour
 
             if (hitLine.hitLineColor == Player.playerLineColor)
             {
-                ScoreTracker.instance.combo += 1;
-                ScoreTracker.instance.scoreMultiplier = 1 + ScoreTracker.instance.combo / 9.0f;
-                ScoreTracker.instance.score += 1 * ScoreTracker.instance.scoreMultiplier;
-
+                ScoreTracker.instance.Hit();
                 Destroy(gObject);
             }
             else
-            {
                 ScoreTracker.instance.ResetCombo();
-            }
 
             ScoreTracker.instance.UpdateTexts();
         }

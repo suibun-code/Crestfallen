@@ -11,21 +11,32 @@ public class ScoreTracker : Singleton<ScoreTracker>
     public TextMeshProUGUI scoreMultiplierText;
 
     //Player variables
-    public float score = 0;
+    public int score = 0;
     public int combo = 0;
-    public float scoreMultiplier = 1.0f;
+    public int scoreMultiplier = 1;
+
+    public int scoreOnHit;
+
+    public void Hit()
+    {
+        if (scoreMultiplier < 10)
+            scoreMultiplier += 1;
+
+        combo += 1;
+        score += scoreOnHit * ScoreTracker.instance.scoreMultiplier;
+    }
 
     public void ResetCombo()
     {
-        ScoreTracker.instance.combo = 0;
-        ScoreTracker.instance.scoreMultiplier = 1;
-        ScoreTracker.instance.UpdateTexts();
+        //combo = 0;
+        //scoreMultiplier = 1;
+        UpdateTexts();
     }
 
     public void UpdateTexts()
     {
-        ScoreTracker.instance.scoreText.SetText("Score: " + ScoreTracker.instance.score);
-        ScoreTracker.instance.comboText.SetText("Combo: " + ScoreTracker.instance.combo);
-        ScoreTracker.instance.scoreMultiplierText.SetText("Score Multiplier: " + ScoreTracker.instance.scoreMultiplier.ToString("F2") + "x");
+        scoreText.SetText("Score: " + ScoreTracker.instance.score);
+        comboText.SetText("Combo: " + ScoreTracker.instance.combo);
+        scoreMultiplierText.SetText("Score Multiplier: " + ScoreTracker.instance.scoreMultiplier.ToString("F2") + "x");
     }
 }

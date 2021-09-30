@@ -49,3 +49,4 @@ MonoBehaviour:
   score: 0
   combo: 0
   scoreMultiplier: 1
+  scoreOnHit: 100
