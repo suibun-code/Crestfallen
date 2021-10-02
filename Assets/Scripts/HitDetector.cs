@@ -24,7 +24,7 @@ public class HitDetector : MonoBehaviour
 
     public void OnStrum(InputValue value)
     {
-        AudioManager.instance.Play();
+        AudioManager.instance.PlayHitSound();
         playerLineHit.Play(0);
 
         foreach (GameObject gObject in currentCollisions)
@@ -40,6 +40,8 @@ public class HitDetector : MonoBehaviour
                 {
                     case 0:
                         ScoreTracker.instance.HitPerfect();
+                        float haha = Time.time - AudioManager.instance.test;//yotyodfijgfdklghjnsdfjklgjhfdsklgjfdsklgdfjgk;lfdgjfdkl;j
+                        Debug.Log("Time: " + haha);
                         break;
                     case 1:
                         ScoreTracker.instance.HitGreat();

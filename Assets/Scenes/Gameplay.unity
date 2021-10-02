@@ -234,6 +234,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7393707046761420122, guid: 3915af1243238764fbad73754d0b696b, type: 3}
   m_PrefabInstance: {fileID: 7393707046125534596}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &282564564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 291153788571052006, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
+  m_PrefabInstance: {fileID: 850958986779553044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &282564569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282564564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4158553eb1276d47b673837b9f129b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accuracy: 0
+  playerLineHit: {fileID: 0}
 --- !u!108 &437468727 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 3029530392606387609, guid: 8b6632ba1c477d847aebc159ceb3ca7e, type: 3}
@@ -361,7 +380,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42210
+  m_Name: pb_Mesh-1416
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -525,7 +544,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42110
+  m_Name: pb_Mesh-1346
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -900,7 +919,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh41980
+  m_Name: pb_Mesh-1362
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1138,6 +1157,18 @@ PrefabInstance:
       propertyPath: playerLineHit
       value: 
       objectReference: {fileID: 446459054}
+    - target: {fileID: 291153788571052008, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 291153788571052008, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
+      propertyPath: m_Center.z
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 291153788571052009, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
+      propertyPath: playerLineHit
+      value: 
+      objectReference: {fileID: 446459054}
     - target: {fileID: 850958987578489869, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
       propertyPath: m_Name
       value: HitDetectors
@@ -1190,7 +1221,8 @@ PrefabInstance:
       propertyPath: playerLineHit
       value: 
       objectReference: {fileID: 446459054}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 291153788571052009, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
 --- !u!1001 &864145890164332681
 PrefabInstance:
@@ -1770,10 +1802,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1572530003}
     m_Modifications:
-    - target: {fileID: 952979140209727354, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3021459689226119405, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1818,10 +1846,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7104635374971363001, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 2084996593284785191, guid: 05bcb79e0b057314292a7e96ede85b52, type: 2}
     - target: {fileID: 7330726048924934136, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -1907,14 +1931,6 @@ PrefabInstance:
     - target: {fileID: 7393707046761420120, guid: 3915af1243238764fbad73754d0b696b, type: 3}
       propertyPath: m_Name
       value: HitLineManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393707046761420121, guid: 3915af1243238764fbad73754d0b696b, type: 3}
-      propertyPath: hitLineSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393707046761420121, guid: 3915af1243238764fbad73754d0b696b, type: 3}
-      propertyPath: spawnRateInSeconds
-      value: 1.6667
       objectReference: {fileID: 0}
     - target: {fileID: 7393707046761420122, guid: 3915af1243238764fbad73754d0b696b, type: 3}
       propertyPath: m_RootOrder
@@ -2044,7 +2060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8950019971884370275, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 67.86
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8950019971884370275, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2077,6 +2093,10 @@ PrefabInstance:
     - target: {fileID: 8950019971884370335, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}
       propertyPath: m_Name
       value: HitLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8950019971884370335, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}

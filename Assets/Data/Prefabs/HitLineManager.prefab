@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ade4a4832f9f74d996d7027f66694b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicOffset: -0.069
   spawning: 1
-  spawnRateInSeconds: 0.4166675
-  hitLineSpeed: 20
+  spawnRateInSeconds: 0.6
+  hitLineSpeed: 30
+  timeToHit: 0
   prefab: {fileID: 8950019971884370335, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}

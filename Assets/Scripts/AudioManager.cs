@@ -1,24 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
 {
-    private AudioSource audioSource;
+    public AudioSource audioSourceHitSound;
+    public AudioSource audioSourceMusic;
+
+    //REMOVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    public float test;
 
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        audioSource = GetComponent<AudioSource>();
     }
 
-    public void Play()
+    public void PlayHitSound()
     {
-        audioSource.Play();
+        audioSourceHitSound.Play();
     }
 
-    public void Stop()
+    public void StopHitSound()
     {
-        audioSource.Stop();
+        audioSourceHitSound.Stop();
+    }
+
+    public void PlayMusic()
+    {
+        audioSourceMusic.Play();
+    }
+
+    public void StopMusic()
+    {
+        audioSourceMusic.Stop();
     }
 }
