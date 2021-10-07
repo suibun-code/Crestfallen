@@ -46,31 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 0}
   songBpm: 100
-  secPerBeat: 0
+  crotchet: 0
   songPosition: 0
   songPosInBeats: 0
   dspSongTime: 0
-  firstBeatOffset: 0.131
-  beatsShownInAdvance: 4
+  firstBeatOffset: 0.139
+  beatsShownInAdvance: 6
   hitLinePrefab: {fileID: 8950019971884370335, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}
-  hitLineSpeed: 40
-  timeToHit: 0
-  notes:
-  - 0
-  - 4
-  - 8
-  - 12
-  - 16
-  - 20
-  - 24
-  - 28
-  - 32
-  - 36
-  - 40
-  - 44
-  - 48
-  - 52
-  - 56
 --- !u!82 &8302559379658964576
 AudioSource:
   m_ObjectHideFlags: 0

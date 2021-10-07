@@ -7,6 +7,7 @@ public class HitLine : MonoBehaviour
 {
     [NonSerialized] public Vector3 spawnPos = new Vector3(0.0f, 0.0f, 80.0f);
     [NonSerialized] public Vector3 endPos = new Vector3(0.0f, 0.0f, 5f);
+    [NonSerialized] public Vector3 removePos = new Vector3(0.0f, 0.0f, 1.4f);
     [NonSerialized] public float beat;
 
     //Current color
@@ -34,6 +35,12 @@ public class HitLine : MonoBehaviour
             endPos,
             (Conductor.instance.beatsShownInAdvance - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsShownInAdvance
             );
+
+        if (transform.position.z == 5f)
+        {
+            AudioManager.instance.PlayHitSound();
+            Destroy(gameObject);
+        }
     }
 
     public void SetColor(LineColorEnum color)

@@ -1488,6 +1488,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 952979140209727354, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
+      propertyPath: m_Volume
+      value: 0.441
+      objectReference: {fileID: 0}
+    - target: {fileID: 952979140209727354, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c27c8343e6487f642a851b7d2abb64af, type: 3}
     - target: {fileID: 3021459689226119405, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1675,6 +1683,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8302559379658964576, guid: 6034361ff5017fd48b54b6dce41cab71, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8302559379658964579, guid: 6034361ff5017fd48b54b6dce41cab71, type: 3}
       propertyPath: m_Name
       value: Conductor

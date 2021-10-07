@@ -9,7 +9,7 @@ public class Conductor : Singleton<Conductor>
 
     //Music Metadata
     public float songBpm;
-    public float secPerBeat;
+    public float crotchet;
     public float songPosition;
     public float songPosInBeats;
     public float dspSongTime;
@@ -19,7 +19,7 @@ public class Conductor : Singleton<Conductor>
     //Hitline
     public GameObject hitLinePrefab;
     private int currentColor;
-    public float[] notes;
+    [System.NonSerialized] public float[] notes = new float[150];
     int nextIndex = 0;
 
     void Start()
@@ -28,22 +28,27 @@ public class Conductor : Singleton<Conductor>
         musicSource = GetComponent<AudioSource>();
 
         //Calculate the number of seconds in each beat
-        secPerBeat = 60f / songBpm;
+        crotchet = 60f / songBpm;
 
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
         musicSource.Play();
+
+        for (int i = 0; i < 150; i++)
+        {
+            notes[i] = i * 1;
+        }
     }
 
     void Update()
     {
         //Determine how many beats since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime - firstBeatOffset);
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) - firstBeatOffset;
 
         //Determine how many beats since the song started
-        songPosInBeats = songPosition / secPerBeat;
+        songPosInBeats = songPosition / crotchet;
 
         if (nextIndex < notes.Length && notes[nextIndex] < songPosInBeats + beatsShownInAdvance)
         {
