@@ -6,15 +6,6 @@ using UnityEngine;
 public class AudioManager : Singleton<AudioManager>
 {
     public AudioSource audioSourceHitSound;
-    public AudioSource audioSourceMusic;
-
-    //REMOVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    public float test;
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-    }
 
     public void PlayHitSound()
     {
@@ -24,15 +15,5 @@ public class AudioManager : Singleton<AudioManager>
     public void StopHitSound()
     {
         audioSourceHitSound.Stop();
-    }
-
-    public void PlayMusic()
-    {
-        audioSourceMusic.Play();
-    }
-
-    public void StopMusic()
-    {
-        audioSourceMusic.Stop();
     }
 }

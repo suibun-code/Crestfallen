@@ -32,7 +32,7 @@ public class HitDetector : MonoBehaviour
             if (gObject == null)
                 continue;
 
-            var hitLine = gObject.GetComponent<HitLineBehaviour>();
+            var hitLine = gObject.GetComponent<HitLine>();
 
             if (hitLine.hitLineColor == Player.playerLineColor)
             {
@@ -40,8 +40,6 @@ public class HitDetector : MonoBehaviour
                 {
                     case 0:
                         ScoreTracker.instance.HitPerfect();
-                        float haha = Time.time - AudioManager.instance.test;//yotyodfijgfdklghjnsdfjklgjhfdsklgjfdsklgdfjgk;lfdgjfdkl;j
-                        Debug.Log("Time: " + haha);
                         break;
                     case 1:
                         ScoreTracker.instance.HitGreat();

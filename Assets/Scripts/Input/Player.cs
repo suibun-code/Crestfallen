@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         _renderer = GetComponent<Renderer>();
     }
 
-   void Start()
+    void Start()
     {
         _renderer.material.SetColor("PlayerLineColor", PlayerLineColor.red);
     }
@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
         playerLineColor = LineColorEnum.RED;
         _renderer.material.SetColor("PlayerLineColor", PlayerLineColor.red);
     }
-    
-        public void OnChangeColorGreen(InputValue value)
+
+    public void OnChangeColorGreen(InputValue value)
     {
         playerLineColor = LineColorEnum.GREEN;
         _renderer.material.SetColor("PlayerLineColor", PlayerLineColor.green);
