@@ -5,13 +5,14 @@ using System;
 
 public class HitLine : MonoBehaviour
 {
-    [NonSerialized] public Vector3 spawnPos = new Vector3(0.0f, 0.0f, 80.0f);
-    [NonSerialized] public Vector3 endPos = new Vector3(0.0f, 0.0f, 5f);
-    [NonSerialized] public Vector3 removePos = new Vector3(0.0f, 0.0f, 1.4f);
-    [NonSerialized] public float beat;
+    [ReadOnly] public Vector3 spawnPos = new Vector3(0.0f, 0.0f, 80.0f);
+    [ReadOnly] public Vector3 endPos = new Vector3(0.0f, 0.0f, 5f);
+    [ReadOnly] public float removePos = 1.4f;
+    [ReadOnly] public float beat = 0f;
+    [ReadOnly] public float lastBeat = 0f;
 
     //Current color
-    public LineColorEnum hitLineColor = LineColorEnum.RED;
+    [ReadOnly] public LineColorEnum hitLineColor = LineColorEnum.RED;
 
     //Components
     private Renderer _renderer;
@@ -23,24 +24,44 @@ public class HitLine : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.z <= 3.4f)
+        if (transform.position.z <= removePos)
         {
             ScoreTracker.instance.ResetCombo();
             ScoreTracker.instance.HitMiss();
             Destroy(gameObject);
         }
 
-        transform.position = Vector3.Lerp(
-            spawnPos, 
-            endPos,
-            (Conductor.instance.beatsShownInAdvance - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsShownInAdvance
-            );
+        transform.position = new Vector3(transform.position.x, transform.position.y, spawnPos.z + (endPos.z - spawnPos.z) * (1f - (beat - Conductor.instance.songPosInBeats) / Conductor.instance.beatsShownInAdvance));
 
-        if (transform.position.z == 5f)
+        //transform.position = Vector3.Lerp(
+        //    spawnPos,
+        //    endPos,
+        //    (Conductor.instance.beatsShownInAdvance - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsShownInAdvance
+        //    );
+
+        var test = (Conductor.instance.beatsShownInAdvance - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsShownInAdvance;
+
+        //Debug.Log(test);
+
+        //Debug.Log("BEAT: " + beat);
+        //Debug.Log("CROTCHET: " + Conductor.instance.crotchet);
+        //Debug.Log("ADVANCE: " + Conductor.instance.beatsShownInAdvance);
+        Debug.Log("SONG POS IN BEATS: " + Conductor.instance.songPosInBeats);
+        Debug.Log("BEAT + CROTCHET: " + (beat + Conductor.instance.crotchet));
+        if (Conductor.instance.songPosInBeats >= beat)
         {
             AudioManager.instance.PlayHitSound();
             Destroy(gameObject);
+
+            lastBeat += Conductor.instance.crotchet;
         }
+
+        ////Autohit
+        //if (transform.position.z == 5f)
+        //{
+        //    AudioManager.instance.PlayHitSound();
+        //    Destroy(gameObject);
+        //}
     }
 
     public void SetColor(LineColorEnum color)

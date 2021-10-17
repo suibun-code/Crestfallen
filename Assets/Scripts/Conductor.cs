@@ -8,13 +8,14 @@ public class Conductor : Singleton<Conductor>
     public AudioSource musicSource;
 
     //Music Metadata
+    public int howOftenToSpawn;
     public float songBpm;
-    public float crotchet;
-    public float songPosition;
-    public float songPosInBeats;
-    public float dspSongTime;
     public float firstBeatOffset;
-    public float beatsShownInAdvance = 4f;
+    public float beatsShownInAdvance;
+    [ReadOnly] public float crotchet;
+    [ReadOnly] public float songPosition;
+    [ReadOnly] public float songPosInBeats;
+    [ReadOnly] public float dspSongTime;
 
     //Hitline
     public GameObject hitLinePrefab;
@@ -36,16 +37,19 @@ public class Conductor : Singleton<Conductor>
         //Start the music
         musicSource.Play();
 
+        //Determine how many seconds since the song started
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * musicSource.pitch - firstBeatOffset;
+
         for (int i = 0; i < 150; i++)
         {
-            notes[i] = i * 1;
+            notes[i] = i * howOftenToSpawn;
         }
     }
 
     void Update()
     {
-        //Determine how many beats since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) - firstBeatOffset;
+        //Determine how many seconds since the song started
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * musicSource.pitch - firstBeatOffset;
 
         //Determine how many beats since the song started
         songPosInBeats = songPosition / crotchet;

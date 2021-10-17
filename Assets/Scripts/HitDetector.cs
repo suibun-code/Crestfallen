@@ -11,6 +11,11 @@ public class HitDetector : MonoBehaviour
 
     List<GameObject> currentCollisions = new List<GameObject>();
 
+    void Start()
+    {
+        
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "HitLine")

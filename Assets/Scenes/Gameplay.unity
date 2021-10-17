@@ -156,7 +156,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-309054
+  m_Name: pb_Mesh-1384
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -325,7 +325,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1356
+  m_Name: pb_Mesh-1372
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -573,7 +573,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-316076
+  m_Name: pb_Mesh-1442
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -905,6 +905,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 850958988005215053, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
+      propertyPath: playerLineHit
+      value: 
+      objectReference: {fileID: 1433402092}
+    - target: {fileID: 5494336107431577702, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5494336107431577702, guid: 1731ab9d751a3bc4db4fa21a13385a00, type: 3}
       propertyPath: playerLineHit
       value: 
       objectReference: {fileID: 1433402092}
@@ -1488,14 +1496,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 952979140209727354, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
-      propertyPath: m_Volume
-      value: 0.111
-      objectReference: {fileID: 0}
-    - target: {fileID: 952979140209727354, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: c27c8343e6487f642a851b7d2abb64af, type: 3}
     - target: {fileID: 3021459689226119405, guid: 65de3d854523e614bbdb178e6e366b49, type: 3}
       propertyPath: m_RootOrder
       value: 5
