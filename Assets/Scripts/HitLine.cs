@@ -31,7 +31,7 @@ public class HitLine : MonoBehaviour
             Destroy(gameObject);
         }
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, spawnPos.z + (endPos.z - spawnPos.z) * (1f - (beat - Conductor.instance.songPosInBeats) / Conductor.instance.beatsShownInAdvance));
+        transform.position = new Vector3(transform.position.x, transform.position.y, spawnPos.z + (endPos.z - spawnPos.z) * (1f - (beat - Conductor.instance.songPosInBeats) / Conductor.instance.beatsBeforeArrive));
 
         //transform.position = Vector3.Lerp(
         //    spawnPos,
@@ -39,17 +39,19 @@ public class HitLine : MonoBehaviour
         //    (Conductor.instance.beatsShownInAdvance - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsShownInAdvance
         //    );
 
-        var test = (Conductor.instance.beatsShownInAdvance - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsShownInAdvance;
+        var test = (Conductor.instance.beatsBeforeArrive - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsBeforeArrive;
 
         //Debug.Log(test);
 
+        //Debug.Log("SONG POS IN BEATS: " + Conductor.instance.songPosInBeats);
         //Debug.Log("BEAT: " + beat);
         //Debug.Log("CROTCHET: " + Conductor.instance.crotchet);
         //Debug.Log("ADVANCE: " + Conductor.instance.beatsShownInAdvance);
-        Debug.Log("SONG POS IN BEATS: " + Conductor.instance.songPosInBeats);
-        Debug.Log("BEAT + CROTCHET: " + (beat + Conductor.instance.crotchet));
+        //Debug.Log("BEAT + CROTCHET: " + (beat + Conductor.instance.crotchet));
         if (Conductor.instance.songPosInBeats >= beat)
         {
+            Debug.Log("SONG POS IN BEATS: " + Conductor.instance.songPosInBeats);
+            Debug.Log("BEAT: " + beat);
             AudioManager.instance.PlayHitSound();
             Destroy(gameObject);
 

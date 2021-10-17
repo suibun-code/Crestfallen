@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 0}
   howOftenToSpawn: 1
-  songBpm: 100
-  firstBeatOffset: 0
-  beatsShownInAdvance: 4
+  songBpm: 200
+  firstBeatOffset: 3.67
+  beatsBeforeArrive: 6
   crotchet: 0
   songPosition: 0
   songPosInBeats: 0
@@ -64,7 +64,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2084996593284785191, guid: 05bcb79e0b057314292a7e96ede85b52, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 5000d7c3f48738b4bbf7acb14a6209ab, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2e396c152bec2b0498af47a9748443c2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
