@@ -9,7 +9,6 @@ public class HitLine : MonoBehaviour
     [ReadOnly] public Vector3 endPos = new Vector3(0.0f, 0.0f, 5f);
     [ReadOnly] public float removePos = 1.4f;
     [ReadOnly] public float beat = 0f;
-    [ReadOnly] public float lastBeat = 0f;
 
     //Current color
     [ReadOnly] public LineColorEnum hitLineColor = LineColorEnum.RED;
@@ -24,6 +23,7 @@ public class HitLine : MonoBehaviour
 
     void Update()
     {
+        //Remove hitline if past the playerline, no longer on the screen
         if (transform.position.z <= removePos)
         {
             ScoreTracker.instance.ResetCombo();
@@ -31,39 +31,20 @@ public class HitLine : MonoBehaviour
             Destroy(gameObject);
         }
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, spawnPos.z + (endPos.z - spawnPos.z) * (1f - (beat - Conductor.instance.songPosInBeats) / Conductor.instance.beatsBeforeArrive));
+        //Move the hitlines down based on the audio
+        transform.position = new Vector3(transform.position.x, 
+            transform.position.y,
+            spawnPos.z + (endPos.z - spawnPos.z) * (1f - (beat - Conductor.instance.songPosInBeats) / Conductor.instance.beatsBeforeArrive));
 
-        //transform.position = Vector3.Lerp(
-        //    spawnPos,
-        //    endPos,
-        //    (Conductor.instance.beatsShownInAdvance - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsShownInAdvance
-        //    );
 
-        var test = (Conductor.instance.beatsBeforeArrive - (beat - Conductor.instance.songPosInBeats)) / Conductor.instance.beatsBeforeArrive;
-
-        //Debug.Log(test);
-
-        //Debug.Log("SONG POS IN BEATS: " + Conductor.instance.songPosInBeats);
-        //Debug.Log("BEAT: " + beat);
-        //Debug.Log("CROTCHET: " + Conductor.instance.crotchet);
-        //Debug.Log("ADVANCE: " + Conductor.instance.beatsShownInAdvance);
-        //Debug.Log("BEAT + CROTCHET: " + (beat + Conductor.instance.crotchet));
-        if (Conductor.instance.songPosInBeats >= beat)
+        //Autohit
+        if (Conductor.instance.songPosInBeats >= beat && Conductor.instance.autoHit == true)
         {
-            Debug.Log("SONG POS IN BEATS: " + Conductor.instance.songPosInBeats);
-            Debug.Log("BEAT: " + beat);
+            ScoreTracker.instance.HitPerfect();
+            ScoreTracker.instance.UpdateTexts();
             AudioManager.instance.PlayHitSound();
             Destroy(gameObject);
-
-            lastBeat += Conductor.instance.crotchet;
         }
-
-        ////Autohit
-        //if (transform.position.z == 5f)
-        //{
-        //    AudioManager.instance.PlayHitSound();
-        //    Destroy(gameObject);
-        //}
     }
 
     public void SetColor(LineColorEnum color)

@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Conductor : Singleton<Conductor>
 {
-    //Music
-    public AudioSource musicSource;
-
     //Music Metadata
-    public int howOftenToSpawn;
-    public float songBpm;
-    public float firstBeatOffset;
-    public float beatsBeforeArrive;
-    [ReadOnly] public float crotchet;
+    public bool autoHit = false; //Automatically hit the notes without player input?
+    public float howOftenToSpawn; //How often to spawn notes. 1 = once per beat
+    public float songBpm; //Beats per minute of the song
+    public float firstBeatOffset; //First beat offset for the music, as there is silence or otherwise noise before the first beat of the song
+    public float beatsBeforeArrive; //"Note speed", how many beats go by before the hitline reaches the playerline. Lower = faster
+    [ReadOnly] public float crotchet; //How long 1 beat is
     [ReadOnly] public float songPosition;
     [ReadOnly] public float songPosInBeats;
     [ReadOnly] public float dspSongTime;
@@ -20,14 +18,11 @@ public class Conductor : Singleton<Conductor>
     //Hitline
     public GameObject hitLinePrefab;
     private int currentColor;
-    [System.NonSerialized] public float[] notes = new float[15000];
-    int nextIndex = 0;
+    [System.NonSerialized] public float[] notes = new float[15000]; //Stores which beat to spawn hitlines on
+    int nextIndex = 0; //Tracks which hitline is next
 
     void Start()
     {
-        //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
-
         //Calculate the number of seconds in each beat
         crotchet = 60f / songBpm;
 
@@ -35,14 +30,15 @@ public class Conductor : Singleton<Conductor>
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
-        musicSource.Play();
+        AudioManager.instance.PlayMusic();
 
         //I don't know why
         firstBeatOffset += (crotchet / 10f);
 
         //Determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * musicSource.pitch - firstBeatOffset;
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * AudioManager.instance.mapMusic.pitch - firstBeatOffset;
 
+        //How often to spawn notes -- feature for testing
         for (int i = 0; i < notes.Length; i++)
         {
             notes[i] = i * howOftenToSpawn;
@@ -52,7 +48,7 @@ public class Conductor : Singleton<Conductor>
     void Update()
     {
         //Determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * musicSource.pitch - firstBeatOffset;
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * AudioManager.instance.mapMusic.pitch - firstBeatOffset;
 
         //Determine how many beats since the song started
         songPosInBeats = songPosition / crotchet;
@@ -61,7 +57,7 @@ public class Conductor : Singleton<Conductor>
         {
             var hitLine = Instantiate(hitLinePrefab);
 
-            //hitLine.transform.parent = transform;
+            hitLine.transform.parent = transform;
 
             currentColor = Random.Range(0, (int)LineColorEnum.COUNT);
 

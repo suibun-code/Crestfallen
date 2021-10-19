@@ -5,15 +5,26 @@ using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
 {
-    public AudioSource audioSourceHitSound;
+    public AudioSource mapMusic;
+    public AudioSource hitSound;
 
     public void PlayHitSound()
     {
-        audioSourceHitSound.Play();
+        hitSound.Play();
     }
 
     public void StopHitSound()
     {
-        audioSourceHitSound.Stop();
+        hitSound.Stop();
+    }
+
+    public void PlayMusic()
+    {
+        mapMusic.Play();
+    }
+
+    public void StopMusic()
+    {
+        mapMusic.Stop();
     }
 }
