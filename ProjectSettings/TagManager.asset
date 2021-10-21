@@ -42,3 +42,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: GatewayShift Text
+    uniqueID: 990487645
+    locked: 0
