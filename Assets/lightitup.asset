@@ -19,5 +19,5 @@ MonoBehaviour:
   songArtist: Camellia
   mapMapper: Suibun
   songBPM: 175
-  firstBeatOffset: 0
+  firstBeatOffset: 1.24
   difficulty: 1

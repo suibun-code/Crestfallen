@@ -7,6 +7,10 @@ public class AudioManager : Singleton<AudioManager>
 {
     public AudioSource mapMusic;
     public AudioSource hitSound;
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     public void PlayHitSound()
     {

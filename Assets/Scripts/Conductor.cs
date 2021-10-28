@@ -23,6 +23,10 @@ public class Conductor : Singleton<Conductor>
 
     void Start()
     {
+        AudioManager.instance.mapMusic = SongSelector.instance.music;
+        firstBeatOffset = SongSelector.instance.currentCell.beatmap.firstBeatOffset;
+        songBpm = SongSelector.instance.currentCell.beatmap.songBPM;
+
         //Calculate the number of seconds in each beat
         crotchet = 60f / songBpm;
 
