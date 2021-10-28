@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 15
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 798879052358224175}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -289,6 +289,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 798879052329029130}
     m_Modifications:
+    - target: {fileID: 1825719237028596498, guid: afb05c40435169e4ba58e42d9841622e, type: 3}
+      propertyPath: beatmap
+      value: 
+      objectReference: {fileID: 11400000, guid: cc5bad033e77ad54e89132dd7c027fa1, type: 2}
     - target: {fileID: 3421624167315421697, guid: afb05c40435169e4ba58e42d9841622e, type: 3}
       propertyPath: m_Name
       value: PanelHorizontal

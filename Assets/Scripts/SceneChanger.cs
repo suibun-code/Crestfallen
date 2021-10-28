@@ -9,4 +9,9 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene("Gameplay");
     }
+
+    public void ChangeSceneToSongSelect()
+    {
+        SceneManager.LoadScene("SongSelect");
+    }
 }
