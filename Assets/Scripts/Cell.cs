@@ -66,7 +66,7 @@ public class Cell : MonoBehaviour
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
         if (currentCell == this)
         {
-            SceneChanger.instance.ChangeSceneToGameplay();
+            SceneManager.instance.ChangeSceneToGameplay();
             return;
         }
         else
