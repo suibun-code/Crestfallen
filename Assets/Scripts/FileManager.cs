@@ -21,7 +21,8 @@ public class FileManager : MonoBehaviour
 
     public void OpenFileExplorer()
     {
-        path = "C:/Users/" + Environment.UserName + "/AppData/Local/GatewayShift/";
+        //Set the path to store songs
+        path = Application.persistentDataPath;
         fileName = Path.GetFileName(path);
         copyPath = Application.dataPath + "/BeatTracks/" + fileName;
 
@@ -36,6 +37,7 @@ public class FileManager : MonoBehaviour
 
     IEnumerator LoadAudio()
     {
+        //Load audio from the given .wav file
         using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file:///" + path, AudioType.WAV);
 
         yield return www.SendWebRequest();
@@ -50,26 +52,28 @@ public class FileManager : MonoBehaviour
 
     public void GetDirectoryInfo()
     {
-        var info = new DirectoryInfo(Application.dataPath + "/BeatTracks");
-        var fileInfo = info.GetFiles();
+        //Get the names of files in the directory and add them into a string list
+        var info = new DirectoryInfo(path);
+        var fileInfo = info.GetFiles(".", SearchOption.AllDirectories);
         foreach (var file in fileInfo)
         {
+            fileNames.Add(file.Name);
             Debug.Log(file.Name);
         }
     }
 
     public void Import()
     {
-        var info = new DirectoryInfo(Application.dataPath + "/BeatTracks");
-        var fileInfo = info.GetFiles();
-        foreach (var file in fileInfo)
-        {
-            Debug.Log(file.Name);
-        }
+        // System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog()
+        // {
+        //     FileName = "Select a .wav or .ogg file",
+        //     Filter = "*.wav | *.ogg",
+        //     Title = "Open .wav or .ogg file"
+        // };
 
-        // if (!Directory.Exists(copyPath))
-        //     FileUtil.CopyFileOrDirectory(path, copyPath);
-        // else
-        //     Debug.Log("file exists");
+        // if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        // {
+        //     Debug.Log("POG");
+        // }
     }
 }
