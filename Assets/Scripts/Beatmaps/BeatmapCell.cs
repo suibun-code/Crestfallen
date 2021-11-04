@@ -6,8 +6,6 @@ using TMPro;
 
 public class BeatmapCell : MonoBehaviour
 {
-    public static BeatmapCell currentCell;
-
     public Beatmap beatmap;
     Image image;
 
@@ -64,7 +62,7 @@ public class BeatmapCell : MonoBehaviour
         songManager.music.Play();
 
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
-        if (currentCell == this)
+        if (SongManager.instance.currentBeatmap == this)
         {
             SceneManager.instance.ChangeSceneToGameplay();
             return;
@@ -72,7 +70,7 @@ public class BeatmapCell : MonoBehaviour
         else
         {
             //Use to track if the same song has been clicked twice
-            currentCell = this;
+            SongManager.instance.currentBeatmap = this;
         }
     }
 }

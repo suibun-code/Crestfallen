@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SongManager : Singleton<SongManager>
 {
+    public BeatmapCell currentBeatmap;
+    
     public AudioSource music;
     public AudioSource hitSound;
 
