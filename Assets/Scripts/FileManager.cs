@@ -18,7 +18,7 @@ public class FileManager : MonoBehaviour
     public GameObject scrollView;
     public GameObject audioFileCell;
 
-    void OnEnable() 
+    void OnEnable()
     {
         AudioFileCell.OnClick += SetCurrentCell;
     }
@@ -27,7 +27,7 @@ public class FileManager : MonoBehaviour
     {
         currentCell = audioFileCell;
         fileName = currentCell.fileName;
-        Debug.Log("yo: " + fileName);
+        filePath = path + fileName;
     }
 
     private void Awake()
@@ -46,19 +46,12 @@ public class FileManager : MonoBehaviour
 
     public void OnOpenFileDialog()
     {
-        path = FileDialogPlugin.OpenFileDialog();
-        Debug.Log(path);
+        filePath = FileDialogPlugin.OpenFileDialog();
     }
 
     public void SelectAudioFile()
     {
-        //Set the path to store songs
-        filePath = path + fileName;
-
-        Debug.Log(filePath);
-
-        if (Directory.Exists(path))
-            StartCoroutine(LoadAudio());
+        StartCoroutine(LoadAudio());
     }
 
     public void PlayClip()
@@ -69,6 +62,12 @@ public class FileManager : MonoBehaviour
     //use to allow user to select which song theyd like to use
     IEnumerator LoadAudio()
     {
+        if (!File.Exists(filePath))
+        {
+            Debug.Log("path doesnt exist 2");
+            yield break;
+        }
+
         //Load audio from the chosen .wav file
         using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(filePath, AudioType.MPEG);
 
