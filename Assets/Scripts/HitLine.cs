@@ -42,7 +42,7 @@ public class HitLine : MonoBehaviour
         {
             ScoreTracker.instance.HitPerfect();
             ScoreTracker.instance.UpdateTexts();
-            GameManager.instance.PlayHitSound();
+            SongManager.instance.PlayHitSound();
             Destroy(gameObject);
         }
     }

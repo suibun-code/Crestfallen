@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Cell : MonoBehaviour
+public class BeatmapCell : MonoBehaviour
 {
-    public static Cell currentCell;
+    public static BeatmapCell currentCell;
 
     public Beatmap beatmap;
     Image image;
@@ -56,12 +56,12 @@ public class Cell : MonoBehaviour
         if (beatmap == null)
             return;
 
-        var gameManager = GameManager.instance;
-        gameManager.songBPM = beatmap.songBPM;
-        gameManager.firstBeatOffset = beatmap.firstBeatOffset;
-        gameManager.music.clip = beatmap.music;
-        gameManager.music.time = beatmap.previewTimeStart;
-        gameManager.music.Play();
+        var songManager = SongManager.instance;
+        songManager.songBPM = beatmap.songBPM;
+        songManager.firstBeatOffset = beatmap.firstBeatOffset;
+        songManager.music.clip = beatmap.music;
+        songManager.music.time = beatmap.previewTimeStart;
+        songManager.music.Play();
 
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
         if (currentCell == this)

@@ -356,8 +356,8 @@ GameObject:
   - component: {fileID: 8219686472043354255}
   - component: {fileID: 8219686472043354253}
   - component: {fileID: 8219686472043354254}
-  - component: {fileID: 4915817255238401519}
   - component: {fileID: 3386346038722737694}
+  - component: {fileID: 4002066933780953909}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -426,19 +426,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4915817255238401519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8219686472043354248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80207ca4262e9a1419cbe3716af21eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beatmap: {fileID: 0}
 --- !u!114 &3386346038722737694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,8 +470,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4915817255238401519}
-        m_TargetAssemblyTypeName: Cell, Assembly-CSharp
+      - m_Target: {fileID: 4002066933780953909}
+        m_TargetAssemblyTypeName: BeatmapCell, Assembly-CSharp
         m_MethodName: PreviewSong
         m_Mode: 1
         m_Arguments:
@@ -495,6 +482,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4002066933780953909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8219686472043354248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99776fb75eca2b4191dda4a6f18e493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatmap: {fileID: 0}
 --- !u!1 &9005335029342531512
 GameObject:
   m_ObjectHideFlags: 0

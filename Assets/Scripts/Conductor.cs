@@ -26,16 +26,16 @@ public class Conductor : Singleton<Conductor>
     void Start()
     {
         //Set values of the song and reset the music time
-        songBPM = GameManager.instance.songBPM;
-        firstBeatOffset = GameManager.instance.firstBeatOffset;
-        GameManager.instance.ResetMusic();
+        songBPM = SongManager.instance.songBPM;
+        firstBeatOffset = SongManager.instance.firstBeatOffset;
+        SongManager.instance.ResetMusic();
 
         firstBeatOffset += (crotchet / 10f); //I don't know why
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * GameManager.instance.music.pitch - firstBeatOffset; //Determine how many seconds since the song started
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.music.pitch - firstBeatOffset; //Determine how many seconds since the song started
         crotchet = 60f / songBPM; //Calculate the number of seconds in each beat
 
         dspSongTime = (float)AudioSettings.dspTime; //Record the time when the music starts
-        GameManager.instance.PlayMusic(); //Start the music
+        SongManager.instance.PlayMusic(); //Start the music
 
         //How often to spawn notes -- feature for testing
         for (int i = 0; i < notes.Length; i++)
@@ -47,7 +47,7 @@ public class Conductor : Singleton<Conductor>
     void Update()
     {
         
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * GameManager.instance.music.pitch - firstBeatOffset; //Determine how many seconds since the song started
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.music.pitch - firstBeatOffset; //Determine how many seconds since the song started
         songPosInBeats = songPosition / crotchet; //Determine how many beats since the song started
 
         if (nextIndex < notes.Length && notes[nextIndex] < songPosInBeats + beatsBeforeArrive)

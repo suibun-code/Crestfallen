@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+public class SongManager : Singleton<SongManager>
 {
     public AudioSource music;
     public AudioSource hitSound;

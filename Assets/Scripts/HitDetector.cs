@@ -29,7 +29,7 @@ public class HitDetector : MonoBehaviour
 
     public void OnStrum(InputValue value)
     {
-        GameManager.instance.PlayHitSound();
+        SongManager.instance.PlayHitSound();
         playerLineHit.Play(0);
 
         foreach (GameObject gObject in currentCollisions)

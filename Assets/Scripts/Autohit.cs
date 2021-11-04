@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestButtons : MonoBehaviour
+public class Autohit : MonoBehaviour
 {
     public Button button;
     public TextMeshProUGUI text;
