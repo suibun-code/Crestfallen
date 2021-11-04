@@ -18,6 +18,18 @@ public class FileManager : MonoBehaviour
     public GameObject scrollView;
     public GameObject audioFileCell;
 
+    void OnEnable() 
+    {
+        AudioFileCell.OnClick += SetCurrentCell;
+    }
+
+    void SetCurrentCell(AudioFileCell audioFileCell)
+    {
+        currentCell = audioFileCell;
+        fileName = currentCell.fileName;
+        Debug.Log("yo: " + fileName);
+    }
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -32,10 +44,18 @@ public class FileManager : MonoBehaviour
         RefreshDirectory();
     }
 
-    public void OpenFileExplorer()
+    public void OnOpenFileDialog()
+    {
+        path = FileDialogPlugin.OpenFileDialog();
+        Debug.Log(path);
+    }
+
+    public void SelectAudioFile()
     {
         //Set the path to store songs
         filePath = path + fileName;
+
+        Debug.Log(filePath);
 
         if (Directory.Exists(path))
             StartCoroutine(LoadAudio());
@@ -74,11 +94,12 @@ public class FileManager : MonoBehaviour
 
         foreach (var file in fileInfo)
         {
+            //Set the values for the audio file cell
             var cell = Instantiate(audioFileCell);
-            files.Add(cell);
-            cell.transform.SetParent(scrollView.GetComponent<ScrollRect>().content.transform);
-            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(file.Name);
-            fileName = file.Name;
+            files.Add(cell); //Ad cell to the files list to be managed
+            cell.GetComponent<AudioFileCell>().fileName = file.Name; //Set the fileName variable in the cell to equal the file's name
+            cell.transform.SetParent(scrollView.GetComponent<ScrollRect>().content.transform, false); //Attach cell the the scrollview to be organized in
+            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(file.Name); //Set the text of the cell to be the file name
         }
     }
 }

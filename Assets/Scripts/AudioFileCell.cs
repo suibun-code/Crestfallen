@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class AudioFileCell : MonoBehaviour
 {
-    
+    public delegate void ClickAction(AudioFileCell audioFileCell);
+    public static event ClickAction OnClick;
 
-    void Start()
-    {
-        
-    }
+    [ReadOnly] public string fileName;
 
-    void Update()
+    public void OnSetCurrentCell()
     {
-        
+        var audioFileCell = this;
+
+        if (OnClick != null)
+            OnClick(audioFileCell);
     }
 }
