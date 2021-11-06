@@ -7,9 +7,10 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 
-public class FileManager : MonoBehaviour
+public class MusicFileManager : MonoBehaviour
 {
     string path;
+    string savePath;
     string filePath;
     string fileName;
     public AudioSource audioSource;
@@ -17,6 +18,9 @@ public class FileManager : MonoBehaviour
     public List<GameObject> files;
     public GameObject scrollView;
     public GameObject audioFileCell;
+    public GameObject playButton;
+
+    public TextMeshProUGUI Text_fileName;
 
     void OnEnable()
     {
@@ -32,25 +36,37 @@ public class FileManager : MonoBehaviour
 
     private void Awake()
     {
+        //Create appropriate directories
+        if (!Directory.Exists(Application.persistentDataPath + "/songs/"))
+            Directory.CreateDirectory(Application.persistentDataPath + "/songs/");
+        path = Application.persistentDataPath + "/songs/";
+
+        if (!Directory.Exists(Application.persistentDataPath + "/tracks/"))
+            Directory.CreateDirectory(Application.persistentDataPath + "/tracks/");
+        savePath = Application.persistentDataPath + "/tracks/";
+
         audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
     {
-        if (!Directory.Exists(Application.persistentDataPath + "/songs/"))
-            Directory.CreateDirectory(Application.persistentDataPath + "/songs/");
-
-        path = Application.persistentDataPath + "/songs/";
         RefreshDirectory();
     }
 
     public void OnOpenFileDialog()
     {
         filePath = FileDialogPlugin.OpenFileDialog();
+        fileName = FileDialogPlugin.GetFileName();
     }
 
     public void SelectAudioFile()
     {
+        Text_fileName.SetText(fileName);
+
+        Debug.Log("Loading...");
+        playButton.GetComponent<Button>().interactable = false; //Disable the button
+        playButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText("Loading..."); //Set the button's text to "Loading..."
+
         StartCoroutine(LoadAudio());
     }
 
@@ -64,14 +80,22 @@ public class FileManager : MonoBehaviour
     {
         if (!File.Exists(filePath))
         {
-            Debug.Log("path doesnt exist 2");
+            Text_fileName.color = Color.red;
+            Text_fileName.SetText("\"" + fileName + "\"\n does not exist, is not the correct file type, or an unsupported \"unofficial\" *.mp3.");
+            Debug.Log("path doesnt exist");
             yield break;
         }
+
+        Text_fileName.color = Color.white;
 
         //Load audio from the chosen .wav file
         using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(filePath, AudioType.MPEG);
 
         yield return www.SendWebRequest();
+
+        Debug.Log("Done loading");
+        playButton.GetComponent<Button>().interactable = true; //Enable the button
+        playButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText("Play"); //Set the button's text to "Play"
 
         if (www.result == UnityWebRequest.Result.ConnectionError)
             Debug.Log(www.error);
@@ -100,5 +124,15 @@ public class FileManager : MonoBehaviour
             cell.transform.SetParent(scrollView.GetComponent<ScrollRect>().content.transform, false); //Attach cell the the scrollview to be organized in
             cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(file.Name); //Set the text of the cell to be the file name
         }
+    }
+
+    public void Save(Beatmap beatmap, string musicPath)
+    {
+        //Save audio file to path
+        File.Copy(filePath, savePath + fileName);
+
+        
+        var json = JsonUtility.ToJson(beatmap);
+        System.IO.File.WriteAllText(savePath + beatmap.name + ".gst", json);
     }
 }
