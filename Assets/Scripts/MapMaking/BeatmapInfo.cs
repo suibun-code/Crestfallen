@@ -27,7 +27,7 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
     [ReadOnly] public float beatmapBPM;
     [ReadOnly] public float beatmapFirstBeatOffset;
 
-    public void SetArt()
+    public async void SetArt()
     {
         artPath = FileDialogPlugin.OpenFileDialog("Upload an image file to use as your avatar.", "Upload an image file.", "*.png;*.jpg");
         artName = FileDialogPlugin.GetFileName();
@@ -35,7 +35,8 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
         MapMakerManager.instance.artPath = artPath;
         MapMakerManager.instance.artName = artName;
 
-        StartCoroutine(LoadFile.LoadImage(beatmapArt.texture, artPath));
+        //StartCoroutine(LoadFile.LoadImage(beatmapArt.texture, artPath));
+        beatmapArt.texture = await LoadFile.instance.LoadImage(artPath);
     }
 
     public void SetName()

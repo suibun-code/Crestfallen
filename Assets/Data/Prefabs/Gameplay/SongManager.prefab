@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7301260613092634965}
   - component: {fileID: 952979140209727354}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: SongManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d25c0ec0433b940858e13e87541fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentBeatmap: {fileID: 0}
   music: {fileID: 7301260613092634965}
   hitSound: {fileID: 952979140209727354}
   firstBeatOffset: 0

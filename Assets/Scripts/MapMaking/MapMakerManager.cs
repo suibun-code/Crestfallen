@@ -62,24 +62,24 @@ public class MapMakerManager : Singleton<MapMakerManager>
 
         if (File.Exists(musicPath))
         {
+            Debug.Log(beatmapPath + musicName);
             File.Copy(musicPath, beatmapPath + musicName);
-            Debug.Log(musicPath);
         }
         else
         {
-            Debug.Log("MusicPath doesn't exist");
             Debug.Log(musicPath);
+            Debug.Log("MusicPath doesn't exist");
         }
 
         if (File.Exists(artPath))
         {
-            File.Copy(artPath, beatmapPath + artName);
             Debug.Log(artPath);
+            File.Copy(artPath, beatmapPath + artName);
         }
         else
         {
-            Debug.Log("ArtPath doesn't exist");
             Debug.Log(artPath);
+            Debug.Log("ArtPath doesn't exist");
         }
 
         Debug.Log("Saved!");

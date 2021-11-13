@@ -55,11 +55,11 @@ public class SelectMusic : Singleton<SelectMusic>
         musicName = FileDialogPlugin.GetFileName();
     }
 
-    public void LoadMusic()
+    public async void LoadMusic()
     {
         MapMakerManager.instance.musicPath = musicPath;
         MapMakerManager.instance.musicName = musicName;
-        Debug.Log(MapMakerManager.instance.musicPath);
+        Debug.Log(MapMakerManager.instance.musicName);
 
         Text_fileName.SetText(musicName);
 
@@ -82,7 +82,8 @@ public class SelectMusic : Singleton<SelectMusic>
             return;
         }
 
-        StartCoroutine(LoadFile.LoadAudioFile(audioSource.clip, musicPath));
+        audioSource.clip = await LoadFile.instance.LoadAudioFile(musicPath);
+        //StartCoroutine(LoadFile.LoadAudioFile(audioSource.clip, musicPath));
     }
 
     public void PlayClip()
@@ -100,7 +101,7 @@ public class SelectMusic : Singleton<SelectMusic>
 
         //Get the names of files in the directory and add them into a string list
         var info = new DirectoryInfo(tracksPath);
-        var fileInfo = info.GetFiles("*.mp3", SearchOption.AllDirectories);
+        var fileInfo = info.GetFiles("*.mp3", SearchOption.TopDirectoryOnly);
 
         foreach (var file in fileInfo)
         {

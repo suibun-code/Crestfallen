@@ -29,7 +29,8 @@ public class BeatmapCell : MonoBehaviour
 
         //Set parameters from beatmap scriptable object to this gameobject.
         //image.sprite = beatmap.artwork;
-        StartCoroutine(LoadFile.LoadImage(image.sprite.texture, beatmap.relativePath + beatmap.artName));
+
+        //StartCoroutine(LoadFile.LoadImage(image.sprite.texture, beatmap.relativePath + beatmap.artName));
         songText.SetText(beatmap.songName);
         artistText.SetText(beatmap.songArtist);
 
@@ -58,8 +59,7 @@ public class BeatmapCell : MonoBehaviour
         var songManager = SongManager.instance;
         songManager.songBPM = beatmap.songBPM;
         songManager.firstBeatOffset = beatmap.firstBeatOffset;
-        //songManager.music.clip = beatmap.music;
-        StartCoroutine(LoadFile.LoadAudioFile(songManager.music.clip, beatmap.relativePath + beatmap.songName));
+        songManager.music.clip = beatmap.music;
         songManager.music.time = beatmap.previewTimeStart;
         songManager.music.Play();
 
