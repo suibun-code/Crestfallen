@@ -855,6 +855,30 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5010109776055389356}
+    - target: {fileID: 4486587173298722023, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486587173298722023, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486587173298722023, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486587173789635129, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486587173789635129, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486587173789635129, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
 --- !u!1001 &5010109776055389355

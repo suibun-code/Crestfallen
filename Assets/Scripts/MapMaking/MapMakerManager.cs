@@ -7,7 +7,12 @@ using System.IO;
 
 public class MapMakerManager : Singleton<MapMakerManager>
 {
-    public static string g_TracksPath;
+    public string g_TracksPath;
+
+    public string TracksPath
+    {
+        get => g_TracksPath;
+    }
 
     [ReadOnly] public string musicPath;
     [ReadOnly] public string musicName;

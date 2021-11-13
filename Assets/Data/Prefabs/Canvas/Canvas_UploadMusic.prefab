@@ -944,7 +944,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4486587173789635128}
   m_HandleRect: {fileID: 4486587173789635129}
   m_Direction: 2
-  m_Value: 0.9999997
+  m_Value: 1
   m_Size: 0.6666667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1072,8 +1072,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LoadAudioManager, Assembly-CSharp
-        m_MethodName: SelectMusic
+        m_TargetAssemblyTypeName: SelectMusic, Assembly-CSharp
+        m_MethodName: SelectSong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

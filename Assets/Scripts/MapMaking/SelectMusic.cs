@@ -6,7 +6,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 
-public class LoadAudio : Singleton<LoadAudio>
+public class SelectMusic : Singleton<SelectMusic>
 {
     string tracksPath;
     string musicPath;
@@ -32,7 +32,7 @@ public class LoadAudio : Singleton<LoadAudio>
 
     void Start()
     {
-        tracksPath = MapMakerManager.g_TracksPath;
+        tracksPath = MapMakerManager.instance.TracksPath;
         RefreshDirectory();
     }
 
@@ -49,7 +49,7 @@ public class LoadAudio : Singleton<LoadAudio>
         FileDialogPlugin.OpenExplorerWithPath("C:/Users/" + Environment.UserName + "/AppData/LocalLow/RaminAmiri/GatewayShift/tracks");
     }
 
-    public void SelectMusic()
+    public void SelectSong()
     {
         musicPath = FileDialogPlugin.OpenFileDialog("Upload an audio file to use as your music.", "Import a *.mp3 file", "*.mp3");
         musicName = FileDialogPlugin.GetFileName();
