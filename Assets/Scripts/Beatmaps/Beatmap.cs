@@ -5,17 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Beatmap", menuName = "Beatmap")]
 public class Beatmap : ScriptableObject
 {
-    public float previewTimeStart;
-
-    public AudioClip music;
-
-    public Sprite artwork;
+    public float previewTimeStart; //REMEMBER TO DO THIS
+    
+    public string relativePath;
     public string songName;
+    public string description;
     public string songArtist;
-    public string mapMapper;
+    public string mapperName;
+    public float difficulty;
     public float songBPM;
     public float firstBeatOffset;
-    public float difficulty;
 
-
+    public string artName;
+    public string musicName;
 }
