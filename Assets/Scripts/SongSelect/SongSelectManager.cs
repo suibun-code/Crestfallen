@@ -8,18 +8,12 @@ public class SongSelectManager : Singleton<SongSelectManager>
     public Transform parent;
     public GameObject pf_horizontalPanel;
     public GameObject pf_beatmapCell;
+    public GameObject currentHorizontalPanel;
 
-    private GameObject currentHorizontalPanel;
-    private int cellCount;
+    private int cellCount = 0;
 
     public void LoadBeatmaps()
     {
-        cellCount = 0;
-        var currentHorizontalPanel = Instantiate(pf_horizontalPanel);
-        currentHorizontalPanel.transform.SetParent(parent, false);
-
-        Debug.Log(TrackLoader.instance.beatmaps.Count);
-
         foreach (Beatmap beatmap in TrackLoader.instance.beatmaps)
         {
             if (cellCount == 4)
@@ -37,5 +31,7 @@ public class SongSelectManager : Singleton<SongSelectManager>
 
             cellCount++;
         }
+
+        TrackLoader.instance.beatmaps.Clear();
     }
 }

@@ -49,6 +49,8 @@ public class BeatmapCell : MonoBehaviour
             difficultyText.color = new Color(0.6980392f, 0.6980392f, 0f);
         else if (beatmap.difficulty <= 12 && beatmap.difficulty > 9)
             difficultyText.color = new Color(0.6980392f, 0f, 0f);
+        else if (beatmap.difficulty > 12)
+            difficultyText.color = new Color(0.6980392f, 0f, 0.6980392f);
     }
 
     public void PreviewSong()

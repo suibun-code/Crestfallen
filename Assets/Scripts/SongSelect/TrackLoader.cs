@@ -10,7 +10,7 @@ public class TrackLoader : Singleton<TrackLoader>
 {
     public string tracksPath;
     public string trackFolderPath;
-    Beatmap beatmap;
+    public Beatmap beatmap;
     public List<Beatmap> beatmaps;
 
     void Start()
@@ -29,9 +29,8 @@ public class TrackLoader : Singleton<TrackLoader>
             trackFolderPath = System.IO.Path.Combine(tracksPath, trackDirectory.Name);
             string gstFilePath = ScanFilesOfDirectoryForGSTFile(trackFolderPath); //Scan the files in the track folder to find the .gst
             await LoadTrack(ReadGSTFile(gstFilePath));
+            SongSelectManager.instance.LoadBeatmaps();
         }
-
-        SongSelectManager.instance.LoadBeatmaps();
     }
 
     public string ScanFilesOfDirectoryForGSTFile(string trackFolderPath)
@@ -60,7 +59,7 @@ public class TrackLoader : Singleton<TrackLoader>
         beatmap.art = await LoadFile.instance.LoadImage(System.IO.Path.Combine(trackFolderPath, beatmap.artName));
 
         DateTime before = DateTime.Now;
-        beatmap.music = await LoadFile.instance.LoadAudioFile(System.IO.Path.Combine(trackFolderPath, beatmap.musicName));
+        //beatmap.music = await LoadFile.instance.LoadAudioFile(System.IO.Path.Combine(trackFolderPath, beatmap.musicName));
         DateTime after = DateTime.Now;
         TimeSpan duration = after.Subtract(before);
         Debug.Log("Function took " + duration.Milliseconds + "ms.");
