@@ -9,6 +9,13 @@ public class BeatmapCell : MonoBehaviour
     public Beatmap beatmap;
     Image image;
 
+    public Color Tier0 = new Color(0f, 0.6980392f, 0f);
+    public Color Tier1 = new Color(0f, 0.6980392f, 1f);
+    public Color Tier2 = new Color(0.6980392f, 0.6980392f, 0f);
+    public Color Tier3 = new Color(0.6980392f, 0f, 0f);
+    public Color Tier4 = new Color(0.6980392f, 0f, 0.6980392f);
+    public Color Tier5 = new Color(0.8f, 0.8f, 0.8f);
+
     private void Awake()
     {
         image = GetComponent<Image>();
@@ -40,17 +47,21 @@ public class BeatmapCell : MonoBehaviour
         else
             difficultyText.SetText(beatmap.difficulty.ToString());
 
+
+
         //Coloring the difficulty text depending on the difficulty
         if (beatmap.difficulty <= 3)
-            difficultyText.color = new Color(0f, 0.6980392f, 0f);
-        else if (beatmap.difficulty <= 6 && beatmap.difficulty > 3)
-            difficultyText.color = new Color(0f, 0.6980392f, 1f);
-        else if (beatmap.difficulty <= 9 && beatmap.difficulty > 6)
-            difficultyText.color = new Color(0.6980392f, 0.6980392f, 0f);
-        else if (beatmap.difficulty <= 12 && beatmap.difficulty > 9)
-            difficultyText.color = new Color(0.6980392f, 0f, 0f);
-        else if (beatmap.difficulty > 12)
-            difficultyText.color = new Color(0.6980392f, 0f, 0.6980392f);
+            difficultyText.color = Tier0;
+        else if (beatmap.difficulty <= 7 && beatmap.difficulty > 3)
+            difficultyText.color = Tier1;
+        else if (beatmap.difficulty <= 11 && beatmap.difficulty > 7)
+            difficultyText.color = Tier2;
+        else if (beatmap.difficulty <= 15 && beatmap.difficulty > 11)
+            difficultyText.color = Tier3;
+        else if (beatmap.difficulty <= 19)
+            difficultyText.color = Tier4;
+        else
+            difficultyText.color = Tier5;
     }
 
     public void PreviewSong()
