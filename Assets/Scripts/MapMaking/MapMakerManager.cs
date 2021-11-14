@@ -39,8 +39,19 @@ public class MapMakerManager : Singleton<MapMakerManager>
     public void Save()
     {
         string beatmapPath = g_TracksPath + "/" + beatmapName + "/";
+
         if (!Directory.Exists(beatmapPath))
+        {
             Directory.CreateDirectory(beatmapPath);
+        }
+        else
+        {
+            while (Directory.Exists(beatmapPath))
+                beatmapPath = g_TracksPath + "/" + beatmapName + Random.Range(0, 10000) + "/";
+
+            Directory.CreateDirectory(beatmapPath);
+        }
+
 
         //MAKE BEATMAP SCRIPTABLE OBJECT HERE
         Beatmap beatmap = ScriptableObject.CreateInstance<Beatmap>();
@@ -60,26 +71,22 @@ public class MapMakerManager : Singleton<MapMakerManager>
         var json = JsonUtility.ToJson(beatmap);
         System.IO.File.WriteAllText(beatmapPath + beatmapName + ".gst", json);
 
-        if (File.Exists(musicPath))
+        if (File.Exists(musicPath) && !File.Exists(beatmapPath + musicName))
         {
-            Debug.Log(beatmapPath + musicName);
-            File.Copy(musicPath, beatmapPath + musicName);
+            File.Copy(musicPath, beatmapPath + musicName, true);
         }
         else
         {
-            Debug.Log(musicPath);
-            Debug.Log("MusicPath doesn't exist");
+            Debug.Log("MusicPath doesn't exist, or destination path already exists");
         }
 
-        if (File.Exists(artPath))
+        if (File.Exists(artPath) && !File.Exists(artPath + artName))
         {
-            Debug.Log(artPath);
-            File.Copy(artPath, beatmapPath + artName);
+            File.Copy(artPath, beatmapPath + artName, true);
         }
         else
         {
-            Debug.Log(artPath);
-            Debug.Log("ArtPath doesn't exist");
+            Debug.Log("ArtPath doesn't exist, or destination path already exists");
         }
 
         Debug.Log("Saved!");

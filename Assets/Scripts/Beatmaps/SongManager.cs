@@ -6,7 +6,7 @@ using UnityEngine;
 public class SongManager : Singleton<SongManager>
 {
     public BeatmapCell currentBeatmap;
-    
+
     public AudioSource music;
     public AudioSource hitSound;
 
@@ -20,26 +20,31 @@ public class SongManager : Singleton<SongManager>
 
     public void PlayHitSound()
     {
-        hitSound.Play();
+        if (hitSound != null)
+            hitSound.Play();
     }
 
     public void StopHitSound()
     {
-        hitSound.Stop();
+        if (hitSound != null)
+            hitSound.Stop();
     }
 
     public void PlayMusic()
     {
-        music.Play();
+        if (music != null)
+            music.Play();
     }
 
     public void StopMusic()
     {
-        music.Stop();
+        if (music != null)
+            music.Stop();
     }
 
     public void ResetMusic()
     {
-        music.time = 0;
+        if (music != null)
+            music.time = 0;
     }
 }

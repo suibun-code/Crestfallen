@@ -88,7 +88,14 @@ public class SelectMusic : Singleton<SelectMusic>
 
     public void PlayClip()
     {
-        audioSource.Play();
+        if (audioSource != null)
+            audioSource.Play();
+    }
+
+    public void StopClip()
+    {
+        if (audioSource != null)
+            audioSource.Stop();
     }
 
     public void RefreshDirectory()

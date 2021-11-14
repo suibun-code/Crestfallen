@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System.Threading.Tasks;
+using System;
+using UnityEngine.Networking;
 
 public class TrackLoader : Singleton<TrackLoader>
 {
     public string tracksPath;
     public string trackFolderPath;
+    Beatmap beatmap;
     public List<Beatmap> beatmaps;
 
     void Start()
@@ -52,10 +55,16 @@ public class TrackLoader : Singleton<TrackLoader>
 
     public async Task LoadTrack(string jsonData)
     {
-        Beatmap beatmap = ScriptableObject.CreateInstance<Beatmap>();
+        beatmap = ScriptableObject.CreateInstance<Beatmap>();
         JsonUtility.FromJsonOverwrite(jsonData, beatmap);
         beatmap.art = await LoadFile.instance.LoadImage(System.IO.Path.Combine(trackFolderPath, beatmap.artName));
+
+        DateTime before = DateTime.Now;
         beatmap.music = await LoadFile.instance.LoadAudioFile(System.IO.Path.Combine(trackFolderPath, beatmap.musicName));
+        DateTime after = DateTime.Now;
+        TimeSpan duration = after.Subtract(before);
+        Debug.Log("Function took " + duration.Milliseconds + "ms.");
+
         beatmaps.Add(beatmap);
     }
 }
