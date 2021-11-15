@@ -354,10 +354,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8219686472043354255}
+  - component: {fileID: 4002066933780953909}
   - component: {fileID: 8219686472043354253}
   - component: {fileID: 5192665711494137344}
   - component: {fileID: 3386346038722737694}
-  - component: {fileID: 4002066933780953909}
   m_Layer: 5
   m_Name: BeatmapCell
   m_TagString: Untagged
@@ -388,6 +388,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4002066933780953909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8219686472043354248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99776fb75eca2b4191dda4a6f18e493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatmap: {fileID: 0}
+  Tier0: {r: 0, g: 0.6980392, b: 0, a: 1}
+  Tier1: {r: 0, g: 0.6980392, b: 1, a: 1}
+  Tier2: {r: 0.6980392, g: 0.6980392, b: 0, a: 1}
+  Tier3: {r: 0.6980392, g: 0, b: 0, a: 1}
+  Tier4: {r: 0.6980392, g: 0, b: 0.6980392, a: 1}
+  Tier5: {r: 0.8, g: 0.8, b: 0.8, a: 1}
 --- !u!222 &8219686472043354253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -479,25 +498,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4002066933780953909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8219686472043354248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99776fb75eca2b4191dda4a6f18e493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beatmap: {fileID: 0}
-  Tier0: {r: 0, g: 0.6980392, b: 0, a: 1}
-  Tier1: {r: 0, g: 0.6980392, b: 1, a: 1}
-  Tier2: {r: 0.6980392, g: 0.6980392, b: 0, a: 1}
-  Tier3: {r: 0.6980392, g: 0, b: 0, a: 1}
-  Tier4: {r: 0.6980392, g: 0, b: 0.6980392, a: 1}
-  Tier5: {r: 0.8, g: 0.8, b: 0.8, a: 1}
 --- !u!1 &9005335029342531512
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6536085461585980210}
-  - component: {fileID: 8475254574709950974}
+  - component: {fileID: 1860885806537729896}
   - component: {fileID: 5197178403056655019}
   - component: {fileID: 4068467027404575219}
   m_Layer: 5
@@ -536,18 +536,48 @@ RectTransform:
   m_AnchoredPosition: {x: -6, y: -7}
   m_SizeDelta: {x: 50.96, y: 22.1}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &8475254574709950974
+--- !u!114 &1860885806537729896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9005335029342531512}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9bb374291bf8374cbbc47d50f589fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rainbow:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0, g: 1, b: 0, a: 1}
+    key2: {r: 0, g: 0.70051455, b: 1, a: 0}
+    key3: {r: 1, g: 1, b: 0, a: 0}
+    key4: {r: 1, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 16384
+    ctime2: 32768
+    ctime3: 49151
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  gradientTime: 0
 --- !u!222 &5197178403056655019
 CanvasRenderer:
   m_ObjectHideFlags: 0

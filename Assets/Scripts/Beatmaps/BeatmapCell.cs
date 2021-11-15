@@ -9,6 +9,8 @@ public class BeatmapCell : MonoBehaviour
     public Beatmap beatmap;
     Image image;
 
+    private TextEffect textEffect;
+
     public Color Tier0 = new Color(0f, 0.6980392f, 0f);
     public Color Tier1 = new Color(0f, 0.6980392f, 1f);
     public Color Tier2 = new Color(0.6980392f, 0.6980392f, 0f);
@@ -33,6 +35,7 @@ public class BeatmapCell : MonoBehaviour
         var songText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         var artistText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         var difficultyText = transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        textEffect = difficultyText.gameObject.GetComponent<TextEffect>();
 
         //Set parameters from beatmap scriptable object to this gameobject.
         //image.sprite = beatmap.artwork;
@@ -61,7 +64,7 @@ public class BeatmapCell : MonoBehaviour
         else if (beatmap.difficulty <= 19)
             difficultyText.color = Tier4;
         else
-            difficultyText.color = Tier5;
+            textEffect.enabled = true;
     }
 
     public void PreviewSong()
