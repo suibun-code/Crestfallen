@@ -8,10 +8,8 @@ public class Beatmap : ScriptableObject
 {
     public Texture art;
     public AudioClip music;
-
-    public float previewTimeStart; //REMEMBER TO DO THIS
     
-    public string relativePath;
+    public string folderPath;
     public string songName;
     public string description;
     public string songArtist;
@@ -19,6 +17,7 @@ public class Beatmap : ScriptableObject
     public float difficulty;
     public float songBPM;
     public float firstBeatOffset;
+    public float previewStartTime;
 
     public string artName;
     public string musicName;

@@ -28,6 +28,7 @@ public class MapMakerManager : Singleton<MapMakerManager>
     [ReadOnly] public float songBPM;
     [ReadOnly] public float difficulty;
     [ReadOnly] public float firstBeatOffset;
+    [ReadOnly] public float previewStartTime;
 
     new private void Awake()
     {
@@ -47,15 +48,14 @@ public class MapMakerManager : Singleton<MapMakerManager>
         else
         {
             while (Directory.Exists(beatmapPath))
-                beatmapPath = g_TracksPath + "/" + beatmapName + Random.Range(0, 10000) + "/";
+                beatmapPath = g_TracksPath + beatmapName + Random.Range(0, 10000) + "/";
 
             Directory.CreateDirectory(beatmapPath);
         }
 
-
         //MAKE BEATMAP SCRIPTABLE OBJECT HERE
         Beatmap beatmap = ScriptableObject.CreateInstance<Beatmap>();
-        beatmap.relativePath = beatmapPath;
+        beatmap.folderPath = beatmapPath;
         beatmap.songName = beatmapName;
         beatmap.description = beatmapDescription;
         beatmap.songArtist = songArtist;
@@ -63,6 +63,7 @@ public class MapMakerManager : Singleton<MapMakerManager>
         beatmap.difficulty = difficulty;
         beatmap.songBPM = songBPM;
         beatmap.firstBeatOffset = firstBeatOffset;
+        beatmap.previewStartTime = previewStartTime;
         beatmap.artName = artName;
         beatmap.musicName = musicName;
 

@@ -43,9 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3146c7aaeb6a0248bced27ec8f4bab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avatarPath: 
-  image_avatar: {fileID: 0}
+  artPath: 
+  artName: 
+  beatmapArt: {fileID: 0}
   input_name: {fileID: 0}
   input_description: {fileID: 0}
+  input_songArtist: {fileID: 0}
+  input_mapperName: {fileID: 0}
+  input_difficulty: {fileID: 0}
+  input_songBPM: {fileID: 0}
+  input_firstBeatOffset: {fileID: 0}
+  input_previewStartTime: {fileID: 0}
   beatmapName: 
   beatmapDescription: 
+  beatmapSongArtist: 
+  beatmapMapperName: 
+  beatmapDifficulty: 0
+  beatmapBPM: 0
+  beatmapFirstBeatOffset: 0
+  beatmapPreviewStartTime: 0

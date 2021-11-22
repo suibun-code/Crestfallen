@@ -63,7 +63,6 @@ public class SelectMusic : Singleton<SelectMusic>
 
         Text_fileName.SetText(musicName);
 
-        Debug.Log("Loading...");
         playButton.GetComponent<Button>().interactable = false; //Disable the button
         playButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText("Loading..."); //Set the button's text to "Loading..."
 

@@ -16,7 +16,6 @@ public class BeatmapCell : MonoBehaviour
     public Color Tier2 = new Color(0.6980392f, 0.6980392f, 0f);
     public Color Tier3 = new Color(0.6980392f, 0f, 0f);
     public Color Tier4 = new Color(0.6980392f, 0f, 0.6980392f);
-    public Color Tier5 = new Color(0.8f, 0.8f, 0.8f);
 
     private void Awake()
     {
@@ -67,16 +66,18 @@ public class BeatmapCell : MonoBehaviour
             textEffect.enabled = true;
     }
 
-    public void PreviewSong()
+    public async void PreviewSong()
     {
         if (beatmap == null)
             return;
+
+        beatmap.music = await LoadFile.instance.LoadAudioFile(System.IO.Path.Combine(beatmap.folderPath, beatmap.musicName));
 
         var songManager = SongManager.instance;
         songManager.songBPM = beatmap.songBPM;
         songManager.firstBeatOffset = beatmap.firstBeatOffset;
         songManager.music.clip = beatmap.music;
-        songManager.music.time = beatmap.previewTimeStart;
+        songManager.music.time = beatmap.previewStartTime;
         songManager.music.Play();
 
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene

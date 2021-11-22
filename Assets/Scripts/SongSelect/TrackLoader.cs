@@ -9,7 +9,7 @@ using UnityEngine.Networking;
 public class TrackLoader : Singleton<TrackLoader>
 {
     public string tracksPath;
-    public string trackFolderPath;
+    public string folderPath;
     public Beatmap beatmap;
     public List<Beatmap> beatmaps;
 
@@ -26,9 +26,13 @@ public class TrackLoader : Singleton<TrackLoader>
 
         foreach (DirectoryInfo trackDirectory in trackDirectories)
         {
-            trackFolderPath = System.IO.Path.Combine(tracksPath, trackDirectory.Name);
-            string gstFilePath = ScanFilesOfDirectoryForGSTFile(trackFolderPath); //Scan the files in the track folder to find the .gst
-            await LoadTrack(ReadGSTFile(gstFilePath));
+            folderPath = System.IO.Path.Combine(tracksPath, trackDirectory.Name);
+
+            string jsonDataPath = ScanFilesOfDirectoryForGSTFile(folderPath); //Scan the files in the track folder to find the .gst
+            string jsonData = ReadGSTFile(jsonDataPath);
+
+            await LoadTrack(jsonData);
+
             SongSelectManager.instance.LoadBeatmaps();
         }
     }
@@ -47,16 +51,17 @@ public class TrackLoader : Singleton<TrackLoader>
         return "";
     }
 
-    public string ReadGSTFile(string gstFilePath)
+    public string ReadGSTFile(string jsonDataPath)
     {
-        return System.IO.File.ReadAllText(gstFilePath);
+        return System.IO.File.ReadAllText(jsonDataPath);
     }
 
     public async Task LoadTrack(string jsonData)
     {
         beatmap = ScriptableObject.CreateInstance<Beatmap>();
         JsonUtility.FromJsonOverwrite(jsonData, beatmap);
-        beatmap.art = await LoadFile.instance.LoadImage(System.IO.Path.Combine(trackFolderPath, beatmap.artName));
+
+        beatmap.art = await LoadFile.instance.LoadImage(System.IO.Path.Combine(folderPath, beatmap.artName));
 
         DateTime before = DateTime.Now;
         //beatmap.music = await LoadFile.instance.LoadAudioFile(System.IO.Path.Combine(trackFolderPath, beatmap.musicName));
