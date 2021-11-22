@@ -32,14 +32,14 @@ public class MapMakerManager : Singleton<MapMakerManager>
 
     new private void Awake()
     {
-        g_TracksPath = Application.persistentDataPath + "/tracks/";
+        g_TracksPath = System.IO.Path.Combine(Application.streamingAssetsPath, "tracks");
         if (!Directory.Exists(g_TracksPath))
             Directory.CreateDirectory(g_TracksPath);
     }
 
     public void Save()
     {
-        string beatmapPath = g_TracksPath + "/" + beatmapName + "/";
+        string beatmapPath = System.IO.Path.Combine(g_TracksPath, beatmapName);
 
         if (!Directory.Exists(beatmapPath))
         {
@@ -48,12 +48,11 @@ public class MapMakerManager : Singleton<MapMakerManager>
         else
         {
             while (Directory.Exists(beatmapPath))
-                beatmapPath = g_TracksPath + beatmapName + Random.Range(0, 10000) + "/";
+                beatmapPath = System.IO.Path.Combine(g_TracksPath, beatmapName + Random.Range(0, 10000));
 
             Directory.CreateDirectory(beatmapPath);
         }
 
-        //MAKE BEATMAP SCRIPTABLE OBJECT HERE
         Beatmap beatmap = ScriptableObject.CreateInstance<Beatmap>();
         beatmap.folderPath = beatmapPath;
         beatmap.songName = beatmapName;
@@ -68,27 +67,25 @@ public class MapMakerManager : Singleton<MapMakerManager>
         beatmap.musicName = musicName;
 
         /*Creates a json from the object and saves it to the beatmap 
-        name's directory. Also saves audio file to same path*/
+        name's directory. Also saves audio and image file to same path*/
         var json = JsonUtility.ToJson(beatmap);
-        System.IO.File.WriteAllText(beatmapPath + beatmapName + ".gst", json);
 
-        if (File.Exists(musicPath) && !File.Exists(beatmapPath + musicName))
-        {
-            File.Copy(musicPath, beatmapPath + musicName, true);
-        }
+        string gstFullName = beatmapName + ".gst";
+        string gstFullPath = System.IO.Path.Combine(beatmapPath, gstFullName);
+        System.IO.File.WriteAllText(gstFullPath, json);
+
+        string musicCopyPath = Path.Combine(beatmapPath, musicName);
+        string artCopyPath = Path.Combine(beatmapPath, artName);
+
+        if (File.Exists(musicPath) && !File.Exists(musicCopyPath))
+            File.Copy(musicPath, musicCopyPath, true);
         else
-        {
             Debug.Log("MusicPath doesn't exist, or destination path already exists");
-        }
 
-        if (File.Exists(artPath) && !File.Exists(artPath + artName))
-        {
-            File.Copy(artPath, beatmapPath + artName, true);
-        }
+        if (File.Exists(artPath) && !File.Exists(artCopyPath))
+            File.Copy(artPath, artCopyPath, true);
         else
-        {
             Debug.Log("ArtPath doesn't exist, or destination path already exists");
-        }
 
         Debug.Log("Saved!");
     }

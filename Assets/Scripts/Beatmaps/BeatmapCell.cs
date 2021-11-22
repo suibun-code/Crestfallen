@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BeatmapCell : MonoBehaviour
 {
@@ -70,8 +71,6 @@ public class BeatmapCell : MonoBehaviour
     {
         if (beatmap == null)
             return;
-
-        beatmap.music = await LoadFile.instance.LoadAudioFile(System.IO.Path.Combine(beatmap.folderPath, beatmap.musicName));
 
         var songManager = SongManager.instance;
         songManager.songBPM = beatmap.songBPM;

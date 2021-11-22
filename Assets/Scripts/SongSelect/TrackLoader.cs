@@ -26,7 +26,7 @@ public class TrackLoader : Singleton<TrackLoader>
 
         foreach (DirectoryInfo trackDirectory in trackDirectories)
         {
-            folderPath = System.IO.Path.Combine(tracksPath, trackDirectory.Name);
+            folderPath = Path.Combine(tracksPath, trackDirectory.Name);
 
             string jsonDataPath = ScanFilesOfDirectoryForGSTFile(folderPath); //Scan the files in the track folder to find the .gst
             string jsonData = ReadGSTFile(jsonDataPath);
@@ -61,10 +61,14 @@ public class TrackLoader : Singleton<TrackLoader>
         beatmap = ScriptableObject.CreateInstance<Beatmap>();
         JsonUtility.FromJsonOverwrite(jsonData, beatmap);
 
-        beatmap.art = await LoadFile.instance.LoadImage(System.IO.Path.Combine(folderPath, beatmap.artName));
+        if (beatmap.art == null)
+            beatmap.art = await LoadFile.instance.LoadImage(Path.Combine(folderPath, beatmap.artName));
 
         DateTime before = DateTime.Now;
-        //beatmap.music = await LoadFile.instance.LoadAudioFile(System.IO.Path.Combine(trackFolderPath, beatmap.musicName));
+
+        if (beatmap.music == null)
+            beatmap.music = await LoadFile.instance.LoadAudioFile(Path.Combine(folderPath, beatmap.musicName));
+
         DateTime after = DateTime.Now;
         TimeSpan duration = after.Subtract(before);
         Debug.Log("Function took " + duration.Milliseconds + "ms.");

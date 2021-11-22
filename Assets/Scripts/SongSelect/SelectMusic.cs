@@ -40,13 +40,13 @@ public class SelectMusic : Singleton<SelectMusic>
     {
         currentCell = audioFileCell;
         musicName = currentCell.fileName;
-        musicPath = tracksPath + musicName;
+        musicPath = System.IO.Path.Combine(tracksPath, musicName);
         Debug.Log(musicPath);
     }
 
     public void OpenAudioPath()
     {
-        FileDialogPlugin.OpenExplorerWithPath("C:/Users/" + Environment.UserName + "/AppData/LocalLow/RaminAmiri/GatewayShift/tracks");
+        FileDialogPlugin.OpenExplorerWithPath(MapMakerManager.instance.g_TracksPath);
     }
 
     public void SelectSong()
