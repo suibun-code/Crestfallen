@@ -34,7 +34,7 @@ public class BeatmapCell : MonoBehaviour
         //After the first child (which is the difficulty bg) is song text, then artist text, then finally difficulty text.
         var songText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         var artistText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        var difficultyText = transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        var difficultyText = transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         textEffect = difficultyText.gameObject.GetComponent<TextEffect>();
 
         //Set parameters from beatmap scriptable object to this gameobject.
@@ -67,10 +67,12 @@ public class BeatmapCell : MonoBehaviour
             textEffect.enabled = true;
     }
 
-    public async void PreviewSong()
+    public void PreviewSong()
     {
         if (beatmap == null)
             return;
+
+        SongSelectManager.instance.SetBigArt(beatmap.art);
 
         var songManager = SongManager.instance;
         songManager.songBPM = beatmap.songBPM;

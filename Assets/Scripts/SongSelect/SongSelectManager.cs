@@ -5,18 +5,26 @@ using UnityEngine.UI;
 
 public class SongSelectManager : Singleton<SongSelectManager>
 {
+    public int cellsPerHorizontal;
+    private int cellCount = 0;
+
     public Transform parent;
     public GameObject pf_horizontalPanel;
     public GameObject pf_beatmapCell;
     public GameObject currentHorizontalPanel;
+    
+    public RawImage bigArt;
 
-    private int cellCount = 0;
+    public void SetBigArt(Texture texture)
+    {
+        bigArt.texture = texture;
+    }
 
     public void LoadBeatmaps()
     {
         foreach (Beatmap beatmap in TrackLoader.instance.beatmaps)
         {
-            if (cellCount == 4)
+            if (cellCount == cellsPerHorizontal)
             {
                 currentHorizontalPanel = Instantiate(pf_horizontalPanel);
                 currentHorizontalPanel.transform.SetParent(parent, false);

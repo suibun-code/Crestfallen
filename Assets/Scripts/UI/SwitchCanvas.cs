@@ -11,6 +11,6 @@ public class SwitchCanvas : MonoBehaviour
     {
         toSwitch.enabled = false;
         switchTo.enabled = true;
-        SelectMusic.instance.StopClip();
+        SongManager.instance.StopMusic();
     }
 }

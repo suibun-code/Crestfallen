@@ -29,7 +29,7 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
     [ReadOnly] public float beatmapFirstBeatOffset;
     [ReadOnly] public float beatmapPreviewStartTime;
 
-    public async void SetArt()
+    public void SetArt()
     {
         artPath = FileDialogPlugin.OpenFileDialog("Upload an image file to use as your avatar.", "Upload an image file.", "*.png;*.jpg");
         artName = FileDialogPlugin.GetFileName();
@@ -37,8 +37,7 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
         MapMakerManager.instance.artPath = artPath;
         MapMakerManager.instance.artName = artName;
 
-        //StartCoroutine(LoadFile.LoadImage(beatmapArt.texture, artPath));
-        beatmapArt.texture = await LoadFile.instance.LoadImage(artPath);
+        StartCoroutine(LoadImage(artPath));
     }
 
     public void SetName()
@@ -87,5 +86,19 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
     {
         float.TryParse(input_previewStartTime.text, out beatmapPreviewStartTime);
         MapMakerManager.instance.previewStartTime = beatmapPreviewStartTime;
+    }
+
+    public IEnumerator LoadImage(string path) // Loads *.mp3's
+    {
+        //Load audio from the chosen *.mp3 file
+        using UnityWebRequest www = UnityWebRequestTexture.GetTexture(path);
+        yield return www.SendWebRequest();
+
+        /*If there was an error loading the audio file, 
+        log the error. Otherwise, set it to the audioSource*/
+        if (www.result == UnityWebRequest.Result.ConnectionError)
+            Debug.Log(www.error);
+        else
+            beatmapArt.texture = DownloadHandlerTexture.GetContent(www);
     }
 }
