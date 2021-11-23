@@ -79,7 +79,7 @@ public class BeatmapCell : MonoBehaviour
         songManager.firstBeatOffset = beatmap.firstBeatOffset;
         songManager.music.clip = beatmap.music;
         songManager.music.time = beatmap.previewStartTime;
-        songManager.music.Play();
+        songManager.PlayMusic();
 
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
         if (SongManager.instance.currentBeatmap == this)

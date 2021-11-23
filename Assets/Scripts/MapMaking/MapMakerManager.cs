@@ -32,7 +32,7 @@ public class MapMakerManager : Singleton<MapMakerManager>
 
     new private void Awake()
     {
-        g_TracksPath = System.IO.Path.Combine(Application.streamingAssetsPath, "tracks");
+        g_TracksPath = System.IO.Path.Combine(Application.persistentDataPath, "tracks");
         if (!Directory.Exists(g_TracksPath))
             Directory.CreateDirectory(g_TracksPath);
     }

@@ -44,11 +44,14 @@ public class SelectMusic : Singleton<SelectMusic>
         FileDialogPlugin.OpenExplorerWithPath(MapMakerManager.instance.g_TracksPath);
     }
 
-    public void LoadMusic()
+    public void SelectSong()
     {
         musicPath = FileDialogPlugin.OpenFileDialog("Upload an audio file to use as your music.", "Import a *.mp3 file", "*.mp3");
         musicName = FileDialogPlugin.GetFileName();
+    }
 
+    public void LoadMusic()
+    {
         MapMakerManager.instance.musicPath = musicPath;
         MapMakerManager.instance.musicName = musicName;
         Debug.Log(MapMakerManager.instance.musicName);

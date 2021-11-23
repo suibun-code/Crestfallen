@@ -24,9 +24,9 @@ public class TrackLoader : Singleton<TrackLoader>
         var info = new DirectoryInfo(tracksPath);
         DirectoryInfo[] trackDirectories = info.GetDirectories();
 
-        foreach (DirectoryInfo trackDirectory in trackDirectories)
+        foreach (DirectoryInfo trackDirectory in trackDirectories)//************************************************************************************************************************************************
         {
-            folderPath = Path.Combine(tracksPath, trackDirectory.Name);
+            folderPath = Path.Combine(tracksPath, trackDirectory.Name); //USE THIS FOR THE NOSOUNDSFOUND TEXT IN SONGSELECT. FIND OUT HOW TO MAKE IT DISPLAY IF THERE ARE NO TRACKS TO BE FOUND.
 
             string jsonDataPath = ScanFilesOfDirectoryForGSTFile(folderPath); //Scan the files in the track folder to find the .gst
             string jsonData = ReadGSTFile(jsonDataPath);
