@@ -5,15 +5,20 @@ using System;
 
 public class HitLine : MonoBehaviour
 {
-    [ReadOnly] private Vector3 spawnPos = new Vector3(-1.85f, -12.275f, 80.0f);
-    [ReadOnly] private Vector3 endPos = new Vector3(-1.85f, 1.15f, 4f);
+    [ReadOnly] private Vector3 spawnPos1 = new Vector3(-1.85f, -12.275f, 80.0f);
+    [ReadOnly] private Vector3 endPos1 = new Vector3(-1.85f, 1.15f, 4f);
+
+    [ReadOnly] private Vector3 spawnPos2 = new Vector3(1.85f, -12.275f, 80.0f);
+    [ReadOnly] private Vector3 endPos2 = new Vector3(1.85f, 1.15f, 4f);
+
     [ReadOnly] private float removePos = 1.4f;
     [ReadOnly] private float offsetAmount;
 
     [ReadOnly] public float beat = 0f; //What beat it will arrive on
+    [ReadOnly] public float lane;
 
     //Current color
-    [ReadOnly] public LineColorEnum hitLineColor = LineColorEnum.RED;
+    [ReadOnly] public float hitLineColor = 0;
 
     //Components
     private Renderer _renderer;
@@ -28,49 +33,79 @@ public class HitLine : MonoBehaviour
         //Remove hitline if past the playerline, no longer on the screen
         if (transform.position.z <= removePos)
         {
-            ScoreTracker.instance.ResetCombo();
             ScoreTracker.instance.HitMiss();
+            RemoveFromList();
             Destroy(gameObject);
         }
 
         offsetAmount = (1f - (beat - Conductor.instance.songPosInBeats) / Conductor.instance.beatsBeforeArrive);
 
         //Move the hitlines down based on the audio
-        transform.position = new Vector3(spawnPos.x, spawnPos.y + (endPos.y - spawnPos.y) * offsetAmount, spawnPos.z + (endPos.z - spawnPos.z) * offsetAmount);
-
+        if (lane == 1)
+            transform.position = new Vector3(spawnPos1.x, spawnPos1.y + (endPos1.y - spawnPos1.y) * offsetAmount, spawnPos1.z + (endPos1.z - spawnPos1.z) * offsetAmount);
+        if (lane == 2)
+            transform.position = new Vector3(spawnPos2.x, spawnPos2.y + (endPos2.y - spawnPos2.y) * offsetAmount, spawnPos2.z + (endPos2.z - spawnPos2.z) * offsetAmount);
 
         //Autohit
         if (Conductor.instance.songPosInBeats >= beat && Conductor.instance.autoHit == true)
         {
-            ScoreTracker.instance.HitPerfect();
-            ScoreTracker.instance.UpdateTexts();
-            SongManager.instance.PlayHitSound();
-            HitDetector.instance.playerLineHit.Play(0);
-            Destroy(gameObject);
+            if (lane == 1)
+            {
+                PlayerLineInput.instance.SetLeftToNextColor();
+                PlayerLineInput.instance.StrumLeft();
+            }
+            if (lane == 2)
+            {
+                PlayerLineInput.instance.SetRightToNextColor();
+                PlayerLineInput.instance.StrumRight();
+            }
         }
     }
 
-    public void SetColor(LineColorEnum color)
+    public void SetColor(float color)
     {
-        switch (color)
+        if (lane == 1)
         {
-            case LineColorEnum.RED:
-                _renderer.material.SetColor("_BaseColor", HitLineColor.red);
-                break;
+            switch (color)
+            {
+                case 0:
+                    _renderer.material.SetColor("_BaseColor", HitLineColor.red);
+                    break;
 
-            case LineColorEnum.GREEN:
-                _renderer.material.SetColor("_BaseColor", HitLineColor.green);
-                break;
+                case 1:
+                    _renderer.material.SetColor("_BaseColor", HitLineColor.green);
+                    break;
+            }
+        }
 
-            case LineColorEnum.BLUE:
-                _renderer.material.SetColor("_BaseColor", HitLineColor.blue);
-                break;
+        if (lane == 2)
+        {
+            switch (color)
+            {
+                case 0:
+                    _renderer.material.SetColor("_BaseColor", HitLineColor.blue);
+                    break;
 
-            case LineColorEnum.YELLOW:
-                _renderer.material.SetColor("_BaseColor", HitLineColor.yellow);
-                break;
+                case 1:
+                    _renderer.material.SetColor("_BaseColor", HitLineColor.yellow);
+                    break;
+            }
         }
 
         hitLineColor = color;
+    }
+
+    public void RemoveFromList()
+    {
+        if (lane == 1)
+        {
+            Conductor.instance.leftHitlines.Remove(this);
+        }
+        if (lane == 2)
+        {
+            Conductor.instance.rightHitlines.Remove(this);
+        }
+
+        Conductor.instance.leftHitlines.TrimExcess();
     }
 }

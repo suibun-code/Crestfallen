@@ -19,15 +19,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
             ""id"": ""d8530d79-73c9-4342-a5ee-636f83c25bdb"",
             ""actions"": [
                 {
-                    ""name"": ""Strum"",
-                    ""type"": ""Button"",
-                    ""id"": ""78c39cad-1c3a-42f8-aece-241d4a73e23d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""ChangeColorRed"",
+                    ""name"": ""ChangeColorLeftRed"",
                     ""type"": ""Button"",
                     ""id"": ""0ecc624b-d009-4d78-a826-15aa363090f3"",
                     ""expectedControlType"": ""Button"",
@@ -35,7 +27,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""ChangeColorGreen"",
+                    ""name"": ""ChangeColorLeftGreen"",
                     ""type"": ""Button"",
                     ""id"": ""a36e7345-991d-47b3-9616-53f720971a99"",
                     ""expectedControlType"": ""Button"",
@@ -43,7 +35,15 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""ChangeColorBlue"",
+                    ""name"": ""StrumLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""78c39cad-1c3a-42f8-aece-241d4a73e23d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ChangeColorRightBlue"",
                     ""type"": ""Button"",
                     ""id"": ""37e71634-83aa-49f8-9c94-fecb3c5c6a1a"",
                     ""expectedControlType"": ""Button"",
@@ -51,9 +51,25 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""ChangeColorYellow"",
+                    ""name"": ""ChangeColorRightYellow"",
                     ""type"": ""Button"",
                     ""id"": ""be35f4b3-6b04-4b8d-a3e5-ad50be3e39bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""StrumRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""443bb9a6-60aa-4a3a-a654-663f1c802ca5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""StrumWide"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab85f1a6-0c0f-433e-b1ea-9c305ce524d4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -71,77 +87,44 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2ca16511-7813-4bf1-8c9d-9ec5dbeccdd7"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""ChangeColorRed"",
+                    ""action"": ""ChangeColorLeftRed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""574d3f62-9851-440a-98c2-0d069a16c58c"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""ChangeColorGreen"",
+                    ""action"": ""ChangeColorLeftGreen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""a798baad-de05-447f-b7d5-c44cc49a18b8"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""ChangeColorBlue"",
+                    ""action"": ""ChangeColorRightBlue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""133ccc1e-456b-48c4-a5eb-6094039db4cd"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""ChangeColorYellow"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d624f1d3-5f69-4d7a-bd27-5f290c3cb899"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Strum"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""82b4e7f5-8abe-4d1a-afbb-23f8e1dd17ee"",
-                    ""path"": ""<Keyboard>/j"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Strum"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""514a7050-c777-4546-9821-f12421040392"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Strum"",
+                    ""action"": ""ChangeColorRightYellow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -153,6 +136,39 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82b4e7f5-8abe-4d1a-afbb-23f8e1dd17ee"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""StrumLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d7ee895-1ede-4e43-ad3f-97040e802add"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StrumRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b724e94-d57e-40e9-868c-e8a821b084ed"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StrumWide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -175,11 +191,13 @@ public class @GameInputActions : IInputActionCollection, IDisposable
 }");
         // Normal
         m_Normal = asset.FindActionMap("Normal", throwIfNotFound: true);
-        m_Normal_Strum = m_Normal.FindAction("Strum", throwIfNotFound: true);
-        m_Normal_ChangeColorRed = m_Normal.FindAction("ChangeColorRed", throwIfNotFound: true);
-        m_Normal_ChangeColorGreen = m_Normal.FindAction("ChangeColorGreen", throwIfNotFound: true);
-        m_Normal_ChangeColorBlue = m_Normal.FindAction("ChangeColorBlue", throwIfNotFound: true);
-        m_Normal_ChangeColorYellow = m_Normal.FindAction("ChangeColorYellow", throwIfNotFound: true);
+        m_Normal_ChangeColorLeftRed = m_Normal.FindAction("ChangeColorLeftRed", throwIfNotFound: true);
+        m_Normal_ChangeColorLeftGreen = m_Normal.FindAction("ChangeColorLeftGreen", throwIfNotFound: true);
+        m_Normal_StrumLeft = m_Normal.FindAction("StrumLeft", throwIfNotFound: true);
+        m_Normal_ChangeColorRightBlue = m_Normal.FindAction("ChangeColorRightBlue", throwIfNotFound: true);
+        m_Normal_ChangeColorRightYellow = m_Normal.FindAction("ChangeColorRightYellow", throwIfNotFound: true);
+        m_Normal_StrumRight = m_Normal.FindAction("StrumRight", throwIfNotFound: true);
+        m_Normal_StrumWide = m_Normal.FindAction("StrumWide", throwIfNotFound: true);
         m_Normal_Pause = m_Normal.FindAction("Pause", throwIfNotFound: true);
     }
 
@@ -230,21 +248,25 @@ public class @GameInputActions : IInputActionCollection, IDisposable
     // Normal
     private readonly InputActionMap m_Normal;
     private INormalActions m_NormalActionsCallbackInterface;
-    private readonly InputAction m_Normal_Strum;
-    private readonly InputAction m_Normal_ChangeColorRed;
-    private readonly InputAction m_Normal_ChangeColorGreen;
-    private readonly InputAction m_Normal_ChangeColorBlue;
-    private readonly InputAction m_Normal_ChangeColorYellow;
+    private readonly InputAction m_Normal_ChangeColorLeftRed;
+    private readonly InputAction m_Normal_ChangeColorLeftGreen;
+    private readonly InputAction m_Normal_StrumLeft;
+    private readonly InputAction m_Normal_ChangeColorRightBlue;
+    private readonly InputAction m_Normal_ChangeColorRightYellow;
+    private readonly InputAction m_Normal_StrumRight;
+    private readonly InputAction m_Normal_StrumWide;
     private readonly InputAction m_Normal_Pause;
     public struct NormalActions
     {
         private @GameInputActions m_Wrapper;
         public NormalActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Strum => m_Wrapper.m_Normal_Strum;
-        public InputAction @ChangeColorRed => m_Wrapper.m_Normal_ChangeColorRed;
-        public InputAction @ChangeColorGreen => m_Wrapper.m_Normal_ChangeColorGreen;
-        public InputAction @ChangeColorBlue => m_Wrapper.m_Normal_ChangeColorBlue;
-        public InputAction @ChangeColorYellow => m_Wrapper.m_Normal_ChangeColorYellow;
+        public InputAction @ChangeColorLeftRed => m_Wrapper.m_Normal_ChangeColorLeftRed;
+        public InputAction @ChangeColorLeftGreen => m_Wrapper.m_Normal_ChangeColorLeftGreen;
+        public InputAction @StrumLeft => m_Wrapper.m_Normal_StrumLeft;
+        public InputAction @ChangeColorRightBlue => m_Wrapper.m_Normal_ChangeColorRightBlue;
+        public InputAction @ChangeColorRightYellow => m_Wrapper.m_Normal_ChangeColorRightYellow;
+        public InputAction @StrumRight => m_Wrapper.m_Normal_StrumRight;
+        public InputAction @StrumWide => m_Wrapper.m_Normal_StrumWide;
         public InputAction @Pause => m_Wrapper.m_Normal_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
@@ -255,21 +277,27 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_NormalActionsCallbackInterface != null)
             {
-                @Strum.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrum;
-                @Strum.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrum;
-                @Strum.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrum;
-                @ChangeColorRed.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRed;
-                @ChangeColorRed.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRed;
-                @ChangeColorRed.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRed;
-                @ChangeColorGreen.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorGreen;
-                @ChangeColorGreen.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorGreen;
-                @ChangeColorGreen.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorGreen;
-                @ChangeColorBlue.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorBlue;
-                @ChangeColorBlue.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorBlue;
-                @ChangeColorBlue.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorBlue;
-                @ChangeColorYellow.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorYellow;
-                @ChangeColorYellow.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorYellow;
-                @ChangeColorYellow.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorYellow;
+                @ChangeColorLeftRed.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorLeftRed;
+                @ChangeColorLeftRed.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorLeftRed;
+                @ChangeColorLeftRed.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorLeftRed;
+                @ChangeColorLeftGreen.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorLeftGreen;
+                @ChangeColorLeftGreen.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorLeftGreen;
+                @ChangeColorLeftGreen.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorLeftGreen;
+                @StrumLeft.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumLeft;
+                @StrumLeft.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumLeft;
+                @StrumLeft.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumLeft;
+                @ChangeColorRightBlue.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRightBlue;
+                @ChangeColorRightBlue.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRightBlue;
+                @ChangeColorRightBlue.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRightBlue;
+                @ChangeColorRightYellow.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRightYellow;
+                @ChangeColorRightYellow.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRightYellow;
+                @ChangeColorRightYellow.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeColorRightYellow;
+                @StrumRight.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumRight;
+                @StrumRight.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumRight;
+                @StrumRight.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumRight;
+                @StrumWide.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumWide;
+                @StrumWide.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumWide;
+                @StrumWide.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnStrumWide;
                 @Pause.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
@@ -277,21 +305,27 @@ public class @GameInputActions : IInputActionCollection, IDisposable
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Strum.started += instance.OnStrum;
-                @Strum.performed += instance.OnStrum;
-                @Strum.canceled += instance.OnStrum;
-                @ChangeColorRed.started += instance.OnChangeColorRed;
-                @ChangeColorRed.performed += instance.OnChangeColorRed;
-                @ChangeColorRed.canceled += instance.OnChangeColorRed;
-                @ChangeColorGreen.started += instance.OnChangeColorGreen;
-                @ChangeColorGreen.performed += instance.OnChangeColorGreen;
-                @ChangeColorGreen.canceled += instance.OnChangeColorGreen;
-                @ChangeColorBlue.started += instance.OnChangeColorBlue;
-                @ChangeColorBlue.performed += instance.OnChangeColorBlue;
-                @ChangeColorBlue.canceled += instance.OnChangeColorBlue;
-                @ChangeColorYellow.started += instance.OnChangeColorYellow;
-                @ChangeColorYellow.performed += instance.OnChangeColorYellow;
-                @ChangeColorYellow.canceled += instance.OnChangeColorYellow;
+                @ChangeColorLeftRed.started += instance.OnChangeColorLeftRed;
+                @ChangeColorLeftRed.performed += instance.OnChangeColorLeftRed;
+                @ChangeColorLeftRed.canceled += instance.OnChangeColorLeftRed;
+                @ChangeColorLeftGreen.started += instance.OnChangeColorLeftGreen;
+                @ChangeColorLeftGreen.performed += instance.OnChangeColorLeftGreen;
+                @ChangeColorLeftGreen.canceled += instance.OnChangeColorLeftGreen;
+                @StrumLeft.started += instance.OnStrumLeft;
+                @StrumLeft.performed += instance.OnStrumLeft;
+                @StrumLeft.canceled += instance.OnStrumLeft;
+                @ChangeColorRightBlue.started += instance.OnChangeColorRightBlue;
+                @ChangeColorRightBlue.performed += instance.OnChangeColorRightBlue;
+                @ChangeColorRightBlue.canceled += instance.OnChangeColorRightBlue;
+                @ChangeColorRightYellow.started += instance.OnChangeColorRightYellow;
+                @ChangeColorRightYellow.performed += instance.OnChangeColorRightYellow;
+                @ChangeColorRightYellow.canceled += instance.OnChangeColorRightYellow;
+                @StrumRight.started += instance.OnStrumRight;
+                @StrumRight.performed += instance.OnStrumRight;
+                @StrumRight.canceled += instance.OnStrumRight;
+                @StrumWide.started += instance.OnStrumWide;
+                @StrumWide.performed += instance.OnStrumWide;
+                @StrumWide.canceled += instance.OnStrumWide;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -310,11 +344,13 @@ public class @GameInputActions : IInputActionCollection, IDisposable
     }
     public interface INormalActions
     {
-        void OnStrum(InputAction.CallbackContext context);
-        void OnChangeColorRed(InputAction.CallbackContext context);
-        void OnChangeColorGreen(InputAction.CallbackContext context);
-        void OnChangeColorBlue(InputAction.CallbackContext context);
-        void OnChangeColorYellow(InputAction.CallbackContext context);
+        void OnChangeColorLeftRed(InputAction.CallbackContext context);
+        void OnChangeColorLeftGreen(InputAction.CallbackContext context);
+        void OnStrumLeft(InputAction.CallbackContext context);
+        void OnChangeColorRightBlue(InputAction.CallbackContext context);
+        void OnChangeColorRightYellow(InputAction.CallbackContext context);
+        void OnStrumRight(InputAction.CallbackContext context);
+        void OnStrumWide(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
 }

@@ -71,6 +71,7 @@ public class TrackLoader : Singleton<TrackLoader>
     public IEnumerator LoadTrack(string jsonData)
     {
         beatmap = ScriptableObject.CreateInstance<Beatmap>();
+        
         JsonUtility.FromJsonOverwrite(jsonData, beatmap);
 
         if (beatmap.music != null)
@@ -79,25 +80,12 @@ public class TrackLoader : Singleton<TrackLoader>
             DestroyImmediate(beatmap.music, false);
         }
         if (beatmap.art != null)
-        {
             DestroyImmediate(beatmap.art, false);
-        }
 
         yield return StartCoroutine(LoadImage(Path.Combine(folderPath, beatmap.artName)));
-
-        DateTime before = DateTime.Now;
-
         yield return StartCoroutine(LoadAudioFile(Path.Combine(folderPath, beatmap.musicName)));
 
-        //Debug.Log(Path.Combine(folderPath, beatmap.artName));
-        //Debug.Log(Path.Combine(folderPath, beatmap.musicName));
-
-        DateTime after = DateTime.Now;
-        TimeSpan duration = after.Subtract(before);
-        //Debug.Log("Function took " + duration.Milliseconds + "ms.");
-
         beatmaps.Add(beatmap);
-        //Debug.Log("Beatmap added");
     }
 
     public IEnumerator LoadAudioFile(string path) // Loads *.mp3's

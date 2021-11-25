@@ -6,15 +6,7 @@
             "id": "d8530d79-73c9-4342-a5ee-636f83c25bdb",
             "actions": [
                 {
-                    "name": "Strum",
-                    "type": "Button",
-                    "id": "78c39cad-1c3a-42f8-aece-241d4a73e23d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "ChangeColorRed",
+                    "name": "ChangeColorLeftRed",
                     "type": "Button",
                     "id": "0ecc624b-d009-4d78-a826-15aa363090f3",
                     "expectedControlType": "Button",
@@ -22,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ChangeColorGreen",
+                    "name": "ChangeColorLeftGreen",
                     "type": "Button",
                     "id": "a36e7345-991d-47b3-9616-53f720971a99",
                     "expectedControlType": "Button",
@@ -30,7 +22,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ChangeColorBlue",
+                    "name": "StrumLeft",
+                    "type": "Button",
+                    "id": "78c39cad-1c3a-42f8-aece-241d4a73e23d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ChangeColorRightBlue",
                     "type": "Button",
                     "id": "37e71634-83aa-49f8-9c94-fecb3c5c6a1a",
                     "expectedControlType": "Button",
@@ -38,9 +38,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ChangeColorYellow",
+                    "name": "ChangeColorRightYellow",
                     "type": "Button",
                     "id": "be35f4b3-6b04-4b8d-a3e5-ad50be3e39bd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "StrumRight",
+                    "type": "Button",
+                    "id": "443bb9a6-60aa-4a3a-a654-663f1c802ca5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "StrumWide",
+                    "type": "Button",
+                    "id": "ab85f1a6-0c0f-433e-b1ea-9c305ce524d4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -58,77 +74,44 @@
                 {
                     "name": "",
                     "id": "2ca16511-7813-4bf1-8c9d-9ec5dbeccdd7",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "ChangeColorRed",
+                    "action": "ChangeColorLeftRed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "574d3f62-9851-440a-98c2-0d069a16c58c",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "ChangeColorGreen",
+                    "action": "ChangeColorLeftGreen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "a798baad-de05-447f-b7d5-c44cc49a18b8",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "ChangeColorBlue",
+                    "action": "ChangeColorRightBlue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "133ccc1e-456b-48c4-a5eb-6094039db4cd",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "ChangeColorYellow",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d624f1d3-5f69-4d7a-bd27-5f290c3cb899",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Strum",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "82b4e7f5-8abe-4d1a-afbb-23f8e1dd17ee",
-                    "path": "<Keyboard>/j",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Strum",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "514a7050-c777-4546-9821-f12421040392",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Strum",
+                    "action": "ChangeColorRightYellow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -140,6 +123,39 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82b4e7f5-8abe-4d1a-afbb-23f8e1dd17ee",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "StrumLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d7ee895-1ede-4e43-ad3f-97040e802add",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StrumRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b724e94-d57e-40e9-868c-e8a821b084ed",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StrumWide",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

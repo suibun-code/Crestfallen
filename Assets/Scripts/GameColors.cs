@@ -8,7 +8,7 @@ public enum LineColorEnum
     GREEN,
     BLUE,
     YELLOW,
-    COUNT
+    Count
 }
 
 public struct HitLineColor

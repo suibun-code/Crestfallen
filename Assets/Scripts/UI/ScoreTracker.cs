@@ -58,11 +58,12 @@ public class ScoreTracker : Singleton<ScoreTracker>
     }
     public void HitMiss()
     {
+        ResetCombo();
         accuracyText.SetText("Miss");
         accuracyText.color = new Color(0.66f, 0.18f, 0.85f, 1.0f);
     }
 
-    public void ResetCombo()
+    private void ResetCombo()
     {
         combo = 0;
         scoreMultiplier = 1;

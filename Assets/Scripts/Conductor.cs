@@ -6,13 +6,18 @@ public class Conductor : Singleton<Conductor>
 {
     //Music Metadata
     public float howOftenToSpawn; //How often to spawn notes. 1 = once per beat
-    public float songBPM; //Beats per minute of the song
-    public float firstBeatOffset; //First beat offset for the music, as there is silence or otherwise noise before the first beat of the song
     public float beatsBeforeArrive; //"Note speed", how many beats go by before the hitline reaches the playerline. Lower = faster
+    [ReadOnly] public float songBPM; //Beats per minute of the song
+    [ReadOnly] public float firstBeatOffset; //First beat offset for the music, as there is silence or otherwise noise before the first beat of the song
     [ReadOnly] public float crotchet; //How long 1 beat is
     [ReadOnly] public float songPosition;
     [ReadOnly] public float songPosInBeats;
     [ReadOnly] public float dspSongTime;
+
+    public List<HitLine> leftHitlines;
+    public List<HitLine> rightHitlines;
+
+    private bool flipflop = false;
 
     //Hitline properties
     public GameObject hitLinePrefab;
@@ -21,7 +26,7 @@ public class Conductor : Singleton<Conductor>
     int nextIndex = 0; //Tracks which hitline is next
 
     //Misc
-    public bool autoHit = false; //Automatically hit the notes without player input?
+    public bool autoHit = true; //Automatically hit the notes without player input?
 
     void Start()
     {
@@ -51,14 +56,28 @@ public class Conductor : Singleton<Conductor>
 
         if (nextIndex < notes.Length && notes[nextIndex] < songPosInBeats + beatsBeforeArrive)
         {
-            //Instantiate hitline with conductor as parent, in worldscape
+            //Instantiate hitlines with conductor as parent, in worldscape until the notes in the array run out
             var hitLine = Instantiate(hitLinePrefab, transform, true);
-
-            currentColor = Random.Range(0, (int)LineColorEnum.COUNT);
 
             var hitLineBehaviour = hitLine.GetComponent<HitLine>();
             hitLineBehaviour.beat = notes[nextIndex];
-            hitLineBehaviour.SetColor((LineColorEnum)currentColor);
+            
+            currentColor = Random.Range(0, 2);
+
+            if (flipflop)
+            {
+                hitLineBehaviour.lane = 1;
+                leftHitlines.Add(hitLine.GetComponent<HitLine>());
+                flipflop = false;
+            }
+            else
+            {
+                hitLineBehaviour.lane = 2;
+                rightHitlines.Add(hitLine.GetComponent<HitLine>());
+                flipflop = true;
+            }
+
+            hitLineBehaviour.SetColor(currentColor);
 
             nextIndex++;
         }
