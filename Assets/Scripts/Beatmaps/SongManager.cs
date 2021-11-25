@@ -47,4 +47,17 @@ public class SongManager : Singleton<SongManager>
         if (music != null)
             music.time = 0;
     }
+
+    public float GetPitch()
+    {
+        if (music != null)
+        {
+            return music.pitch;
+        }
+        else
+        {
+            Debug.Log("No music!");
+            return 0;
+        }
+    }
 }

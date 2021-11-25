@@ -5,10 +5,12 @@ using System;
 
 public class HitLine : MonoBehaviour
 {
-    [ReadOnly] public Vector3 spawnPos = new Vector3(0.0f, 0.0f, 80.0f);
-    [ReadOnly] public Vector3 endPos = new Vector3(0.0f, 0.0f, 5f);
-    [ReadOnly] public float removePos = 1.4f;
-    [ReadOnly] public float beat = 0f;
+    [ReadOnly] private Vector3 spawnPos = new Vector3(-1.85f, -12.275f, 80.0f);
+    [ReadOnly] private Vector3 endPos = new Vector3(-1.85f, 1.15f, 4f);
+    [ReadOnly] private float removePos = 1.4f;
+    [ReadOnly] private float offsetAmount;
+
+    [ReadOnly] public float beat = 0f; //What beat it will arrive on
 
     //Current color
     [ReadOnly] public LineColorEnum hitLineColor = LineColorEnum.RED;
@@ -31,10 +33,10 @@ public class HitLine : MonoBehaviour
             Destroy(gameObject);
         }
 
+        offsetAmount = (1f - (beat - Conductor.instance.songPosInBeats) / Conductor.instance.beatsBeforeArrive);
+
         //Move the hitlines down based on the audio
-        transform.position = new Vector3(transform.position.x, 
-            transform.position.y,
-            spawnPos.z + (endPos.z - spawnPos.z) * (1f - (beat - Conductor.instance.songPosInBeats) / Conductor.instance.beatsBeforeArrive));
+        transform.position = new Vector3(spawnPos.x, spawnPos.y + (endPos.y - spawnPos.y) * offsetAmount, spawnPos.z + (endPos.z - spawnPos.z) * offsetAmount);
 
 
         //Autohit
@@ -43,6 +45,7 @@ public class HitLine : MonoBehaviour
             ScoreTracker.instance.HitPerfect();
             ScoreTracker.instance.UpdateTexts();
             SongManager.instance.PlayHitSound();
+            HitDetector.instance.playerLineHit.Play(0);
             Destroy(gameObject);
         }
     }

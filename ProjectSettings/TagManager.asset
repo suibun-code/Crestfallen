@@ -45,3 +45,6 @@ TagManager:
   - name: GatewayShift Text
     uniqueID: 990487645
     locked: 0
+  - name: Fade
+    uniqueID: 3126760719
+    locked: 0

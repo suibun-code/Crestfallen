@@ -15,6 +15,12 @@ public class SongSelectManager : Singleton<SongSelectManager>
     
     public RawImage bigArt;
 
+    void Start()
+    {
+        LoadBeatmaps();
+        TrackLoader.instance.LoadTracks(true);
+    }
+
     public void SetBigArt(Texture texture)
     {
         bigArt.texture = texture;

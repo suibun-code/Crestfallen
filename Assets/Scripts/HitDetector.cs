@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HitDetector : MonoBehaviour
+public class HitDetector : Singleton<HitDetector>
 {
     public int accuracy = 0;
 

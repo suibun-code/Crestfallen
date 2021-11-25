@@ -84,7 +84,7 @@ public class BeatmapCell : MonoBehaviour
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
         if (SongManager.instance.currentBeatmap == this)
         {
-            SceneManager.instance.ChangeSceneToGameplay();
+            SceneManager.instance.ChangeScene("Gameplay");
             return;
         }
         else

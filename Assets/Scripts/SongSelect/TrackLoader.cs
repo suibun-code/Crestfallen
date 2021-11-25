@@ -13,13 +13,23 @@ public class TrackLoader : Singleton<TrackLoader>
     public Beatmap beatmap;
     public List<Beatmap> beatmaps;
 
+    new void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         tracksPath = MapMakerManager.instance.TracksPath;
-        StartCoroutine(ScanDirectoryOfBeatmaps());
+        LoadTracks(false);
     }
 
-    public IEnumerator ScanDirectoryOfBeatmaps()
+    public void LoadTracks(bool loadMaps)
+    {
+        StartCoroutine(ScanDirectoryOfBeatmaps(loadMaps));
+    }
+
+    public IEnumerator ScanDirectoryOfBeatmaps(bool loadMaps)
     {
         var info = new DirectoryInfo(tracksPath);
         DirectoryInfo[] trackDirectories = info.GetDirectories();
@@ -32,7 +42,9 @@ public class TrackLoader : Singleton<TrackLoader>
             string jsonData = ReadGSTFile(jsonDataPath);
 
             yield return StartCoroutine(LoadTrack(jsonData));
-            SongSelectManager.instance.LoadBeatmaps();
+
+            if (loadMaps)
+                SongSelectManager.instance.LoadBeatmaps();
         }
 
     }

@@ -31,7 +31,7 @@ public class Conductor : Singleton<Conductor>
         SongManager.instance.ResetMusic();
 
         firstBeatOffset += (crotchet / 10f); //I don't know why
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.music.pitch - firstBeatOffset; //Determine how many seconds since the song started
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.GetPitch() - firstBeatOffset; //Determine how many seconds since the song started
         crotchet = 60f / songBPM; //Calculate the number of seconds in each beat
 
         dspSongTime = (float)AudioSettings.dspTime; //Record the time when the music starts
@@ -46,15 +46,13 @@ public class Conductor : Singleton<Conductor>
 
     void Update()
     {
-        
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.music.pitch - firstBeatOffset; //Determine how many seconds since the song started
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.GetPitch() - firstBeatOffset; //Determine how many seconds since the song started
         songPosInBeats = songPosition / crotchet; //Determine how many beats since the song started
 
         if (nextIndex < notes.Length && notes[nextIndex] < songPosInBeats + beatsBeforeArrive)
         {
-            var hitLine = Instantiate(hitLinePrefab);
-
-            hitLine.transform.parent = transform;
+            //Instantiate hitline with conductor as parent, in worldscape
+            var hitLine = Instantiate(hitLinePrefab, transform, true);
 
             currentColor = Random.Range(0, (int)LineColorEnum.COUNT);
 
