@@ -15,7 +15,7 @@ public class HitLine : MonoBehaviour
     [ReadOnly] private float offsetAmount;
 
     [ReadOnly] public float beat = 0f; //What beat it will arrive on
-    [ReadOnly] public float songPosInSeconds;
+    [ReadOnly] public float positionInSeconds;
     [ReadOnly] public float lane;
 
     //Current color

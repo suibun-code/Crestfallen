@@ -72,19 +72,14 @@ public class BeatmapCell : MonoBehaviour
         if (beatmap == null)
             return;
 
-        SongSelectManager.instance.SetBigArt(beatmap.art);
-
-        var songManager = SongManager.instance;
-        songManager.songBPM = beatmap.songBPM;
-        songManager.firstBeatOffset = beatmap.firstBeatOffset;
-        songManager.music.clip = beatmap.music;
-        songManager.music.time = beatmap.previewStartTime;
-        songManager.PlayMusic();
+        SongManager songManager = SongManager.instance;
 
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
         if (SongManager.instance.currentBeatmap == this)
         {
             SceneManager.instance.ChangeScene("Gameplay");
+            songManager.StopMusic();
+            songManager.PlayHitSound();
             return;
         }
         else
@@ -92,5 +87,13 @@ public class BeatmapCell : MonoBehaviour
             //Use to track if the same song has been clicked twice
             SongManager.instance.currentBeatmap = this;
         }
+
+        SongSelectManager.instance.SetBigArt(beatmap.art);
+
+        songManager.songBPM = beatmap.songBPM;
+        songManager.firstBeatOffset = beatmap.firstBeatOffset;
+        songManager.music.clip = beatmap.music;
+        songManager.music.time = beatmap.previewStartTime;
+        songManager.PlayMusic();
     }
 }

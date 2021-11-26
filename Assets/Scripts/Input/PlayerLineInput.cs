@@ -4,175 +4,148 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Linq;
 
+public struct StrumLane
+{
+    public string name;
+
+    public List<HitLine> activeHitLines;
+    public Renderer renderer;
+    public Animator animator;
+    public float color;
+}
+
 public class PlayerLineInput : Singleton<PlayerLineInput>
 {
-    //Current color
-    public static float leftLineColor = 0;
-    public static float rightLineColor = 0;
+    private float accuracy;
+    private HitLine nextHitline;
+
+    //Lanes
+    public StrumLane leftLane;
+    public StrumLane rightLane;
 
     //Components
     public Renderer leftLineRenderer;
     public Renderer rightLineRenderer;
-
     public Animator leftAnimator;
     public Animator rightAnimator;
 
-    private float accuracy;
-    private HitLine nextHitline;
-
     void Start()
     {
-        leftLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.red);
-        rightLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.blue);
+        leftLane.name = "LeftLane";
+        leftLane.activeHitLines = Conductor.instance.leftHitlines;
+        leftLane.renderer = leftLineRenderer;
+        leftLane.animator = leftAnimator;
+        leftLane.color = 0;
+
+        rightLane.name = "RightLane";
+        rightLane.activeHitLines = Conductor.instance.rightHitlines;
+        rightLane.renderer = rightLineRenderer;
+        rightLane.animator = rightAnimator;
+        rightLane.color = 0;
+
+        leftLane.renderer.material.SetColor("PlayerLineColor", PlayerLineColor.red);
+        rightLane.renderer.material.SetColor("PlayerLineColor", PlayerLineColor.blue);
     }
 
     public void OnChangeColorLeftRed(InputValue value)
     {
         ChangeColorLeftRed();
     }
+    public void ChangeColorLeftRed()
+    {
+        leftLane.color = 0;
+        leftLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.red);
+    }
 
     public void OnChangeColorLeftGreen(InputValue value)
     {
         ChangeColorLeftGreen();
+    }
+    public void ChangeColorLeftGreen()
+    {
+        leftLane.color = 1;
+        leftLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.green);
     }
 
     public void OnChangeColorRightBlue(InputValue value)
     {
         ChangeColorRightBlue();
     }
+    public void ChangeColorRightBlue()
+    {
+        rightLane.color = 0;
+        rightLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.blue);
+    }
 
     public void OnChangeColorRightYellow(InputValue value)
     {
         ChangeColorRightYellow();
+    }
+    public void ChangeColorRightYellow()
+    {
+        rightLane.color = 1;
+        rightLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.yellow);
     }
 
     public void OnStrumLeft(InputValue value)
     {
         StrumLeft();
     }
-
     public void OnStrumRight(InputValue value)
     {
         StrumRight();
     }
 
-    public void ChangeColorLeftRed()
-    {
-        leftLineColor = 0;
-        leftLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.red);
-    }
-
-    public void ChangeColorLeftGreen()
-    {
-        leftLineColor = 1;
-        leftLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.green);
-    }
-
-    public void ChangeColorRightBlue()
-    {
-        rightLineColor = 0;
-        rightLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.blue);
-    }
-
-    public void ChangeColorRightYellow()
-    {
-        rightLineColor = 1;
-        rightLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.yellow);
-    }
-
     public void StrumLeft()
     {
-        SongManager.instance.PlayHitSound();
-        leftAnimator.Play(0);
-
-        if (Conductor.instance.leftHitlines.Count != 0) //Confirm the hitlines array is not empty
-        {
-            nextHitline = Conductor.instance.leftHitlines.First();
-        }
-        else
-        {
-            Debug.Log("No more left side hitlines!");
-            return;
-        }
-
-        accuracy = nextHitline.songPosInSeconds - Conductor.instance.songPosition;
-        Debug.Log("Accuracy: " + accuracy);
-
-        if (accuracy >= 0.25f) //Accuracy not close enough to count the hit. Do nothing
-            return;
-
-        if (leftLineColor != nextHitline.hitLineColor)//if the colors don't match
-        {
-            Missed();
-            return;
-        }
-
-        if (Mathf.Abs(accuracy) >= 0.15f)//early or late by half a beat
-        {
-            ScoreTracker.instance.HitBad();
-        }
-        else if (Mathf.Abs(accuracy) >= 0.05f)//early or late by half a beat
-        {
-            ScoreTracker.instance.HitGreat();
-        }
-        else if (Mathf.Abs(accuracy) >= 0f)//early or late by half a beat
-        {
-            ScoreTracker.instance.HitPerfect();
-        }
-
-        nextHitline.RemoveFromList();
-        Destroy(nextHitline.gameObject);
+        Strum(leftLane);
     }
-
     public void StrumRight()
     {
-        SongManager.instance.PlayHitSound();
-        rightAnimator.Play(0);
+        Strum(rightLane);
+    }
 
-        if (Conductor.instance.rightHitlines.Count != 0)
-        {
-            nextHitline = Conductor.instance.rightHitlines.First();
-        }
+    public void Strum(StrumLane lane)
+    {
+        SongManager.instance.PlayHitSound();
+        lane.animator.Play(0);
+
+        if (lane.activeHitLines.Count != 0) //Make sure there are hitlines in the lane
+            nextHitline = lane.activeHitLines.First(); //Assign the next hitline in line to be hit
         else
         {
-            Debug.Log("No more right side hitlines!");
+            Debug.Log("No more " + lane.name + " hitlines!");
             return;
         }
 
-        accuracy = nextHitline.songPosInSeconds - Conductor.instance.songPosition;
+        accuracy = Mathf.Abs(nextHitline.positionInSeconds - Conductor.instance.songPosition);
         Debug.Log("Accuracy: " + accuracy);
 
         if (accuracy >= 0.25f) //Accuracy not close enough to count the hit. Do nothing
             return;
 
-        if (rightLineColor != nextHitline.hitLineColor)//if the colors don't match
+        if (lane.color != nextHitline.hitLineColor)//if the colors don't match
         {
             Missed();
             return;
         }
 
-        if (Mathf.Abs(accuracy) >= 0.15f)//early or late by half a beat
-        {
+        if (accuracy >= 0.15f)//early or late by half a beat
             ScoreTracker.instance.HitBad();
-        }
-        else if (Mathf.Abs(accuracy) >= 0.06f)//early or late by half a beat
-        {
-            ScoreTracker.instance.HitGreat();
-        }
-        else if (Mathf.Abs(accuracy) >= 0f)//early or late by half a beat
-        {
-            ScoreTracker.instance.HitPerfect();
-        }
 
-        nextHitline.RemoveFromList();
-        Destroy(nextHitline.gameObject);
+        else if (accuracy >= 0.06f)//early or late by half a beat
+            ScoreTracker.instance.HitGreat();
+
+        else if (accuracy >= 0f)//early or late by half a beat
+            ScoreTracker.instance.HitPerfect();
+
+        RemoveHitline(nextHitline);
     }
 
     public void Missed()
     {
         ScoreTracker.instance.HitMiss();
-        nextHitline.RemoveFromList();
-        Destroy(nextHitline.gameObject);
+        RemoveHitline(nextHitline);
     }
 
     public void SetLeftToNextColor()
@@ -194,7 +167,6 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
                 break;
         }
     }
-
     public void SetRightToNextColor()
     {
         if (Conductor.instance.rightHitlines.Count == 0)
@@ -213,5 +185,11 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
                 ChangeColorRightYellow();
                 break;
         }
+    }
+
+    public void RemoveHitline(HitLine hitline) //Destroy the hitline and remove it from its respective array
+    {
+        nextHitline.RemoveFromList();
+        Destroy(nextHitline.gameObject);
     }
 }

@@ -30,7 +30,7 @@ public class ScoreTracker : Singleton<ScoreTracker>
 
         accuracyText.SetText("Perfect");
         accuracyText.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
-
+        UpdateTexts();
     }
 
     public void HitGreat()
@@ -43,6 +43,7 @@ public class ScoreTracker : Singleton<ScoreTracker>
 
         accuracyText.SetText("Great");
         accuracyText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+        UpdateTexts();
     }
 
     public void HitBad()
@@ -55,6 +56,7 @@ public class ScoreTracker : Singleton<ScoreTracker>
 
         accuracyText.SetText("Bad");
         accuracyText.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        UpdateTexts();
     }
     public void HitMiss()
     {
