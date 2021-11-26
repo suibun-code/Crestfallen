@@ -123,22 +123,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   mode:
     m_OverrideState: 1
     m_Value: 1
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 55
+    m_Value: 70
     min: 0
   gaussianEnd:
     m_OverrideState: 1
-    m_Value: 75
+    m_Value: 130
     min: 0
   gaussianMaxRadius:
     m_OverrideState: 1
-    m_Value: 0.75
+    m_Value: 1.5
     min: 0.5
     max: 1.5
   highQualitySampling:

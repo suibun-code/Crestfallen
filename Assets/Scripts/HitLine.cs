@@ -15,6 +15,7 @@ public class HitLine : MonoBehaviour
     [ReadOnly] private float offsetAmount;
 
     [ReadOnly] public float beat = 0f; //What beat it will arrive on
+    [ReadOnly] public float songPosInSeconds;
     [ReadOnly] public float lane;
 
     //Current color
@@ -43,18 +44,18 @@ public class HitLine : MonoBehaviour
         //Move the hitlines down based on the audio
         if (lane == 1)
             transform.position = new Vector3(spawnPos1.x, spawnPos1.y + (endPos1.y - spawnPos1.y) * offsetAmount, spawnPos1.z + (endPos1.z - spawnPos1.z) * offsetAmount);
-        if (lane == 2)
+        else if (lane == 2)
             transform.position = new Vector3(spawnPos2.x, spawnPos2.y + (endPos2.y - spawnPos2.y) * offsetAmount, spawnPos2.z + (endPos2.z - spawnPos2.z) * offsetAmount);
 
         //Autohit
-        if (Conductor.instance.songPosInBeats >= beat && Conductor.instance.autoHit == true)
+        if (Conductor.instance.songPosInBeats > beat && Conductor.instance.autoHit == true)
         {
             if (lane == 1)
             {
                 PlayerLineInput.instance.SetLeftToNextColor();
                 PlayerLineInput.instance.StrumLeft();
             }
-            if (lane == 2)
+            else if (lane == 2)
             {
                 PlayerLineInput.instance.SetRightToNextColor();
                 PlayerLineInput.instance.StrumRight();

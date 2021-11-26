@@ -3112,6 +3112,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8302559379658964577, guid: 6034361ff5017fd48b54b6dce41cab71, type: 3}
+      propertyPath: howOftenToSpawn
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8302559379658964579, guid: 6034361ff5017fd48b54b6dce41cab71, type: 3}
       propertyPath: m_Name
       value: Conductor

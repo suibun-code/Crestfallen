@@ -95,7 +95,7 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
             return;
         }
 
-        accuracy = nextHitline.beat - Conductor.instance.songPosInBeats;
+        accuracy = nextHitline.songPosInSeconds - Conductor.instance.songPosition;
         Debug.Log("Accuracy: " + accuracy);
 
         if (accuracy >= 0.25f) //Accuracy not close enough to count the hit. Do nothing
@@ -139,7 +139,7 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
             return;
         }
 
-        accuracy = nextHitline.beat - Conductor.instance.songPosInBeats;
+        accuracy = nextHitline.songPosInSeconds - Conductor.instance.songPosition;
         Debug.Log("Accuracy: " + accuracy);
 
         if (accuracy >= 0.25f) //Accuracy not close enough to count the hit. Do nothing

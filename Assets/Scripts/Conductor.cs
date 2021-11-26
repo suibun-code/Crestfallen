@@ -61,6 +61,7 @@ public class Conductor : Singleton<Conductor>
 
             var hitLineBehaviour = hitLine.GetComponent<HitLine>();
             hitLineBehaviour.beat = notes[nextIndex];
+            hitLineBehaviour.songPosInSeconds = hitLineBehaviour.beat * crotchet;
             
             currentColor = Random.Range(0, 2);
 
