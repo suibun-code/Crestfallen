@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,11 +34,11 @@ public class Conductor : Singleton<Conductor>
         firstBeatOffset = SongManager.instance.firstBeatOffset;
         SongManager.instance.ResetMusic();
 
-        firstBeatOffset += (crotchet / 10f); //I don't know why
+        //firstBeatOffset += (crotchet / 10f); //I don't know why
+        dspSongTime = (float)AudioSettings.dspTime; //Record the time when the music starts
         songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.GetPitch() - firstBeatOffset; //Determine how many seconds since the song started
         crotchet = 60f / songBPM; //Calculate the number of seconds in each beat
 
-        dspSongTime = (float)AudioSettings.dspTime; //Record the time when the music starts
         SongManager.instance.PlayMusic(); //Start the music
 
         //How often to spawn notes -- feature for testing

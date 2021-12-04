@@ -16,10 +16,10 @@ public class HitLine : MonoBehaviour
 
     [ReadOnly] public float beat = 0f; //What beat it will arrive on
     [ReadOnly] public float positionInSeconds;
-    [ReadOnly] public float lane;
+    [ReadOnly] public int lane;
 
     //Current color
-    [ReadOnly] public float hitLineColor = 0;
+    [ReadOnly] public int hitLineColor = 0;
 
     //Components
     private Renderer _renderer;
@@ -48,7 +48,7 @@ public class HitLine : MonoBehaviour
             transform.position = new Vector3(spawnPos2.x, spawnPos2.y + (endPos2.y - spawnPos2.y) * offsetAmount, spawnPos2.z + (endPos2.z - spawnPos2.z) * offsetAmount);
 
         //Autohit
-        if (Conductor.instance.songPosInBeats > beat && Conductor.instance.autoHit == true)
+        if (Conductor.instance.songPosition >= positionInSeconds && Conductor.instance.autoHit == true)
         {
             if (lane == 1)
             {
@@ -63,7 +63,7 @@ public class HitLine : MonoBehaviour
         }
     }
 
-    public void SetColor(float color)
+    public void SetColor(int color)
     {
         if (lane == 1)
         {

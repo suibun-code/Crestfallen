@@ -35,15 +35,16 @@ public class TextEffect : MonoBehaviour
         wordLengths.Add(s.Length - wordIndexes[wordIndexes.Count - 1]);
 
         StartCoroutine(GradientTimer());
+
+        mesh = textMesh.mesh;
+        vertices = mesh.vertices;
+        colors = mesh.colors;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // textMesh.ForceMeshUpdate();
-        // mesh = textMesh.mesh;
-        // vertices = mesh.vertices;
-        // colors = mesh.colors;
+        //textMesh.ForceMeshUpdate();
 
         // /*PER WORD*/
         // // for (int w = 0; w < wordIndexes.Count; w++)
@@ -79,14 +80,14 @@ public class TextEffect : MonoBehaviour
         // //     }
         // // }
 
-        // for (int i = 0; i < vertices.Length; i++)
-        // {
-        //     colors[i] = rainbow.Evaluate(Mathf.Repeat((i * gradientTime) + (vertices[i].y * .0001f), 1f));
-        // }
+        //for (int i = 0; i < vertices.Length; i++)
+        //{
+        //    colors[i] = rainbow.Evaluate(Mathf.Repeat((i * gradientTime) + (vertices[i].y * .0001f), 1f));
+        //}
 
         // mesh.vertices = vertices;
-        // mesh.colors = colors;
-        // textMesh.canvasRenderer.SetMesh(mesh);
+        //mesh.colors = colors;
+        //textMesh.canvasRenderer.SetMesh(mesh);
     }
 
     Vector2 Wobble(float time)

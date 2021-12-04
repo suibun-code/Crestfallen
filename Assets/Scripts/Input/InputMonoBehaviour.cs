@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InputMonoBehaviour : MonoBehaviour
 {
-    private GameInputActions inputActions;
+    public static GameInputActions inputActions;
     protected void Awake()
     {
         inputActions = new GameInputActions();

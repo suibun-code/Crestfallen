@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SceneManager : Singleton<SceneManager>
 {
@@ -38,10 +39,17 @@ public class SceneManager : Singleton<SceneManager>
 
     IEnumerator cr_ChangeScene(string sceneToLoad)
     {
+        EventSystem eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+
+        if (eventSystem != null)
+            eventSystem.enabled = false;
+
+        //Exit scene
         yield return LeanTween.alpha(rectTransform, 1f, transitionTime);
         yield return new WaitForSeconds(transitionTime);
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
-        
+
+        //Enter scene
         yield return StartCoroutine(WaitForSceneLoad(sceneToLoad));
         yield return LeanTween.alpha(rectTransform, 0f, transitionTime);
         yield return new WaitForSeconds(transitionTime);

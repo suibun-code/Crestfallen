@@ -17,7 +17,6 @@ public class SelectMusic : Singleton<SelectMusic>
     public GameObject scrollView;
     public GameObject audioFileCell;
     public GameObject playButton;
-
     public TextMeshProUGUI Text_fileName;
 
     void OnEnable()
@@ -71,7 +70,7 @@ public class SelectMusic : Singleton<SelectMusic>
         if (!File.Exists(musicPath))
         {
             Text_fileName.color = Color.red;
-            Text_fileName.SetText("\"" + musicName + "\"\n does not exist, is not the correct file type, or an invalid \"unofficial\" *.mp3.");
+            Text_fileName.SetText("\"" + musicName + "\"\n does not exist or is not the correct file type.");
             Debug.Log("path doesnt exist");
             return;
         }

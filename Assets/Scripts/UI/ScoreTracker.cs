@@ -11,58 +11,49 @@ public class ScoreTracker : Singleton<ScoreTracker>
     public TextMeshProUGUI scoreMultiplierText;
     public TextMeshProUGUI accuracyText;
 
-    //Player variables
-    public int score = 0;
-    public int combo = 0;
-    public int scoreMultiplier = 1;
-
+    public int maxComboMultiplier = 3;
     public int scoreOnPerfect = 100;
     public int scoreOnGreat = 50;
     public int scoreOnBad = 30;
 
-    public void HitPerfect()
+    //Player variables
+    [ReadOnly] public int score = 0;
+    [ReadOnly] public int combo = 0;
+    [ReadOnly] public int scoreMultiplier = 1;
+
+    public void Hit(string text, Color color, int scoreToGive)
     {
-        if (scoreMultiplier < 10)
+        if (scoreMultiplier < maxComboMultiplier)
             scoreMultiplier += 1;
 
         combo += 1;
-        score += scoreOnPerfect * ScoreTracker.instance.scoreMultiplier;
+        score += scoreToGive * ScoreTracker.instance.scoreMultiplier;
 
-        accuracyText.SetText("Perfect");
-        accuracyText.color = new Color(1.0f, 1.0f, 0.0f, 1.0f);
+        accuracyText.SetText(text);
+        accuracyText.color = color;
         UpdateTexts();
+    }
+
+    public void HitPerfect()
+    {
+        Hit("Perfect", AccuracyColor.perfect, scoreOnPerfect);
     }
 
     public void HitGreat()
     {
-        if (scoreMultiplier < 10)
-            scoreMultiplier += 1;
-
-        combo += 1;
-        score += scoreOnGreat * ScoreTracker.instance.scoreMultiplier;
-
-        accuracyText.SetText("Great");
-        accuracyText.color = new Color(0.0f, 1.0f, 0.0f, 1.0f);
-        UpdateTexts();
+        Hit("Great", AccuracyColor.great, scoreOnGreat);
     }
 
     public void HitBad()
     {
-        if (scoreMultiplier < 10)
-            scoreMultiplier += 1;
-
-        combo += 1;
-        score += scoreOnBad * ScoreTracker.instance.scoreMultiplier;
-
-        accuracyText.SetText("Bad");
-        accuracyText.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-        UpdateTexts();
+        Hit("Bad", AccuracyColor.bad, scoreOnBad);
     }
+
     public void HitMiss()
     {
         ResetCombo();
         accuracyText.SetText("Miss");
-        accuracyText.color = new Color(0.66f, 0.18f, 0.85f, 1.0f);
+        accuracyText.color = AccuracyColor.miss;
     }
 
     private void ResetCombo()

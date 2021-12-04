@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Linq;
+using System;
 
 public struct StrumLane
 {
@@ -11,7 +12,7 @@ public struct StrumLane
     public List<HitLine> activeHitLines;
     public Renderer renderer;
     public Animator animator;
-    public float color;
+    public int color;
 }
 
 public class PlayerLineInput : Singleton<PlayerLineInput>
@@ -119,7 +120,7 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
         }
 
         accuracy = Mathf.Abs(nextHitline.positionInSeconds - Conductor.instance.songPosition);
-        Debug.Log("Accuracy: " + accuracy);
+        //Debug.Log("Accuracy: " + accuracy);
 
         if (accuracy >= 0.25f) //Accuracy not close enough to count the hit. Do nothing
             return;

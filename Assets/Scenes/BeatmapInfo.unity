@@ -429,8 +429,8 @@ Camera:
   m_GameObject: {fileID: 789730412}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.23921569, g: 0.75686276, b: 0.827451, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -836,7 +836,7 @@ PrefabInstance:
       objectReference: {fileID: 5010109776055389356}
     - target: {fileID: 4486587171813620623, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
       propertyPath: m_Name
-      value: UI_UploadMusic
+      value: Canvas_UploadMusic
       objectReference: {fileID: 0}
     - target: {fileID: 4486587171813620624, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
       propertyPath: m_Camera
@@ -944,10 +944,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4486587173789635129, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4486587173789635129, guid: f2782e9dc40251c49b53708baf7598c0, type: 3}
-      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
