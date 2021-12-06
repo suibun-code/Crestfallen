@@ -17,7 +17,8 @@ public class SelectMusic : Singleton<SelectMusic>
     public GameObject scrollView;
     public GameObject audioFileCell;
     public GameObject playButton;
-    public TextMeshProUGUI Text_fileName;
+    public TextMeshProUGUI text_fileName;
+    public TextMeshProUGUI text_noFilesFound;
 
     void OnEnable()
     {
@@ -55,12 +56,12 @@ public class SelectMusic : Singleton<SelectMusic>
         MapMakerManager.instance.musicName = musicName;
         Debug.Log(MapMakerManager.instance.musicName);
 
-        Text_fileName.SetText(musicName);
+        text_fileName.SetText(musicName);
 
         playButton.GetComponent<Button>().interactable = false; //Disable the button
         playButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText("Loading..."); //Set the button's text to "Loading..."
 
-        Text_fileName.color = Color.white;
+        text_fileName.color = Color.white;
         playButton.GetComponent<Button>().interactable = true; //Enable the button
         playButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText("Play"); //Set the button's text to "Play"
 
@@ -69,8 +70,8 @@ public class SelectMusic : Singleton<SelectMusic>
         and inform the user that the *.mp3 file is not valid*/
         if (!File.Exists(musicPath))
         {
-            Text_fileName.color = Color.red;
-            Text_fileName.SetText("\"" + musicName + "\"\n does not exist or is not the correct file type.");
+            text_fileName.color = Color.red;
+            text_fileName.SetText("\"" + musicName + "\"\n does not exist or is not the correct file type.");
             Debug.Log("path doesnt exist");
             return;
         }
@@ -80,24 +81,39 @@ public class SelectMusic : Singleton<SelectMusic>
 
     public void RefreshDirectory()
     {
+        //If audio file cells exist, destroy them so the list can be properly updated
         if (files.Count > 0)
         {
             foreach (var file in files)
                 Destroy(file);
         }
 
-        //Get the names of files in the directory and add them into a string list
+        //Get the names of *.mp3 files in the tracks root directory and add them into a string list
         var info = new DirectoryInfo(tracksPath);
         var fileInfo = info.GetFiles("*.mp3", SearchOption.TopDirectoryOnly);
+        
+        //Enable or disable the "no files found" text depending if files are found in the directory
+        if (fileInfo.Length > 0)
+        {
+            text_noFilesFound.enabled = false;
+            Debug.Log("disabled");
+        }
+        else
+        {
+            text_noFilesFound.enabled = true;
+            Debug.Log("enabled");
+        }
 
+        //Browse through all found *.mp3 files and create audio file cells for each of them
         foreach (var file in fileInfo)
         {
-            //Set the values for the audio file cell
             var cell = Instantiate(audioFileCell);
-            files.Add(cell); //Ad cell to the files list to be managed
+            files.Add(cell);
+
+            //Set the values for the audio file cell
             cell.GetComponent<AudioFileCell>().fileName = file.Name; //Set the fileName variable in the cell to equal the file's name
-            cell.transform.SetParent(scrollView.GetComponent<ScrollRect>().content.transform, false); //Attach cell the the scrollview to be organized in
-            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(file.Name); //Set the text of the cell to be the file name
+            cell.transform.SetParent(scrollView.GetComponent<ScrollRect>().content.transform, false); //Attach cell to the scrollview to be parented
+            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().SetText(file.Name); //Set the text of the cell to be the name of the file
         }
     }
 
