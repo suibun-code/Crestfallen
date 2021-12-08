@@ -12,16 +12,16 @@ public class SceneManager : Singleton<SceneManager>
 
     public float transitionTime;
 
-    new void Awake()
+    new void Awake() 
     {
         DontDestroyOnLoad(this.gameObject);
-
-        rectTransform = transform.GetChild(0).GetComponent<RectTransform>();
-        image = transform.GetChild(0).GetComponent<Image>();
     }
 
     void Start()
     {
+        rectTransform = transform.GetChild(0).GetComponent<RectTransform>();
+        image = transform.GetChild(0).GetComponent<Image>();
+
         StartCoroutine(StartFade());
     }
 

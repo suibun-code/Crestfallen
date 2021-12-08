@@ -81,6 +81,14 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""71a6f878-ae1d-4843-b7e7-bbfc15ecdfac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -171,6 +179,17 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                     ""action"": ""StrumWide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""958e6f13-246e-4a62-907a-e12f2fe97af0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -199,6 +218,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         m_Normal_StrumRight = m_Normal.FindAction("StrumRight", throwIfNotFound: true);
         m_Normal_StrumWide = m_Normal.FindAction("StrumWide", throwIfNotFound: true);
         m_Normal_Pause = m_Normal.FindAction("Pause", throwIfNotFound: true);
+        m_Normal_Escape = m_Normal.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -256,6 +276,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_StrumRight;
     private readonly InputAction m_Normal_StrumWide;
     private readonly InputAction m_Normal_Pause;
+    private readonly InputAction m_Normal_Escape;
     public struct NormalActions
     {
         private @GameInputActions m_Wrapper;
@@ -268,6 +289,7 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         public InputAction @StrumRight => m_Wrapper.m_Normal_StrumRight;
         public InputAction @StrumWide => m_Wrapper.m_Normal_StrumWide;
         public InputAction @Pause => m_Wrapper.m_Normal_Pause;
+        public InputAction @Escape => m_Wrapper.m_Normal_Escape;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -301,6 +323,9 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
+                @Escape.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -329,6 +354,9 @@ public class @GameInputActions : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -352,5 +380,6 @@ public class @GameInputActions : IInputActionCollection, IDisposable
         void OnStrumRight(InputAction.CallbackContext context);
         void OnStrumWide(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
 }

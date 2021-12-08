@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5010109775229798156}
   - component: {fileID: 4905093258247677758}
   - component: {fileID: 5010109775229798147}
+  - component: {fileID: 5010109776055389358}
   m_Layer: 0
   m_Name: AudioFileManager
   m_TagString: Untagged
@@ -44,13 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c23386036e53a43bc5a5b3709188db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  currentCell: {fileID: 0}
-  files: []
+  eventSystem: {fileID: 0}
+  rect_refresh: {fileID: 0}
+  rect_title: {fileID: 0}
+  rect_topMsg: {fileID: 0}
   scrollView: {fileID: 0}
   audioFileCell: {fileID: 7616651195605201768, guid: 654c74c492c497646a1bc1faee520443, type: 3}
-  playButton: {fileID: 0}
-  Text_fileName: {fileID: 0}
+  previewAudioButton: {fileID: 0}
+  stopPreviewButton: {fileID: 0}
+  nextButton: {fileID: 0}
+  files: []
+  currentCell: {fileID: 0}
+  text_fileName: {fileID: 0}
+  text_noFilesFound: {fileID: 0}
+  color_fileName: {r: 0.9607843, g: 0.8039216, b: 0.4745098, a: 1}
 --- !u!82 &5010109775229798147
 AudioSource:
   m_ObjectHideFlags: 0
@@ -147,3 +155,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5010109776055389358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010109775229798158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ffd75634b19b97548baea68c73ff4172, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Normal
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
