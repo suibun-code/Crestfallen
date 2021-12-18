@@ -48,4 +48,9 @@ MonoBehaviour:
   pf_horizontalPanel: {fileID: 3421624167315421697, guid: afb05c40435169e4ba58e42d9841622e, type: 3}
   pf_beatmapCell: {fileID: 8219686472043354248, guid: 1c85fa2d6f9512c4381e3043b992c068, type: 3}
   currentHorizontalPanel: {fileID: 0}
+  Tier0: {r: 0.27058825, g: 0.76862746, b: 0.5111511, a: 1}
+  Tier1: {r: 0.23921569, g: 0.75686276, b: 0.827451, a: 1}
+  Tier2: {r: 0.76862746, g: 0.27058825, b: 0.4117647, a: 1}
+  Tier3: {r: 0.34117648, g: 0.29411766, b: 0.5647059, a: 1}
+  Tier4: {r: 0.972549, g: 0.64705884, b: 0.7607843, a: 1}
   bigArt: {fileID: 0}

@@ -12,16 +12,17 @@ public class SceneManager : Singleton<SceneManager>
 
     public float transitionTime;
 
-    new void Awake() 
+    protected override void Awake() 
     {
+        base.Awake();
         DontDestroyOnLoad(this.gameObject);
+
+        rectTransform = transform.GetChild(0).GetComponent<RectTransform>();
+        image = transform.GetChild(0).GetComponent<Image>();
     }
 
     void Start()
     {
-        rectTransform = transform.GetChild(0).GetComponent<RectTransform>();
-        image = transform.GetChild(0).GetComponent<Image>();
-
         StartCoroutine(StartFade());
     }
 
@@ -39,10 +40,12 @@ public class SceneManager : Singleton<SceneManager>
 
     IEnumerator cr_ChangeScene(string sceneToLoad)
     {
-        EventSystem eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        Debug.Log("Changed scene to " + sceneToLoad + ".");
+
+        GameObject eventSystem = GameObject.Find("EventSystem");
 
         if (eventSystem != null)
-            eventSystem.enabled = false;
+            eventSystem.SetActive(false);
 
         //Exit scene
         yield return LeanTween.alpha(rectTransform, 1f, transitionTime);
@@ -59,5 +62,10 @@ public class SceneManager : Singleton<SceneManager>
     {
         while (!UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals(sceneName))
             yield return null;
+    }
+
+    public static void SwitchScene(string scene)
+    {
+        SceneManager.instance.ChangeScene(scene);
     }
 }

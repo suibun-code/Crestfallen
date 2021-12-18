@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class SongSelectManager : Singleton<SongSelectManager>
 {
@@ -12,13 +13,23 @@ public class SongSelectManager : Singleton<SongSelectManager>
     public GameObject pf_horizontalPanel;
     public GameObject pf_beatmapCell;
     public GameObject currentHorizontalPanel;
+
+    public Color Tier0;
+    public Color Tier1;
+    public Color Tier2;
+    public Color Tier3;
+    public Color Tier4;
     
     public RawImage bigArt;
+
+    void OnEnable() 
+    {
+        TrackLoader.onLoadedNewFile += LoadBeatmaps;
+    }
 
     void Start()
     {
         LoadBeatmaps();
-        TrackLoader.instance.LoadTracks(true);
     }
 
     public void SetBigArt(Texture texture)
@@ -47,5 +58,10 @@ public class SongSelectManager : Singleton<SongSelectManager>
         }
 
         TrackLoader.instance.beatmaps.Clear();
+    }
+
+    public void OnEscape(InputValue value)
+    {
+        SceneManager.instance.ChangeScene("MainMenu");
     }
 }

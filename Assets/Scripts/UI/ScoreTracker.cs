@@ -11,6 +11,12 @@ public class ScoreTracker : Singleton<ScoreTracker>
     public TextMeshProUGUI scoreMultiplierText;
     public TextMeshProUGUI accuracyText;
 
+    //Colors
+    public Color colorPerfect;
+    public Color colorGreat;
+    public Color colorBad;
+    public Color colorMiss;
+
     public int maxComboMultiplier = 3;
     public int scoreOnPerfect = 100;
     public int scoreOnGreat = 50;
@@ -36,24 +42,24 @@ public class ScoreTracker : Singleton<ScoreTracker>
 
     public void HitPerfect()
     {
-        Hit("Perfect", AccuracyColor.perfect, scoreOnPerfect);
+        Hit("PERFECT", colorPerfect, scoreOnPerfect);
     }
 
     public void HitGreat()
     {
-        Hit("Great", AccuracyColor.great, scoreOnGreat);
+        Hit("GREAT", colorGreat, scoreOnGreat);
     }
 
     public void HitBad()
     {
-        Hit("Bad", AccuracyColor.bad, scoreOnBad);
+        Hit("BAD", colorBad, scoreOnBad);
     }
 
     public void HitMiss()
     {
         ResetCombo();
-        accuracyText.SetText("Miss");
-        accuracyText.color = AccuracyColor.miss;
+        accuracyText.SetText("MISS");
+        accuracyText.color = colorMiss;
     }
 
     private void ResetCombo()
@@ -65,8 +71,8 @@ public class ScoreTracker : Singleton<ScoreTracker>
 
     public void UpdateTexts()
     {
-        scoreText.SetText("Score: " + ScoreTracker.instance.score);
-        comboText.SetText("Combo: " + ScoreTracker.instance.combo);
-        scoreMultiplierText.SetText("Score Multiplier: " + ScoreTracker.instance.scoreMultiplier.ToString("F2") + "x");
+        scoreText.SetText(ScoreTracker.instance.score.ToString());
+        comboText.SetText(ScoreTracker.instance.combo.ToString());
+        scoreMultiplierText.SetText(ScoreTracker.instance.scoreMultiplier.ToString() + "x");
     }
 }

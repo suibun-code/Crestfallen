@@ -12,12 +12,6 @@ public class BeatmapCell : MonoBehaviour
 
     private TextEffect textEffect;
 
-    public Color Tier0 = new Color(0f, 0.6980392f, 0f);
-    public Color Tier1 = new Color(0f, 0.6980392f, 1f);
-    public Color Tier2 = new Color(0.6980392f, 0.6980392f, 0f);
-    public Color Tier3 = new Color(0.6980392f, 0f, 0f);
-    public Color Tier4 = new Color(0.6980392f, 0f, 0.6980392f);
-
     private void Awake()
     {
         image = GetComponent<Image>();
@@ -50,19 +44,17 @@ public class BeatmapCell : MonoBehaviour
         else
             difficultyText.SetText(beatmap.difficulty.ToString());
 
-
-
         //Coloring the difficulty text depending on the difficulty
         if (beatmap.difficulty <= 3)
-            difficultyText.color = Tier0;
+            difficultyText.color = SongSelectManager.instance.Tier0;
         else if (beatmap.difficulty <= 7 && beatmap.difficulty > 3)
-            difficultyText.color = Tier1;
+            difficultyText.color = SongSelectManager.instance.Tier1;
         else if (beatmap.difficulty <= 11 && beatmap.difficulty > 7)
-            difficultyText.color = Tier2;
+            difficultyText.color = SongSelectManager.instance.Tier2;
         else if (beatmap.difficulty <= 15 && beatmap.difficulty > 11)
-            difficultyText.color = Tier3;
+            difficultyText.color = SongSelectManager.instance.Tier3;
         else if (beatmap.difficulty <= 19)
-            difficultyText.color = Tier4;
+            difficultyText.color = SongSelectManager.instance.Tier4;
         else
             textEffect.enabled = true;
     }

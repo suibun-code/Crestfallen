@@ -69,15 +69,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a7706270f2061d847811a3c0a43107c8, type: 2}
-  m_sharedMaterial: {fileID: 1556412805573577062, guid: a7706270f2061d847811a3c0a43107c8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e75a927d7f909b34f8d80242f09136f3, type: 2}
+  m_sharedMaterial: {fileID: 5526995249026704250, guid: e75a927d7f909b34f8d80242f09136f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280691366
-  m_fontColor: {r: 0.6509434, g: 0.16644584, b: 0.15045391, a: 1}
+    rgba: 4285089220
+  m_fontColor: {r: 0.76862746, g: 0.27058825, b: 0.4117647, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -171,7 +171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5, y: -5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 58.5, y: 32.5}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &7244222673125256333
@@ -195,14 +195,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0.9019608}
+  m_Color: {r: 0.17254902, g: 0.24313726, b: 0.3137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -279,15 +279,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Song
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a7706270f2061d847811a3c0a43107c8, type: 2}
-  m_sharedMaterial: {fileID: 1556412805573577062, guid: a7706270f2061d847811a3c0a43107c8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e75a927d7f909b34f8d80242f09136f3, type: 2}
+  m_sharedMaterial: {fileID: 5526995249026704250, guid: e75a927d7f909b34f8d80242f09136f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280062759
-  m_fontColor: {r: 0.15153712, g: 0.5754717, b: 0.111294046, a: 1}
+    rgba: 4286172661
+  m_fontColor: {r: 0.9607843, g: 0.8039216, b: 0.4745098, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -401,11 +401,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatmap: {fileID: 0}
-  Tier0: {r: 0, g: 0.6980392, b: 0, a: 1}
-  Tier1: {r: 0, g: 0.6980392, b: 1, a: 1}
-  Tier2: {r: 0.6980392, g: 0.6980392, b: 0, a: 1}
-  Tier3: {r: 0.6980392, g: 0, b: 0, a: 1}
-  Tier4: {r: 0.6980392, g: 0, b: 0.6980392, a: 1}
 --- !u!222 &8219686472043354253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -607,8 +602,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a7706270f2061d847811a3c0a43107c8, type: 2}
-  m_sharedMaterial: {fileID: 1556412805573577062, guid: a7706270f2061d847811a3c0a43107c8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e75a927d7f909b34f8d80242f09136f3, type: 2}
+  m_sharedMaterial: {fileID: 5526995249026704250, guid: e75a927d7f909b34f8d80242f09136f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -638,9 +633,9 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

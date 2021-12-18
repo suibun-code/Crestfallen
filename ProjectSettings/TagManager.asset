@@ -9,10 +9,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hitlines
   - Water
   - UI
-  - 
+  - PlayerLine
   - 
   - 
   - 
@@ -47,4 +47,7 @@ TagManager:
     locked: 0
   - name: Fade
     uniqueID: 3126760719
+    locked: 0
+  - name: Player
+    uniqueID: 3387142841
     locked: 0

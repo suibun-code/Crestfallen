@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Autohit : MonoBehaviour
 {
+    public Color enabledColor;
+    public Color disabledColor;
+
     public Button button;
     public TextMeshProUGUI text;
 
@@ -19,24 +22,30 @@ public class Autohit : MonoBehaviour
         if (Conductor.instance.autoHit == false)
         {
             Conductor.instance.autoHit = true;
+
             ColorBlock colors = button.colors;
-            colors.normalColor = Color.green;
-            colors.highlightedColor = Color.green;
-            colors.pressedColor = Color.green;
-            colors.selectedColor = Color.green;
+            colors.normalColor = enabledColor;
+            colors.highlightedColor = enabledColor;
+            colors.pressedColor = enabledColor;
+            colors.selectedColor = enabledColor;
+
             button.colors = colors;
-            text.SetText("AutoHit ON");
+
+            text.SetText("AUTOHIT ON");
         }
         else
         {
             Conductor.instance.autoHit = false;
+
             ColorBlock colors = button.colors;
-            colors.normalColor = Color.red;
-            colors.highlightedColor = Color.red;
-            colors.pressedColor = Color.red;
-            colors.selectedColor = Color.red;
+            colors.normalColor = disabledColor;
+            colors.highlightedColor = disabledColor;
+            colors.pressedColor = disabledColor;
+            colors.selectedColor = disabledColor;
+
             button.colors = colors;
-            text.SetText("AutoHit OFF");
+
+            text.SetText("AUTOHIT OFF");
 
         }
     }

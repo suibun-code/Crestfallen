@@ -11,14 +11,6 @@ public enum LineColorEnum
     Count
 }
 
-public struct AccuracyColor
-{
-    public static Vector4 miss = new Vector4(0.66f, 0.18f, 0.85f, 1.0f);
-    public static Vector4 bad = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-    public static Vector4 great = new Vector4(0.0f, 1.0f, 0.0f, 1.0f);
-    public static Vector4 perfect = new Vector4(1.0f, 1.0f, 0.0f, 1.0f);
-}
-
 public struct HitLineColor
 {
     public static Vector4 red = new Vector4(1.0f, 0.44706f, 0.44706f, 1.0f);

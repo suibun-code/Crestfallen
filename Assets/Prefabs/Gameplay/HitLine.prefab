@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8950019971884370334}
   - component: {fileID: -6866832064834297295}
   - component: {fileID: -5388519049476205206}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HitLine
   m_TagString: HitLine
   m_Icon: {fileID: 0}
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8950019971884370335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.85, y: -12.275, z: 80}
-  m_LocalScale: {x: 3.3, y: 0.25, z: 0.1}
+  m_LocalPosition: {x: -1.85, y: -12.4, z: 80}
+  m_LocalScale: {x: 3, y: 1e-10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -125,8 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f67c19cfbe1024e931882295ccf11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {x: 0, y: 0, z: 80}
-  endPos: {x: 0, y: 0, z: 5}
-  removePos: 1.4
   beat: 0
+  positionInSeconds: 0
+  lane: 0
   hitLineColor: 0

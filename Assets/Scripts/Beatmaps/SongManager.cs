@@ -13,8 +13,9 @@ public class SongManager : Singleton<SongManager>
     public float firstBeatOffset;
     public float songBPM;
 
-    private new void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(this.gameObject);
     }
 

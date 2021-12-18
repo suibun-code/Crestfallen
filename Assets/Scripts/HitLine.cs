@@ -5,11 +5,11 @@ using System;
 
 public class HitLine : MonoBehaviour
 {
-    [ReadOnly] private Vector3 spawnPos1 = new Vector3(-1.85f, -12.275f, 80.0f);
-    [ReadOnly] private Vector3 endPos1 = new Vector3(-1.85f, 1.15f, 4f);
+    [ReadOnly] private Vector3 spawnPos1 = new Vector3(-1.6f, 0.011f, 49.5f);
+    [ReadOnly] private Vector3 spawnPos2 = new Vector3(1.6f, 0.011f, 49.5f);
 
-    [ReadOnly] private Vector3 spawnPos2 = new Vector3(1.85f, -12.275f, 80.0f);
-    [ReadOnly] private Vector3 endPos2 = new Vector3(1.85f, 1.15f, 4f);
+    [ReadOnly] private Vector3 endPos1 = new Vector3(-1.6f, 0.011f, 2.25f);
+    [ReadOnly] private Vector3 endPos2 = new Vector3(1.6f, 0.011f, 2.25f);
 
     [ReadOnly] private float removePos = 1.4f;
     [ReadOnly] private float offsetAmount;

@@ -8,28 +8,32 @@ using UnityEngine.Networking;
 
 public class TrackLoader : Singleton<TrackLoader>
 {
+    public delegate void LoadedNewFile();
+    public static event LoadedNewFile onLoadedNewFile;
+
     public string tracksPath;
     public string folderPath;
     public Beatmap beatmap;
     public List<Beatmap> beatmaps;
 
-    new void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(this.gameObject);
     }
 
     void Start()
     {
         tracksPath = MapMakerManager.instance.TracksPath;
-        LoadTracks(false);
+        LoadTracks();
     }
 
-    public void LoadTracks(bool loadMaps)
+    public void LoadTracks()
     {
-        StartCoroutine(ScanDirectoryOfBeatmaps(loadMaps));
+        StartCoroutine(ScanDirectoryOfBeatmaps());
     }
 
-    public IEnumerator ScanDirectoryOfBeatmaps(bool loadMaps)
+    public IEnumerator ScanDirectoryOfBeatmaps()
     {
         var info = new DirectoryInfo(tracksPath);
         DirectoryInfo[] trackDirectories = info.GetDirectories();
@@ -43,10 +47,9 @@ public class TrackLoader : Singleton<TrackLoader>
 
             yield return StartCoroutine(LoadTrack(jsonData));
 
-            if (loadMaps)
-                SongSelectManager.instance.LoadBeatmaps();
+            if (onLoadedNewFile != null)
+                onLoadedNewFile();
         }
-
     }
 
     public string ScanFilesOfDirectoryForGSTFile(string trackFolderPath)
