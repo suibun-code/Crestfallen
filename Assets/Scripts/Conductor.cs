@@ -3,23 +3,34 @@ using UnityEngine;
 
 public class Conductor : Singleton<Conductor>
 {
+    bool flipflop = false;
+
+
+
     //Music Metadata
-    public float howOftenToSpawn; //How often to spawn notes. 1 = once per beat
-    public float beatsBeforeArrive; //"Note speed", how many beats go by before the hitline reaches the playerline. Lower = faster
-    [ReadOnly] public float songBPM; //Beats per minute of the song
-    [ReadOnly] public float firstBeatOffset; //First beat offset for the music, as there is silence or otherwise noise before the first beat of the song
-    [ReadOnly] public float crotchet; //How long 1 beat is
-    [ReadOnly] public float songPosition;
-    [ReadOnly] public float songPosInBeats;
-    [ReadOnly] public float dspSongTime;
+    /*Fields*/
+    [SerializeField] private float howOftenToSpawn; //How often to spawn notes. 1 = once per beat
+    [SerializeField] private float beatsBeforeArrive; //"Note speed", how many beats go by before the hitline reaches the playerline. Lower = faster
+    [ReadOnly] private float songBPM; //Beats per minute of the song
+    [ReadOnly] private float firstBeatOffset; //First beat offset for the music, as there is silence or otherwise noise before the first beat of the song
+    [ReadOnly] private float crotchet; //How long 1 beat is
+    [ReadOnly] private float songPosition;
+    [ReadOnly] private float songPosInBeats;
+    [ReadOnly] private float dspSongTime;
 
-    public List<HitLine> leftHitlines;
-    public List<HitLine> rightHitlines;
+    /*Properties*/
+    public float BeatsBeforeArrive { get { return beatsBeforeArrive; } private set { beatsBeforeArrive = value; } }
+    public float SongBPM           { get { return songBPM;           } private set { songBPM = value;           } }
+    public float FirstBeatOffset   { get { return firstBeatOffset;   } private set { firstBeatOffset = value;   } }
+    public float Crotchet          { get { return crotchet;          } private set { crotchet = value;          } }
+    public float SongPosition      { get { return songPosition;      } private set { songPosition = value;      } }
+    public float SongPosInBeats    { get { return songPosInBeats;    } private set { songPosInBeats = value;    } }
+    public float DspSongTime       { get { return dspSongTime;       } private set { dspSongTime = value;       } }
 
-    private bool flipflop = false;
+    public List<Hitline> leftHitlines;
+    public List<Hitline> rightHitlines;
 
     //Hitline properties
-    public GameObject hitLinePrefab;
     private int currentColor;
     [System.NonSerialized] public float[] notes = new float[15000]; //Stores which beat to spawn hitlines on
     int nextIndex = 0; //Tracks which hitline is next
@@ -30,18 +41,18 @@ public class Conductor : Singleton<Conductor>
     void Start()
     {
         //Set values of the song and reset the music time
-        songBPM = SongManager.instance.songBPM;
-        firstBeatOffset = SongManager.instance.firstBeatOffset;
+        SongBPM = SongManager.instance.songBPM;
+        FirstBeatOffset = SongManager.instance.firstBeatOffset;
         SongManager.instance.ResetMusic();
 
         //firstBeatOffset += (crotchet / 10f); //I don't know why
-        dspSongTime = (float)AudioSettings.dspTime; //Record the time when the music starts
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.GetPitch() - firstBeatOffset; //Determine how many seconds since the song started
-        crotchet = 60f / songBPM; //Calculate the number of seconds in each beat
+        DspSongTime = (float)AudioSettings.dspTime; //Record the time when the music starts
+        SongPosition = (float)(AudioSettings.dspTime - DspSongTime) * SongManager.instance.GetPitch() - FirstBeatOffset; //Determine how many seconds since the song started
+        Crotchet = 60f / SongBPM; //Calculate the number of seconds in each beat
 
         SongManager.instance.PlayMusic(); //Start the music
 
-        //How often to spawn notes -- feature for testing
+        //How often to spawn notes -- TESTING FEATURE
         for (int i = 0; i < notes.Length; i++)
         {
             notes[i] = i * howOftenToSpawn;
@@ -50,36 +61,53 @@ public class Conductor : Singleton<Conductor>
 
     void Update()
     {
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime) * SongManager.instance.GetPitch() - firstBeatOffset; //Determine how many seconds since the song started
-        songPosInBeats = songPosition / crotchet; //Determine how many beats since the song started
+        SongPosition = (float)(AudioSettings.dspTime - DspSongTime) * SongManager.instance.GetPitch() - FirstBeatOffset; //Determine how many seconds since the song started
+        SongPosInBeats = SongPosition / Crotchet; //Determine how many beats since the song started
 
-        if (nextIndex < notes.Length && notes[nextIndex] < songPosInBeats + beatsBeforeArrive)
+        if (nextIndex < notes.Length && notes[nextIndex] < SongPosInBeats + BeatsBeforeArrive) //If there are notes to spawn, and it is time to spawn one
         {
-            //Instantiate hitlines with conductor as parent, in worldscape until the notes in the array run out
-            var hitLine = Instantiate(hitLinePrefab, transform, true);
+            //Instantiate hitline with conductor gameobject as parent
+            GameObject go_hitline = HitlineFactory.instance.GetHitline(HitlineType.BIG, transform, true);
+            Hitline hitline = go_hitline.GetComponent<Hitline>();
 
-            var hitLineBehaviour = hitLine.GetComponent<HitLine>();
-            hitLineBehaviour.beat = notes[nextIndex];
-            hitLineBehaviour.positionInSeconds = hitLineBehaviour.beat * crotchet;
-            
-            currentColor = Random.Range(0, 2);
+            /*******************************************THIS MUST BE CHANGED. FEATURE ONLY FOR TESTING*******************************************/
+            hitline.Beat = notes[nextIndex]; //Set the beat the hitline should arrive on
+            hitline.PosInSeconds = hitline.Beat * Crotchet;
 
+            //Flip flop between left and right lanes. for testing purposes.
             if (flipflop)
             {
-                hitLineBehaviour.lane = 1;
-                leftHitlines.Add(hitLine.GetComponent<HitLine>());
                 flipflop = false;
+                hitline.Lane = 0;
             }
-            else
+            else if (!flipflop)
             {
-                hitLineBehaviour.lane = 2;
-                rightHitlines.Add(hitLine.GetComponent<HitLine>());
                 flipflop = true;
+                hitline.Lane = 1;
             }
 
-            hitLineBehaviour.SetColor(currentColor);
+            
+            /*******************************************THIS MUST BE CHANGED. FEATURE ONLY FOR TESTING*******************************************/
 
-            nextIndex++;
+            AddHitlineToList(hitline);
+
+            nextIndex++; //Go to the next hitline
         }
+    }
+
+    public List<Hitline> GetHitlines(int lane)
+    {
+        if (lane == 0)
+            return leftHitlines;
+        else
+            return rightHitlines;
+    }
+
+    private void AddHitlineToList(Hitline hitline)
+    {
+        if (hitline.Lane == 0)
+            leftHitlines.Add(hitline.GetComponent<Hitline>());
+        else if (hitline.Lane == 1)
+            rightHitlines.Add(hitline.GetComponent<Hitline>());
     }
 }

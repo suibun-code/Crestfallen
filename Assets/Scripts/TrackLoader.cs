@@ -16,7 +16,7 @@ public class TrackLoader : Singleton<TrackLoader>
     public Beatmap beatmap;
     public List<Beatmap> beatmaps;
 
-    protected override void Awake()
+    override protected void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this.gameObject);

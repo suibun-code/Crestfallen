@@ -47,14 +47,19 @@ public class BeatmapCell : MonoBehaviour
         //Coloring the difficulty text depending on the difficulty
         if (beatmap.difficulty <= 3)
             difficultyText.color = SongSelectManager.instance.Tier0;
+
         else if (beatmap.difficulty <= 7 && beatmap.difficulty > 3)
             difficultyText.color = SongSelectManager.instance.Tier1;
+
         else if (beatmap.difficulty <= 11 && beatmap.difficulty > 7)
             difficultyText.color = SongSelectManager.instance.Tier2;
+
         else if (beatmap.difficulty <= 15 && beatmap.difficulty > 11)
             difficultyText.color = SongSelectManager.instance.Tier3;
+
         else if (beatmap.difficulty <= 19)
             difficultyText.color = SongSelectManager.instance.Tier4;
+
         else
             textEffect.enabled = true;
     }
@@ -63,12 +68,15 @@ public class BeatmapCell : MonoBehaviour
     {
         if (beatmap == null)
             return;
-
+        
         SongManager songManager = SongManager.instance;
 
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
-        if (SongManager.instance.currentBeatmap == this)
+        if (songManager.currentBeatmap == this)
         {
+            songManager.songBPM = beatmap.songBPM;
+            songManager.firstBeatOffset = beatmap.firstBeatOffset;
+
             SceneManager.instance.ChangeScene("Gameplay");
             songManager.StopMusic();
             songManager.PlayHitSound();
@@ -82,8 +90,6 @@ public class BeatmapCell : MonoBehaviour
 
         SongSelectManager.instance.SetBigArt(beatmap.art);
 
-        songManager.songBPM = beatmap.songBPM;
-        songManager.firstBeatOffset = beatmap.firstBeatOffset;
         songManager.music.clip = beatmap.music;
         songManager.music.time = beatmap.previewStartTime;
         songManager.PlayMusic();

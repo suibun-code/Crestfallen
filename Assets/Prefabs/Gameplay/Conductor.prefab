@@ -43,15 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dda0a5d0cec1024da413600051605fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  howOftenToSpawn: 2
+  howOftenToSpawn: 1
   beatsBeforeArrive: 6
-  songBPM: 0
-  firstBeatOffset: 0
-  crotchet: 0
-  songPosition: 0
-  songPosInBeats: 0
-  dspSongTime: 0
   leftHitlines: []
   rightHitlines: []
-  hitLinePrefab: {fileID: 8950019971884370335, guid: 84e54c314524a0140943be27b8e2ab5c, type: 3}
   autoHit: 0

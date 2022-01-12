@@ -9,7 +9,7 @@ public struct StrumLane
 {
     public string name;
 
-    public List<HitLine> activeHitLines;
+    public List<Hitline> activeHitLines;
     public Renderer renderer;
     public Animator animator;
     public int color;
@@ -17,18 +17,23 @@ public struct StrumLane
 
 public class PlayerLineInput : Singleton<PlayerLineInput>
 {
+    [SerializeField] private float perfectAccuracy;
+    [SerializeField] private float greatAccuracy;
+    [SerializeField] private float badAccuracy;
+    [SerializeField] private float minimumAccuracyToHit;
+
     private float accuracy;
-    private HitLine nextHitline;
+    private Hitline nextHitline;
 
     //Lanes
     public StrumLane leftLane;
     public StrumLane rightLane;
 
     //Components
-    public Renderer leftLineRenderer;
-    public Renderer rightLineRenderer;
-    public Animator leftAnimator;
-    public Animator rightAnimator;
+    [SerializeField] private Renderer leftLineRenderer;
+    [SerializeField] private Renderer rightLineRenderer;
+    [SerializeField] private Animator leftAnimator;
+    [SerializeField] private Animator rightAnimator;
 
     void Start()
     {
@@ -44,57 +49,8 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
         rightLane.animator = rightAnimator;
         rightLane.color = 0;
 
-        leftLane.renderer.material.SetColor("PlayerLineColor", PlayerLineColor.red);
-        rightLane.renderer.material.SetColor("PlayerLineColor", PlayerLineColor.blue);
-    }
-
-    public void OnChangeColorLeftRed(InputValue value)
-    {
-        ChangeColorLeftRed();
-    }
-    public void ChangeColorLeftRed()
-    {
-        leftLane.color = 0;
-        leftLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.red);
-    }
-
-    public void OnChangeColorLeftGreen(InputValue value)
-    {
-        ChangeColorLeftGreen();
-    }
-    public void ChangeColorLeftGreen()
-    {
-        leftLane.color = 1;
-        leftLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.green);
-    }
-
-    public void OnChangeColorRightBlue(InputValue value)
-    {
-        ChangeColorRightBlue();
-    }
-    public void ChangeColorRightBlue()
-    {
-        rightLane.color = 0;
-        rightLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.blue);
-    }
-
-    public void OnChangeColorRightYellow(InputValue value)
-    {
-        ChangeColorRightYellow();
-    }
-    public void ChangeColorRightYellow()
-    {
-        rightLane.color = 1;
-        rightLineRenderer.material.SetColor("PlayerLineColor", PlayerLineColor.yellow);
-    }
-
-    public void OnStrumLeft(InputValue value)
-    {
-        StrumLeft();
-    }
-    public void OnStrumRight(InputValue value)
-    {
-        StrumRight();
+        leftLane.renderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Left1);
+        rightLane.renderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Right1);
     }
 
     public void StrumLeft()
@@ -114,83 +70,123 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
         if (lane.activeHitLines.Count != 0) //Make sure there are hitlines in the lane
             nextHitline = lane.activeHitLines.First(); //Assign the next hitline in line to be hit
         else
-        {
-            Debug.Log("No more " + lane.name + " hitlines!");
-            return;
-        }
-
-        accuracy = Mathf.Abs(nextHitline.positionInSeconds - Conductor.instance.songPosition);
-        //Debug.Log("Accuracy: " + accuracy);
-
-        if (accuracy >= 0.25f) //Accuracy not close enough to count the hit. Do nothing
             return;
 
-        if (lane.color != nextHitline.hitLineColor)//if the colors don't match
+        if (lane.color != nextHitline.HitlineColor)//if the colors don't match
         {
             Missed();
             return;
         }
 
-        if (accuracy >= 0.15f)//early or late by half a beat
+        CalculateAccuracy();
+    }
+
+    private void Missed()
+    {
+        nextHitline.DestroyHitline();
+        ScoreTracker.instance.HitMiss();
+    }
+
+    private void CalculateAccuracy()
+    {
+        accuracy = Mathf.Abs(nextHitline.PosInSeconds - Conductor.instance.SongPosition);
+        //Debug.Log("Accuracy: " + accuracy);
+
+        if (accuracy >= minimumAccuracyToHit) //Accuracy not close enough to count the hit. Do nothing
+        {
+            //Debug.Log("ok");
+            return;
+        }
+
+        if (accuracy >= badAccuracy)//early or late by half a beat
             ScoreTracker.instance.HitBad();
-
-        else if (accuracy >= 0.06f)//early or late by half a beat
+        else if (accuracy >= greatAccuracy)//early or late by half a beat
             ScoreTracker.instance.HitGreat();
-
-        else if (accuracy >= 0f)//early or late by half a beat
+        else if (accuracy >= perfectAccuracy)//early or late by half a beat
             ScoreTracker.instance.HitPerfect();
 
-        RemoveHitline(nextHitline);
+        nextHitline.DestroyHitline();
     }
-
-    public void Missed()
+    private void SetLaneColor(int lane, int color)
     {
-        ScoreTracker.instance.HitMiss();
-        RemoveHitline(nextHitline);
-    }
-
-    public void SetLeftToNextColor()
-    {
-        if (Conductor.instance.leftHitlines.Count == 0)
+        if (lane == 0)
         {
-            Debug.Log("Left hitlines lists empty!");
+            if (color == 0)
+            {
+                leftLane.color = 0;
+                leftLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Left1);
+            }
+            else if (color == 1)
+            {
+                leftLane.color = 1;
+                leftLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Left2);
+            }
+        }
+        else if (lane == 1)
+        {
+            if (color == 0)
+            {
+                rightLane.color = 0;
+                rightLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Right1);
+            }
+            else if (color == 1)
+            {
+                rightLane.color = 1;
+                rightLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Right2);
+            }
+        }
+    }
+
+    public void SetLaneToNextColor(int lane) //Call when the next hitline to be hit is in the left lane
+    {
+        if (Conductor.instance.GetHitlines(lane).Count != 0)
+        {
+            switch (Conductor.instance.GetHitlines(lane).First().HitlineColor)
+            {
+                case 0:
+                    SetLaneColor(lane, 0);
+                    break;
+
+                case 1:
+                    SetLaneColor(lane, 1);
+                    break;
+
+                default:
+                    SetLaneColor(lane, 0);
+                    Debug.Log("Default case triggered in SetLaneToNextColor");
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("hitlines lists empty!");
             return;
         }
-
-        switch (Conductor.instance.leftHitlines.First().hitLineColor)
-        {
-            case 0:
-                ChangeColorLeftRed();
-                break;
-
-            case 1:
-                ChangeColorLeftGreen();
-                break;
-        }
-    }
-    public void SetRightToNextColor()
-    {
-        if (Conductor.instance.rightHitlines.Count == 0)
-        {
-            Debug.Log("Right hitlines lists empty!");
-            return;
-        }
-
-        switch (Conductor.instance.rightHitlines.First().hitLineColor)
-        {
-            case 0:
-                ChangeColorRightBlue();
-                break;
-
-            case 1:
-                ChangeColorRightYellow();
-                break;
-        }
     }
 
-    public void RemoveHitline(HitLine hitline) //Destroy the hitline and remove it from its respective array
+    /*Input system methods*/
+    public void OnStrumLeft(InputValue value)
     {
-        nextHitline.RemoveFromList();
-        Destroy(nextHitline.gameObject);
+        StrumLeft();
+    }
+    public void OnStrumRight(InputValue value)
+    {
+        StrumRight();
+    }
+    public void OnChangeColorLeftRed(InputValue value)
+    {
+        SetLaneColor(0, 0);
+    }
+    public void OnChangeColorLeftGreen(InputValue value)
+    {
+        SetLaneColor(0, 1);
+    }
+    public void OnChangeColorRightBlue(InputValue value)
+    {
+        SetLaneColor(1, 0);
+    }
+    public void OnChangeColorRightYellow(InputValue value)
+    {
+        SetLaneColor(1, 1);
     }
 }
