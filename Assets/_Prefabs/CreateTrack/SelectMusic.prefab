@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5010109775229798147}
   - component: {fileID: 5010109776055389358}
   m_Layer: 0
-  m_Name: AudioFileManager
+  m_Name: SelectMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,9 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 0}
-  rect_refresh: {fileID: 0}
-  rect_title: {fileID: 0}
-  rect_topMsg: {fileID: 0}
   scrollView: {fileID: 0}
   audioFileCell: {fileID: 7616651195605201768, guid: 654c74c492c497646a1bc1faee520443, type: 3}
   previewAudioButton: {fileID: 0}
@@ -56,9 +53,9 @@ MonoBehaviour:
   nextButton: {fileID: 0}
   files: []
   currentCell: {fileID: 0}
-  text_fileName: {fileID: 0}
-  text_noFilesFound: {fileID: 0}
-  color_fileName: {r: 0.9607843, g: 0.8039216, b: 0.4745098, a: 1}
+  fileSelected: {fileID: 0}
+  foundFilesText: {fileID: 0}
+  fileNameColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!82 &5010109775229798147
 AudioSource:
   m_ObjectHideFlags: 0

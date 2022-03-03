@@ -12,15 +12,9 @@ public class SelectMusic : Singleton<SelectMusic>
 {
     public GameObject eventSystem;
 
-    private bool doneSpinning = true;
-
     private string musicPath;
     private string musicName;
     private string tracksPath;
-
-    public RectTransform rect_refresh;
-    public RectTransform rect_title;
-    public RectTransform rect_topMsg;
 
     public GameObject scrollView;
     public GameObject audioFileCell;
@@ -33,12 +27,10 @@ public class SelectMusic : Singleton<SelectMusic>
 
     public AudioFileCell currentCell;
 
-    private TextMeshProUGUI text_title;
-    public TextMeshProUGUI text_fileName;
-    public TextMeshProUGUI text_noFilesFound;
+    public TextMeshProUGUI fileSelected;
+    public TextMeshProUGUI foundFilesText;
 
-    private Color color_newTextTitle;
-    public Color color_fileName;
+    public Color fileNameColor;
 
 
     void OnEnable()
@@ -48,10 +40,6 @@ public class SelectMusic : Singleton<SelectMusic>
 
     void Start()
     {
-        text_title = rect_title.GetChild(0).GetComponent<TextMeshProUGUI>();
-        color_newTextTitle = new Color(text_title.color.r, text_title.color.g, text_title.color.b, 0f);
-
-        StartCoroutine(AnimateUploadMusicUI());
         tracksPath = MapMakerManager.instance.TracksPath;
         RefreshDirectory();
     }
@@ -86,35 +74,29 @@ public class SelectMusic : Singleton<SelectMusic>
         stopPreviewButton.interactable = false;
         nextButton.interactable = false;
 
-        text_fileName.color = Color.white;
-        text_fileName.SetText("Loading..."); //Set the button's text to when it's loading and disabled
+        fileSelected.color = Color.white;
+        fileSelected.SetText("Loading..."); //Set the button's text to when it's loading and disabled
 
         /*If the file doesn't exist, 
         make the file name text color red, 
         and inform the user that the *.mp3 file is not valid*/
         if (!File.Exists(musicPath))
         {
-            text_fileName.color = Color.red;
+            fileSelected.color = Color.red;
 
             if (musicName == null)
-                text_fileName.SetText("Please select a file to load.");
+                fileSelected.SetText("Please select a file to load.");
             else
-                text_fileName.SetText("The file does not exist or is not the correct file type.");
+                fileSelected.SetText("The file does not exist or is not the correct file type.");
 
             Debug.Log("path doesnt exist");
             return;
         }
-        StartCoroutine(LoadAudioFile(musicPath));
+        StartCoroutine(IE_LoadAudioFile(musicPath));
     }
 
     public void RefreshDirectory()
     {
-        if (doneSpinning)
-            LeanTween.rotateAroundLocal(rect_refresh, Vector3.forward, -360f, 1f).setEaseOutCirc().setOnComplete(SetDoneSpinning);
-        rect_refresh.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-
-        doneSpinning = false;
-
         //If audio file cells exist, destroy them so the list can be properly updated
         if (files.Count > 0)
         {
@@ -128,9 +110,9 @@ public class SelectMusic : Singleton<SelectMusic>
 
         //Enable or disable the "no files found" text depending if files are found in the directory
         if (fileInfo.Length > 0)
-            text_noFilesFound.enabled = false;
+            foundFilesText.enabled = false;
         else
-            text_noFilesFound.enabled = true;
+            foundFilesText.enabled = true;
 
         //Browse through all found *.mp3 files and create audio file cells for each of them
         foreach (var file in fileInfo)
@@ -145,30 +127,7 @@ public class SelectMusic : Singleton<SelectMusic>
         }
     }
 
-    private void SetDoneSpinning()
-    {
-        doneSpinning = true;
-    }
-
-    private IEnumerator AnimateUploadMusicUI()
-    {
-        yield return LeanTween.moveX(rect_title, 0f, 1f).setEaseOutCirc();
-
-        while (text_title.color.a < 1f)
-        {
-            color_newTextTitle.a += 1f * Time.deltaTime;
-            text_title.color = color_newTextTitle;
-            yield return null;
-        }
-
-        yield return LeanTween.moveX(rect_topMsg, 110f, 1f).setEaseOutCirc();
-
-        yield return new WaitForSeconds(1f);
-
-        eventSystem.SetActive(true);
-    }
-
-    public IEnumerator LoadAudioFile(string path) // Loads *.mp3's
+    public IEnumerator IE_LoadAudioFile(string path) // Loads *.mp3's
     {
         //Load audio from the chosen *.mp3 file
         using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.MPEG);
@@ -186,16 +145,16 @@ public class SelectMusic : Singleton<SelectMusic>
             stopPreviewButton.interactable = true;
             nextButton.interactable = true;
 
-            var playText = previewAudioButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            var stopText = stopPreviewButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            var nextText = nextButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            //TextMeshProUGUI playText = previewAudioButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI stopText = stopPreviewButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI nextText = nextButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
-            playText.alpha = 1f;
+            //playText.alpha = 1f;
             stopText.alpha = 1f;
             nextText.alpha = 1f;
 
-            text_fileName.color = color_fileName;
-            text_fileName.SetText(musicName);
+            fileSelected.color = fileNameColor;
+            fileSelected.SetText(musicName);
         }
     }
 

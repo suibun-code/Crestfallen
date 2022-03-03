@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/_Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/SongSelect.unity
+    path: Assets/_Scenes/SongSelect.unity
     guid: 118290c88a41c8f4f95811badd1f7c8f
   - enabled: 1
-    path: Assets/Scenes/CreateTrack.unity
+    path: Assets/_Scenes/CreateTrack.unity
     guid: c80e5de8f85a38642b9c142c9577f022
   - enabled: 1
-    path: Assets/Scenes/Gameplay.unity
+    path: Assets/_Scenes/Gameplay.unity
     guid: 9f6116d8cb79309449380962155b68db
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 91e759cc1be245d4e8b1e871132b3668, type: 2}

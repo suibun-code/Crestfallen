@@ -14,6 +14,8 @@ public class FileDialogPlugin : MonoBehaviour
     private static extern IntPtr get_file_name();
     [DllImport(dll)]
     private static extern void open_explorer_with_path(string path);
+    [DllImport(dll)]
+    private static extern void close_file_dialog();
 
     public static string OpenFileDialog(string title, string msg, string filter)
     {
@@ -26,5 +28,10 @@ public class FileDialogPlugin : MonoBehaviour
     public static void OpenExplorerWithPath(string path)
     {
         open_explorer_with_path(path);
+    }
+
+    public static void CloseFileDialog()
+    {
+        close_file_dialog();
     }
 }
