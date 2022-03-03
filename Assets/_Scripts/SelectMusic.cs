@@ -139,20 +139,23 @@ public class SelectMusic : Singleton<SelectMusic>
             Debug.Log(www.error);
         else
         {
+            //Get the clip and assign it to the song manager's AudioSource
             SongManager.instance.music.clip = DownloadHandlerAudioClip.GetContent(www);
 
+            //Make buttons associated with select music to interactable once something is selected
             previewAudioButton.interactable = true;
             stopPreviewButton.interactable = true;
             nextButton.interactable = true;
 
-            //TextMeshProUGUI playText = previewAudioButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI stopText = stopPreviewButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            //Reset alphas of play, stop, and next
+            Image playText = previewAudioButton.gameObject.transform.GetChild(0).GetComponent<Image>();
+            Image stopText = stopPreviewButton.gameObject.transform.GetChild(0).GetComponent<Image>();
             TextMeshProUGUI nextText = nextButton.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-
-            //playText.alpha = 1f;
-            stopText.alpha = 1f;
+            playText.color = new Color(playText.color.r, playText.color.g, playText.color.b, 1.0f);
+            stopText.color = new Color(playText.color.r, playText.color.g, playText.color.b, 1.0f);
             nextText.alpha = 1f;
 
+            //Change color of the file selected text (music selected) to the specificed color (chosen in editor) and set the text to the file name
             fileSelected.color = fileNameColor;
             fileSelected.SetText(musicName);
         }

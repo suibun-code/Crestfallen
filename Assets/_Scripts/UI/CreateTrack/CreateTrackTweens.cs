@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CreateTrackTweens : MonoBehaviour
 {
+    #region SelectMusic
     private TextMeshProUGUI title;
     public RectTransform titleRect;
     private Color newTitleColor;
@@ -53,6 +54,7 @@ public class CreateTrackTweens : MonoBehaviour
     {
         doneSpinning = true;
     }
+    #endregion SelectMusic
 
     #region BeatmapInfo
 
