@@ -31,11 +31,11 @@ public class Hitline : MonoBehaviour
     protected Renderer _renderer;
 
     /*Properties*/
-    public float Beat         { get { return beat; }         set { beat = value; } }
+    public float Beat { get { return beat; } set { beat = value; } }
     public float PosInSeconds { get { return posInSeconds; } set { posInSeconds = value; } }
 
-    public int Lane         { get { return lane; }         set { lane = value; } }
-    public int Sublane      { get { return sublane; }      set { sublane = value; } }
+    public int Lane { get { return lane; } set { lane = value; } }
+    public int Sublane { get { return sublane; } set { sublane = value; } }
     public int HitlineColor { get { return hitlineColor; } set { hitlineColor = value; } }
 
     private void Awake()
@@ -65,11 +65,46 @@ public class Hitline : MonoBehaviour
 
     private void SetLaneStartPosition()
     {
-        //Set the proper x position if hitline is in the second lane. No need to set the position of the first lane as it is the default.
-        if (lane == 1)
+        if (hitlineType == HitlineType.SMALL)
         {
-            spawnPos.x = 1.6f;
-            endPos.x = 1.6f;
+            if (lane == 0)
+            {
+                if (sublane == 0)
+                {
+                    //no change. use default spawn value
+                }
+
+                if (sublane == 1)
+                {
+                    spawnPos.x = -0.85f;
+                    endPos.x = -0.85f;
+                }
+            }
+
+            else if (lane == 1)
+            {
+                if (sublane == 0)
+                {
+                    spawnPos.x = 0.85f;
+                    endPos.x = 0.85f;
+                }
+
+                else if (sublane == 1)
+                {
+                    spawnPos.x = 2.35f;
+                    endPos.x = 2.35f;
+                }
+            }
+        }
+
+        else if (hitlineType == HitlineType.BIG)
+        {
+            //Set the proper x position if hitline is in the second lane. No need to set the position of the first lane as it is the default.
+            if (lane == 1)
+            {
+                spawnPos.x = 1.6f;
+                endPos.x = 1.6f;
+            }
         }
     }
 
@@ -84,24 +119,18 @@ public class Hitline : MonoBehaviour
         if (lane == 0)
         {
             if (HitlineColor == 0)
-            {
                 _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorOne);
-            }
+
             else if (HitlineColor == 1)
-            {
                 _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorTwo);
-            }
         }
         else if (lane == 1)
         {
             if (HitlineColor == 0)
-            {
                 _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorThree);
-            }
+
             else if (HitlineColor == 1)
-            {
                 _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorFour);
-            }
         }
     }
 

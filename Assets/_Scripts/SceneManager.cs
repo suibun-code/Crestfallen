@@ -12,7 +12,7 @@ public class SceneManager : Singleton<SceneManager>
 
     public float transitionTime;
 
-    protected override void Awake() 
+    protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
@@ -44,6 +44,8 @@ public class SceneManager : Singleton<SceneManager>
 
         GameObject eventSystem = GameObject.Find("EventSystem");
 
+        //No need to set the eventSystem back to active as it gets replaced with a new one.
+        //This is to stop input after scene transition has started.
         if (eventSystem != null)
             eventSystem.SetActive(false);
 

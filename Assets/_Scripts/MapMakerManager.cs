@@ -8,6 +8,7 @@ using System.IO;
 public class MapMakerManager : Singleton<MapMakerManager>
 {
     public string g_TracksPath;
+    public string g_SongsPath;
 
     public string TracksPath
     {
@@ -35,6 +36,10 @@ public class MapMakerManager : Singleton<MapMakerManager>
         g_TracksPath = System.IO.Path.Combine(Application.persistentDataPath, "tracks");
         if (!Directory.Exists(g_TracksPath))
             Directory.CreateDirectory(g_TracksPath);
+
+        g_SongsPath = System.IO.Path.Combine(Application.persistentDataPath, "songs");
+        if (!Directory.Exists(g_SongsPath))
+            Directory.CreateDirectory(g_SongsPath);
     }
 
     public void Save()

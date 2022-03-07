@@ -5,8 +5,6 @@ public class Conductor : Singleton<Conductor>
 {
     bool flipflop = false;
 
-
-
     //Music Metadata
     /*Fields*/
     [SerializeField] private float howOftenToSpawn; //How often to spawn notes. 1 = once per beat
@@ -67,7 +65,7 @@ public class Conductor : Singleton<Conductor>
         if (nextIndex < notes.Length && notes[nextIndex] < SongPosInBeats + BeatsBeforeArrive) //If there are notes to spawn, and it is time to spawn one
         {
             //Instantiate hitline with conductor gameobject as parent
-            GameObject go_hitline = HitlineFactory.instance.GetHitline(HitlineType.BIG, transform, true);
+            GameObject go_hitline = HitlineFactory.instance.GetHitline(HitlineType.SMALL, transform, true);
             Hitline hitline = go_hitline.GetComponent<Hitline>();
 
             /*******************************************THIS MUST BE CHANGED. FEATURE ONLY FOR TESTING*******************************************/
@@ -85,8 +83,6 @@ public class Conductor : Singleton<Conductor>
                 flipflop = true;
                 hitline.Lane = 1;
             }
-
-            
             /*******************************************THIS MUST BE CHANGED. FEATURE ONLY FOR TESTING*******************************************/
 
             AddHitlineToList(hitline);
