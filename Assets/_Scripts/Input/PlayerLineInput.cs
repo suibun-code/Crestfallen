@@ -49,8 +49,8 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
         rightLane.animator = rightAnimator;
         rightLane.color = 0;
 
-        leftLane.renderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Left1);
-        rightLane.renderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Right1);
+        leftLane.renderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColorOne);
+        rightLane.renderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColorThree);
     }
 
     public void StrumLeft()
@@ -114,12 +114,12 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
             if (color == 0)
             {
                 leftLane.color = 0;
-                leftLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Left1);
+                leftLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColorOne);
             }
             else if (color == 1)
             {
                 leftLane.color = 1;
-                leftLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Left2);
+                leftLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColorTwo);
             }
         }
         else if (lane == 1)
@@ -127,12 +127,12 @@ public class PlayerLineInput : Singleton<PlayerLineInput>
             if (color == 0)
             {
                 rightLane.color = 0;
-                rightLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Right1);
+                rightLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColorThree);
             }
             else if (color == 1)
             {
                 rightLane.color = 1;
-                rightLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColor_Right2);
+                rightLineRenderer.material.SetColor("PlayerLineColor", GameColors.instance.laneColorFour);
             }
         }
     }

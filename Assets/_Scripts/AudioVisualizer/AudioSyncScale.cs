@@ -6,12 +6,17 @@ public class AudioSyncScale : AudioSyncer
 {
     private Coroutine scaleCoroutine;
 
-    public Vector3 beatScale;
+    //public Vector3 beatScale;
+    private Vector3 test;
     public Vector3 restScale;
+
+    public int _band;
+    public float _startScale;
+    public float _scaleMultiplier;
 
     private void Start()
     {
-
+        //test = new Vector3(transform.localScale.x, transform.localScale.y, (AudioSpectrum._freqBand[_band] * _scaleMultiplier));
     }
 
     public override void OnBeat()
@@ -21,7 +26,7 @@ public class AudioSyncScale : AudioSyncer
         if (scaleCoroutine != null)
             StopCoroutine(scaleCoroutine);
 
-        scaleCoroutine = StartCoroutine(MoveToScale(beatScale));
+        scaleCoroutine = StartCoroutine(MoveToScale(test));
     }
 
     public override void OnUpdate()
@@ -33,18 +38,23 @@ public class AudioSyncScale : AudioSyncer
         transform.localScale = Vector3.Lerp(transform.localScale, restScale, restSmoothTime * Time.deltaTime);
     }
 
-    private IEnumerator MoveToScale(Vector3 target)
+    private IEnumerator MoveToScale(Vector3 beatScale)
     {
-        Vector3 curr = transform.localScale;
-        Vector3 initial = curr;
+        Vector3 currentScale = transform.localScale;
+        Vector3 initialScale = currentScale;
+
         float timer = 0;
 
-        while (curr != target)
+        while (currentScale != beatScale)
         {
-            curr = Vector3.Lerp(initial, target, timer / timeToBeat);
-            timer += Time.deltaTime;
+            test = new Vector3(transform.localScale.x, transform.localScale.y, (AudioSpectrum._freqBand[_band] * _scaleMultiplier));
+            currentScale = Vector3.Lerp(initialScale, test, timer / timeToBeat);
 
-            transform.localScale = curr;
+            //currentScale = Vector3.Lerp(initialScale, beatScale, timer / timeToBeat);
+
+            timer += Time.deltaTime; //TRY CHANGING THIS TO SONG POSITION
+
+            transform.localScale = currentScale;
 
             yield return null;
         }

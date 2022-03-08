@@ -9,12 +9,12 @@ public class Conductor : Singleton<Conductor>
     /*Fields*/
     [SerializeField] private float howOftenToSpawn; //How often to spawn notes. 1 = once per beat
     [SerializeField] private float beatsBeforeArrive; //"Note speed", how many beats go by before the hitline reaches the playerline. Lower = faster
-    [ReadOnly] private float songBPM; //Beats per minute of the song
-    [ReadOnly] private float firstBeatOffset; //First beat offset for the music, as there is silence or otherwise noise before the first beat of the song
-    [ReadOnly] private float crotchet; //How long 1 beat is
-    [ReadOnly] private float songPosition;
-    [ReadOnly] private float songPosInBeats;
-    [ReadOnly] private float dspSongTime;
+    [SerializeField] private float songBPM; //Beats per minute of the song
+    [SerializeField] private float firstBeatOffset; //First beat offset for the music, as there is silence or otherwise noise before the first beat of the song
+    [SerializeField] private float crotchet; //How long 1 beat is
+    [SerializeField] private float songPosition;
+    [SerializeField] private float songPosInBeats;
+    [SerializeField] private float dspSongTime;
 
     /*Properties*/
     public float BeatsBeforeArrive { get { return beatsBeforeArrive; } private set { beatsBeforeArrive = value; } }

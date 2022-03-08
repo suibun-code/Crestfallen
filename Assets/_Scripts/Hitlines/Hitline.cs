@@ -16,7 +16,7 @@ public class Hitline : MonoBehaviour
     /*Fields*/
     [SerializeField] private Vector3 spawnPos;
     [SerializeField] private Vector3 endPos;
-    [ReadOnly] private float removePos = 1.4f;
+    [ReadOnly] private float removePos = -4f;
     [ReadOnly] private float offsetAmount;
 
     [ReadOnly] private float beat; //What beat it will arrive on
@@ -31,11 +31,11 @@ public class Hitline : MonoBehaviour
     protected Renderer _renderer;
 
     /*Properties*/
-    public float Beat { get { return beat; } set { beat = value; } }
+    public float Beat         { get { return beat; }         set { beat = value; } }
     public float PosInSeconds { get { return posInSeconds; } set { posInSeconds = value; } }
 
-    public int Lane { get { return lane; } set { lane = value; } }
-    public int Sublane { get { return sublane; } set { sublane = value; } }
+    public int Lane         { get { return lane; }         set { lane = value; } }
+    public int Sublane      { get { return sublane; }      set { sublane = value; } }
     public int HitlineColor { get { return hitlineColor; } set { hitlineColor = value; } }
 
     private void Awake()

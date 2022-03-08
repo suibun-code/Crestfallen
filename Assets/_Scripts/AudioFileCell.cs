@@ -11,9 +11,7 @@ public class AudioFileCell : MonoBehaviour
 
     public void OnSetCurrentCell()
     {
-        var audioFileCell = this;
-
         if (OnClick != null)
-            OnClick(audioFileCell);
+            OnClick(this);
     }
 }

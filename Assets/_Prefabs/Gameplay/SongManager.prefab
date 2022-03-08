@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3021459689226119405}
   - component: {fileID: 4663168995063207109}
+  - component: {fileID: 5368491040390825499}
   - component: {fileID: 7301260613092634965}
   - component: {fileID: 952979140209727354}
-  - component: {fileID: 5368491040390825499}
   m_Layer: 0
   m_Name: SongManager
   m_TagString: Untagged
@@ -51,6 +51,19 @@ MonoBehaviour:
   hitSound: {fileID: 952979140209727354}
   firstBeatOffset: 0
   songBPM: 0
+--- !u!114 &5368491040390825499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330726048924934136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4874f84274c2bb245ab34b21de61392a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 7301260613092634965}
 --- !u!82 &7301260613092634965
 AudioSource:
   m_ObjectHideFlags: 0
@@ -243,15 +256,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5368491040390825499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7330726048924934136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4874f84274c2bb245ab34b21de61392a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

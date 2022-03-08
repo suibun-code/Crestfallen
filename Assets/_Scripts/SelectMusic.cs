@@ -10,12 +10,14 @@ using UnityEngine.InputSystem;
 
 public class SelectMusic : Singleton<SelectMusic>
 {
-    public GameObject eventSystem;
+    private AudioSource _audioSource;
 
-    private string musicPath;
-    private string musicName;
-    private string tracksPath;
-    private string songsPath;
+    private string _musicPath;
+    private string _musicName;
+    private string _tracksPath;
+    private string _songsPath;
+
+    public GameObject eventSystem;
 
     public GameObject scrollView;
     public GameObject audioFileCell;
@@ -32,44 +34,50 @@ public class SelectMusic : Singleton<SelectMusic>
     public TextMeshProUGUI foundFilesText;
 
     public Color fileNameColor;
+    public Color fileLoadingColor;
+    public Color fileNotFoundColor;
 
     void OnEnable()
     {
         AudioFileCell.OnClick += SetCurrentCell;
     }
 
+    private void OnDisable()
+    {
+        AudioFileCell.OnClick -= SetCurrentCell;
+    }
+
     void Start()
     {
-        tracksPath = MapMakerManager.instance.TracksPath;
-        songsPath = MapMakerManager.instance.g_SongsPath;
+        _audioSource = GetComponent<AudioSource>();
+        _tracksPath = MapMakerManager.instance.TracksPath;
+        _songsPath = MapMakerManager.instance.g_SongsPath;
         RefreshDirectory();
     }
 
     void SetCurrentCell(AudioFileCell audioFileCell)
     {
         currentCell = audioFileCell;
-        musicName = currentCell.fileName;
-        musicPath = System.IO.Path.Combine(tracksPath, musicName);
+        _musicName = currentCell.fileName;
+        _musicPath = System.IO.Path.Combine(_songsPath, _musicName);
         LoadMusic();
-        Debug.Log(musicPath);
+        Debug.Log(_musicPath);
     }
 
     public void OpenAudioPath()
     {
-        FileDialogPlugin.OpenExplorerWithPath(MapMakerManager.instance.g_SongsPath);
+        StartCoroutine(IE_OpenAudioPath());
     }
 
     public void SelectSong()
     {
-        musicPath = FileDialogPlugin.OpenFileDialog("Upload an audio file to use as your music.", "Import a *.mp3 file", "*.mp3");
-        musicName = FileDialogPlugin.GetFileName();
-        LoadMusic();
+        StartCoroutine(IE_SelectSong());
     }
 
     public void LoadMusic()
     {
-        MapMakerManager.instance.musicPath = musicPath;
-        MapMakerManager.instance.musicName = musicName;
+        MapMakerManager.instance.musicPath = _musicPath;
+        MapMakerManager.instance.musicName = _musicName;
 
         //Disable assosciated buttons
         previewAudioButton.interactable = false;
@@ -77,17 +85,17 @@ public class SelectMusic : Singleton<SelectMusic>
         nextButton.interactable = false;
 
         //Set the fileSelected text and color to when it's loading
-        fileSelected.color = Color.white;
+        fileSelected.color = fileLoadingColor;
         fileSelected.SetText("Loading...");
 
         /*If the file doesn't exist, 
         make the file name text color red, 
         and inform the user that the *.mp3 file is not valid*/
-        if (!File.Exists(musicPath))
+        if (!File.Exists(_musicPath))
         {
-            fileSelected.color = Color.red;
+            fileSelected.color = fileNotFoundColor;
 
-            if (musicName == null)
+            if (_musicName == null)
                 fileSelected.SetText("Please select a file to load.");
             else
                 fileSelected.SetText("The file does not exist or is not the correct file type.");
@@ -95,7 +103,7 @@ public class SelectMusic : Singleton<SelectMusic>
             Debug.Log("path doesnt exist");
             return;
         }
-        StartCoroutine(IE_LoadAudioFile(musicPath));
+        StartCoroutine(IE_LoadAudioFile(_musicPath));
     }
 
     private IEnumerator IE_LoadAudioFile(string path) // Loads *.mp3's
@@ -119,16 +127,14 @@ public class SelectMusic : Singleton<SelectMusic>
             nextButton.interactable = true;
 
             //Reset alphas of play, stop, and next
-            Image playText = previewAudioButton.gameObject.transform.GetChild(0).GetComponent<Image>();
-            Image stopText = stopPreviewButton.gameObject.transform.GetChild(0).GetComponent<Image>();
-            Image nextText = nextButton.gameObject.transform.GetChild(0).GetComponent<Image>();
-            playText.color = new Color(playText.color.r, playText.color.g, playText.color.b, 1.0f);
-            stopText.color = new Color(stopText.color.r, stopText.color.g, stopText.color.b, 1.0f);
-            nextText.color = new Color(nextText.color.r, nextText.color.g, nextText.color.b, 1.0f);
+            Image playImage = previewAudioButton.gameObject.transform.GetChild(0).GetComponent<Image>();
+            Image stopImage = stopPreviewButton.gameObject.transform.GetChild(0).GetComponent<Image>();
+            playImage.color = new Color(playImage.color.r, playImage.color.g, playImage.color.b, 1.0f);
+            stopImage.color = new Color(stopImage.color.r, stopImage.color.g, stopImage.color.b, 1.0f);
 
             //Change color of the file selected text (music selected) to the specificed color (chosen in editor) and set the text to the file name
             fileSelected.color = fileNameColor;
-            fileSelected.SetText(musicName);
+            fileSelected.SetText(_musicName);
         }
     }
 
@@ -148,7 +154,7 @@ public class SelectMusic : Singleton<SelectMusic>
         files.Clear();
 
         //Get the names of *.mp3 files in the tracks root directory and add them into a string list
-        DirectoryInfo info = new DirectoryInfo(songsPath);
+        DirectoryInfo info = new DirectoryInfo(_songsPath);
         FileInfo[] fileInfo = info.GetFiles("*.mp3", SearchOption.TopDirectoryOnly);
 
         //Enable or disable the "no files found" text depending if files are found in the directory
@@ -166,6 +172,7 @@ public class SelectMusic : Singleton<SelectMusic>
         foreach (var file in fileInfo)
         {
             var cell = Instantiate(audioFileCell);
+            cell.GetComponent<Button>().onClick.AddListener(PlayButtonAudio); //Add onClick to a function that plays the button sound, so every cell doesn't need its own AudioSource.
             files.Add(cell);
 
             //Set the values for the audio file cell
@@ -180,5 +187,31 @@ public class SelectMusic : Singleton<SelectMusic>
     public void OnEscape(InputValue value)
     {
         SceneManager.instance.ChangeScene("MainMenu");
+    }
+
+    public void PlayButtonAudio()
+    {
+        _audioSource.Play();
+    }
+
+    IEnumerator IE_SelectSong()
+    {
+        yield return StartCoroutine(IE_ButtonPause());
+
+        _musicPath = FileDialogPlugin.OpenFileDialog("Upload an audio file to use as your music.", "Import a *.mp3 file", "*.mp3");
+        _musicName = FileDialogPlugin.GetFileName();
+        LoadMusic();
+    }
+
+    IEnumerator IE_OpenAudioPath()
+    {
+        yield return StartCoroutine(IE_ButtonPause());
+
+        FileDialogPlugin.OpenExplorerWithPath(MapMakerManager.instance.g_SongsPath);
+    }
+
+    IEnumerator IE_ButtonPause()
+    {
+        yield return new WaitForSeconds(0.35f);
     }
 }
