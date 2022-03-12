@@ -11,7 +11,7 @@ public enum HitlineType
 
 public class Hitline : MonoBehaviour
 {
-    [SerializeField] private HitlineType hitlineType;
+    [SerializeField] public HitlineType hitlineType;
 
     /*Fields*/
     [SerializeField] private Vector3 spawnPos;
@@ -31,11 +31,11 @@ public class Hitline : MonoBehaviour
     protected Renderer _renderer;
 
     /*Properties*/
-    public float Beat         { get { return beat; }         set { beat = value; } }
+    public float Beat { get { return beat; } set { beat = value; } }
     public float PosInSeconds { get { return posInSeconds; } set { posInSeconds = value; } }
 
-    public int Lane         { get { return lane; }         set { lane = value; } }
-    public int Sublane      { get { return sublane; }      set { sublane = value; } }
+    public int Lane { get { return lane; } set { lane = value; } }
+    public int Sublane { get { return sublane; } set { sublane = value; } }
     public int HitlineColor { get { return hitlineColor; } set { hitlineColor = value; } }
 
     private void Awake()
@@ -116,21 +116,60 @@ public class Hitline : MonoBehaviour
 
     public void SetColor()
     {
-        if (lane == 0)
+        //Set BIG hitline colors
+        if (hitlineType == HitlineType.BIG)
         {
-            if (HitlineColor == 0)
-                _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorOne);
+            if (lane == 0)
+            {
+                if (HitlineColor == 0)
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorOne);
 
-            else if (HitlineColor == 1)
-                _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorTwo);
+                else if (HitlineColor == 1)
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorTwo);
+            }
+
+            else if (lane == 1)
+            {
+                if (HitlineColor == 0)
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorThree);
+
+                else if (HitlineColor == 1)
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorFour);
+            }
         }
-        else if (lane == 1)
-        {
-            if (HitlineColor == 0)
-                _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorThree);
 
-            else if (HitlineColor == 1)
-                _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorFour);
+        //Set SMALL hitline colors
+        else if (hitlineType == HitlineType.SMALL)
+        {
+            if (lane == 0)
+            {
+                if (sublane == 0)
+                {
+                    hitlineColor = 0;
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorOne);
+                }
+
+                else if (sublane == 1)
+                {
+                    hitlineColor = 1;
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorTwo);
+                }
+
+            }
+            else if (lane == 1)
+            {
+                if (sublane == 0)
+                {
+                    hitlineColor = 0;
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorThree);
+                }
+
+                else if (sublane == 1)
+                {
+                    hitlineColor = 1;
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorFour);
+                }
+            }
         }
     }
 

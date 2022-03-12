@@ -401,6 +401,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beatmap: {fileID: 0}
+  songText: {fileID: 8477380684012858646}
+  artistText: {fileID: 5631457896805896694}
+  difficultyText: {fileID: 4068467027404575219}
+  textEffect: {fileID: 1860885806537729896}
 --- !u!222 &8219686472043354253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -482,7 +486,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4002066933780953909}
         m_TargetAssemblyTypeName: BeatmapCell, Assembly-CSharp
-        m_MethodName: PreviewSong
+        m_MethodName: OnPreviewSong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

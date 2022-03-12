@@ -6,47 +6,51 @@ using UnityEngine.UI;
 
 public class CreateTrackTweens : Singleton<CreateTrackTweens>
 {
+    private void Start()
+    {
+        titleTextUM = titleUM.GetChild(0).GetComponent<TextMeshProUGUI>();
+        newTitleColorUM = new Color(titleTextUM.color.r, titleTextUM.color.g, titleTextUM.color.b, 0f);
+
+        StartCoroutine(IE_AnimateUploadMusicUI());
+    }
+
     #region SelectMusic
+    [Space]
+    [Header("Upload Music")]
 
-    public Coroutine IE_animateAudioFileCells;
+    public GameObject eventSystem;
 
-    private TextMeshProUGUI title;
-    public RectTransform titleRect;
-    private Color newTitleColor;
+    private TextMeshProUGUI titleTextUM;
+    private Color newTitleColorUM;
 
-    public RectTransform topMsgRect;
-    public RectTransform mainMsgRect;
-    public RectTransform oneTextRect;
+    public RectTransform titleUM;
+    public RectTransform topMessageUM;
+    public RectTransform mainMessageUM;
+    public RectTransform oneTextUM;
 
     public RectTransform refreshRect;
     private bool doneSpinning = true;
 
-    private void Start()
-    {
-        title = titleRect.GetChild(0).GetComponent<TextMeshProUGUI>();
-        newTitleColor = new Color(title.color.r, title.color.g, title.color.b, 0f);
+    public Coroutine IE_animateAudioFileCells;
 
-        StartCoroutine(IE_AnimateCreateTrackUI());
-    }
-
-    private IEnumerator IE_AnimateCreateTrackUI()
+    private IEnumerator IE_AnimateUploadMusicUI()
     {
         yield return new WaitForSeconds(0.5f);
 
-        yield return LeanTween.moveX(titleRect, 0f, 1f).setEaseOutCirc();
+        yield return LeanTween.moveX(titleUM, 0f, 1f).setEaseOutCirc();
 
-        while (title.color.a < 1f)
+        while (titleTextUM.color.a < 1f)
         {
-            newTitleColor.a += 0.75f * Time.deltaTime;
-            title.color = newTitleColor;
+            newTitleColorUM.a += 0.75f * Time.deltaTime;
+            titleTextUM.color = newTitleColorUM;
             yield return null;
         }
 
-        yield return LeanTween.moveX(topMsgRect, -110f, 1f).setEaseOutCirc();
+        yield return LeanTween.moveX(topMessageUM, -110f, 1f).setEaseOutCirc();
         yield return new WaitForSeconds(1f);
-        yield return LeanTween.moveY(oneTextRect, 50f, 0.25f).setEaseOutCirc();
+        yield return LeanTween.moveY(oneTextUM, 50f, 0.25f).setEaseOutCirc();
         yield return new WaitForSeconds(0.15f);
-        yield return LeanTween.moveY(mainMsgRect, 20f, 0.5f).setEaseOutCirc();
+        yield return LeanTween.moveY(mainMessageUM, 20f, 0.5f).setEaseOutCirc();
         yield return new WaitForSeconds(0.75f);
 
         eventSystem.SetActive(true);
@@ -97,10 +101,13 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
     #endregion SelectMusic
 
     #region BeatmapInfo
+    [Space]
+    [Header("Beatmap Info")]
 
-    public GameObject eventSystem;
-    public RectTransform rectTopMsg;
     public Transform inputFieldsParent;
+    public RectTransform topMessageBI;
+    public RectTransform mainMessageBI;
+    public RectTransform oneTextBI;
 
     public void AnimateBeatmapInfoUI()
     {
@@ -123,8 +130,15 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
 
     IEnumerator IE_AnimateBeatmapInfoUI()
     {
+        yield return new WaitForSeconds(0.5f);
+
         //Tween the top message.
-        yield return LeanTween.moveX(rectTopMsg, 110f, 1f).setEaseOutCirc();
+        yield return LeanTween.moveX(topMessageBI, -110f, 1f).setEaseOutCirc();
+        yield return new WaitForSeconds(1f);
+        yield return LeanTween.moveY(oneTextBI, 50f, 0.25f).setEaseOutCirc();
+        yield return new WaitForSeconds(0.15f);
+        yield return LeanTween.moveY(mainMessageBI, 20f, 0.5f).setEaseOutCirc();
+        yield return new WaitForSeconds(0.75f);
 
         //Move every input field individually, so that they come in slightly delayed to the one before it.
         for (int i = 0; i < inputFieldsParent.childCount; i++)
@@ -133,6 +147,8 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
             yield return LeanTween.moveX(inputField, 0f, 0.66f).setEaseInOutCirc();
             yield return new WaitForSeconds(0.1f);
         }
+
+        yield return new WaitForSeconds(0.5f);
     }
     #endregion BeatmapInfo
 }

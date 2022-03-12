@@ -22,19 +22,21 @@ public class SongSelectManager : Singleton<SongSelectManager>
     
     public RawImage bigArt;
 
-    void OnEnable() 
+    private void OnEnable() 
     {
         TrackLoader.onLoadedNewFile += LoadBeatmaps;
+        BeatmapCell.OnClick += PreviewSong;
+    }
+
+    private void OnDisable()
+    {
+        TrackLoader.onLoadedNewFile -= LoadBeatmaps;
+        BeatmapCell.OnClick -= PreviewSong;
     }
 
     void Start()
     {
         LoadBeatmaps();
-    }
-
-    public void SetBigArt(Texture texture)
-    {
-        bigArt.texture = texture;
     }
 
     public void LoadBeatmaps()
@@ -58,6 +60,41 @@ public class SongSelectManager : Singleton<SongSelectManager>
         }
 
         TrackLoader.instance.beatmaps.Clear();
+    }
+
+    public void PreviewSong(BeatmapCell beatmapCell)
+    {
+        if (beatmapCell.beatmap == null)
+            return;
+
+        SongManager songManager = SongManager.instance;
+        Beatmap beatmap = beatmapCell.beatmap;
+
+        //Check if the same cel has been clicked twice. If it has, change to gameplay scene
+        if (songManager.currentBeatmapCell == beatmapCell)
+        {
+            songManager.songBPM = beatmap.songBPM;
+            songManager.firstBeatOffset = beatmap.firstBeatOffset;
+
+            SceneManager.instance.ChangeScene("Gameplay");
+            songManager.StopMusic();
+
+            //PLAY SOME SOUND EFFECT HERE INSTEAD OF HITSOUND
+            songManager.PlayHitSound();
+            return;
+        }
+        else
+        {
+            //Use to track if the same song has been clicked twice
+            SongManager.instance.currentBeatmapCell = beatmapCell;
+        }
+
+        bigArt.texture = beatmap.art;
+
+        //Set the song to the beatmap's song, and start it at the preview start time.
+        songManager.music.clip = beatmap.music;
+        songManager.music.time = beatmap.previewStartTime;
+        songManager.PlayMusic();
     }
 
     public void OnEscape(InputValue value)

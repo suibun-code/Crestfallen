@@ -8,6 +8,7 @@ public class SwitchCanvas : MonoBehaviour
 {
     private Canvas toSwitch;
     public Camera cameraRef;
+    public bool switchColor = false;
     public Color backgroundColorAfterSwitch;
 
     private void Start()
@@ -19,6 +20,9 @@ public class SwitchCanvas : MonoBehaviour
     {
         toSwitch.enabled = false;
         switchTo.enabled = true;
+
+        if (switchColor)
+            ChangeBackgroundColor();
     }
 
     public void ChangeBackgroundColor()

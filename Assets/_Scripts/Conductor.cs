@@ -4,6 +4,19 @@ using UnityEngine;
 public class Conductor : Singleton<Conductor>
 {
     bool flipflop = false;
+    bool flipflop2 = false;
+    bool flipflop3 = false;
+
+    public List<Hitline> leftHitlines;
+    public List<Hitline> rightHitlines;
+
+    //Hitline properties
+    private int currentColor;
+    [System.NonSerialized] public float[] notes = new float[15000]; //Stores which beat to spawn hitlines on
+    int nextIndex = 0; //Tracks which hitline is next
+
+    //Misc
+    public bool autoHit = true; //Automatically hit the notes without player input?
 
     //Music Metadata
     /*Fields*/
@@ -24,17 +37,6 @@ public class Conductor : Singleton<Conductor>
     public float SongPosition      { get { return songPosition;      } private set { songPosition = value;      } }
     public float SongPosInBeats    { get { return songPosInBeats;    } private set { songPosInBeats = value;    } }
     public float DspSongTime       { get { return dspSongTime;       } private set { dspSongTime = value;       } }
-
-    public List<Hitline> leftHitlines;
-    public List<Hitline> rightHitlines;
-
-    //Hitline properties
-    private int currentColor;
-    [System.NonSerialized] public float[] notes = new float[15000]; //Stores which beat to spawn hitlines on
-    int nextIndex = 0; //Tracks which hitline is next
-
-    //Misc
-    public bool autoHit = true; //Automatically hit the notes without player input?
 
     void Start()
     {
@@ -65,7 +67,14 @@ public class Conductor : Singleton<Conductor>
         if (nextIndex < notes.Length && notes[nextIndex] < SongPosInBeats + BeatsBeforeArrive) //If there are notes to spawn, and it is time to spawn one
         {
             //Instantiate hitline with conductor gameobject as parent
-            GameObject go_hitline = HitlineFactory.instance.GetHitline(HitlineType.SMALL, transform, true);
+            GameObject go_hitline;
+
+            flipflop3 = (Random.value > 0.15f);
+            if (flipflop3)
+                go_hitline = HitlineFactory.instance.GetHitline(HitlineType.SMALL, transform, true);
+            else
+                go_hitline = HitlineFactory.instance.GetHitline(HitlineType.BIG, transform, true);
+
             Hitline hitline = go_hitline.GetComponent<Hitline>();
 
             /*******************************************THIS MUST BE CHANGED. FEATURE ONLY FOR TESTING*******************************************/
@@ -73,15 +82,35 @@ public class Conductor : Singleton<Conductor>
             hitline.PosInSeconds = hitline.Beat * Crotchet;
 
             //Flip flop between left and right lanes. for testing purposes.
+            flipflop = (Random.value > 0.5f);
+
             if (flipflop)
             {
-                flipflop = false;
                 hitline.Lane = 0;
+
+                if (hitline.hitlineType == HitlineType.SMALL)
+                {
+                    flipflop2 = (Random.value > 0.5f);
+
+                    if (flipflop2)
+                        hitline.Sublane = 0;
+                    else if (!flipflop2)
+                        hitline.Sublane = 1;
+                }
             }
             else if (!flipflop)
             {
-                flipflop = true;
                 hitline.Lane = 1;
+
+                if (hitline.hitlineType == HitlineType.SMALL)
+                {
+                    flipflop2 = (Random.value > 0.5f);
+
+                    if (flipflop2)
+                        hitline.Sublane = 0;
+                    else if (!flipflop2)
+                        hitline.Sublane = 1;
+                }
             }
             /*******************************************THIS MUST BE CHANGED. FEATURE ONLY FOR TESTING*******************************************/
 
