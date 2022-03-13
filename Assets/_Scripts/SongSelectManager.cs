@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class SongSelectManager : Singleton<SongSelectManager>
 {
@@ -21,6 +22,8 @@ public class SongSelectManager : Singleton<SongSelectManager>
     public Color Tier4;
     
     public RawImage bigArt;
+    public TextMeshProUGUI beatmapName;
+    public TextMeshProUGUI beatmapBPM;
 
     private void OnEnable() 
     {
@@ -90,6 +93,8 @@ public class SongSelectManager : Singleton<SongSelectManager>
         }
 
         bigArt.texture = beatmap.art;
+        beatmapName.SetText(beatmap.songName);
+        beatmapBPM.SetText("BPM: " + beatmap.songBPM.ToString());
 
         //Set the song to the beatmap's song, and start it at the preview start time.
         songManager.music.clip = beatmap.music;
