@@ -11,14 +11,14 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
     public string artPath;
     public string artName;
     public RawImage beatmapArt;
-    public TMP_InputField input_name;
-    public TMP_InputField input_description;
-    public TMP_InputField input_songArtist;
-    public TMP_InputField input_mapperName;
-    public TMP_InputField input_difficulty;
-    public TMP_InputField input_songBPM;
-    public TMP_InputField input_firstBeatOffset;
-    public TMP_InputField input_previewStartTime;
+    public TMP_InputField inputName;
+    public TMP_InputField inputDescription;
+    public TMP_InputField inputSongArtist;
+    public TMP_InputField inputMapperName;
+    public TMP_InputField inputDifficulty;
+    public TMP_InputField inputSongBPM;
+    public TMP_InputField inputFirstBeatOffset;
+    public TMP_InputField inputPreviewStartTime;
 
     [ReadOnly] public string beatmapName;
     [ReadOnly] public string beatmapDescription;
@@ -28,6 +28,11 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
     [ReadOnly] public float beatmapBPM;
     [ReadOnly] public float beatmapFirstBeatOffset;
     [ReadOnly] public float beatmapPreviewStartTime;
+
+    private void Start()
+    {
+        CreateTrackTweens.instance.AnimateBeatmapInfoUI();
+    }
 
     public void SetArt()
     {
@@ -42,49 +47,49 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
 
     public void SetName()
     {
-        beatmapName = input_name.text;
+        beatmapName = inputName.text;
         MapMakerManager.instance.beatmapName = beatmapName;
     }
 
     public void SetDescription()
     {
-        beatmapDescription = input_description.text;
+        beatmapDescription = inputDescription.text;
         MapMakerManager.instance.beatmapDescription = beatmapDescription;
     }
 
     public void SetSongArtist()
     {
-        beatmapSongArtist = input_songArtist.text;
+        beatmapSongArtist = inputSongArtist.text;
         MapMakerManager.instance.songArtist = beatmapSongArtist;
     }
 
     public void SetMapperName()
     {
-        beatmapMapperName = input_mapperName.text;
+        beatmapMapperName = inputMapperName.text;
         MapMakerManager.instance.mapperName = beatmapMapperName;
     }
 
     public void SetDifficulty()
     {
-        float.TryParse(input_difficulty.text, out beatmapDifficulty);
+        float.TryParse(inputDifficulty.text, out beatmapDifficulty);
         MapMakerManager.instance.difficulty = beatmapDifficulty;
     }
 
     public void SetBPM()
     {
-        float.TryParse(input_songBPM.text, out beatmapBPM);
+        float.TryParse(inputSongBPM.text, out beatmapBPM);
         MapMakerManager.instance.songBPM = beatmapBPM;
     }
 
     public void SetFirstBeatOffset()
     {
-        float.TryParse(input_firstBeatOffset.text, out beatmapFirstBeatOffset);
+        float.TryParse(inputFirstBeatOffset.text, out beatmapFirstBeatOffset);
         MapMakerManager.instance.firstBeatOffset = beatmapFirstBeatOffset;
     }
 
     public void SetPreviewStartTime()
     {
-        float.TryParse(input_previewStartTime.text, out beatmapPreviewStartTime);
+        float.TryParse(inputPreviewStartTime.text, out beatmapPreviewStartTime);
         MapMakerManager.instance.previewStartTime = beatmapPreviewStartTime;
     }
 

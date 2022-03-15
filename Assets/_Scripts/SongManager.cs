@@ -49,6 +49,15 @@ public class SongManager : Singleton<SongManager>
             music.time = 0;
     }
 
+    public void SetMusic(AudioClip newClip)
+    {
+        if (music != null)
+        {
+            music.clip = newClip;
+            ResetMusic();
+        }
+    }
+
     public float GetPitch()
     {
         if (music != null)

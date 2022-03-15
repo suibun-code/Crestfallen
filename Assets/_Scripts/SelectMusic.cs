@@ -49,6 +49,8 @@ public class SelectMusic : Singleton<SelectMusic>
 
     void Start()
     {
+        CreateTrackTweens.instance.AnimateUploadMusicUI();
+
         _audioSource = GetComponent<AudioSource>();
         _tracksPath = MapMakerManager.instance.TracksPath;
         _songsPath = MapMakerManager.instance.g_SongsPath;
@@ -119,7 +121,8 @@ public class SelectMusic : Singleton<SelectMusic>
         else
         {
             //Get the clip and assign it to the song manager's AudioSource
-            SongManager.instance.music.clip = DownloadHandlerAudioClip.GetContent(www);
+            SongManager.instance.SetMusic(DownloadHandlerAudioClip.GetContent(www));
+            Debug.Log(SongManager.instance.music.clip.length);
 
             //Make buttons associated with select music to interactable once something is selected
             previewAudioButton.interactable = true;
@@ -189,7 +192,7 @@ public class SelectMusic : Singleton<SelectMusic>
         SceneManager.instance.ChangeScene("MainMenu");
     }
 
-    public void PlayButtonAudio()
+    public void PlayButtonAudio() //Add onClick to a function that plays the button sound, so every AudioFileCell doesn't need its own AudioSource.
     {
         _audioSource.Play();
     }

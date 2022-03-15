@@ -10,8 +10,6 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
     {
         titleTextUM = titleUM.GetChild(0).GetComponent<TextMeshProUGUI>();
         newTitleColorUM = new Color(titleTextUM.color.r, titleTextUM.color.g, titleTextUM.color.b, 0f);
-
-        StartCoroutine(IE_AnimateUploadMusicUI());
     }
 
     #region SelectMusic
@@ -33,8 +31,15 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
 
     public Coroutine IE_animateAudioFileCells;
 
+    public void AnimateUploadMusicUI()
+    {
+        StartCoroutine(IE_AnimateUploadMusicUI());
+    }
+
     private IEnumerator IE_AnimateUploadMusicUI()
     {
+        eventSystem.SetActive(false);
+
         yield return new WaitForSeconds(0.5f);
 
         yield return LeanTween.moveX(titleUM, 0f, 1f).setEaseOutCirc();
@@ -130,6 +135,8 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
 
     IEnumerator IE_AnimateBeatmapInfoUI()
     {
+        eventSystem.SetActive(false);
+
         yield return new WaitForSeconds(0.5f);
 
         //Tween the top message.
@@ -149,6 +156,8 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
         }
 
         yield return new WaitForSeconds(0.5f);
+
+        eventSystem.SetActive(true);
     }
     #endregion BeatmapInfo
 }

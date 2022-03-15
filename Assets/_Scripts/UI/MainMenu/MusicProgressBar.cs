@@ -11,17 +11,24 @@ public class MusicProgressBar : MonoBehaviour
     {
         songProgressSlider = GetComponent<Slider>();
 
-        songProgressSlider.minValue = 0;
-        songProgressSlider.maxValue = SongManager.instance.music.clip.length;
+        if (SongManager.instance.music.clip != null)
+        {
+            songProgressSlider.minValue = 0;
+            songProgressSlider.maxValue = SongManager.instance.music.clip.length;
+        }
     }
 
     private void Update()
     {
-        songProgressSlider.value = SongManager.instance.music.time;
+        if (SongManager.instance.music.clip != null)
+            songProgressSlider.value = SongManager.instance.music.time;
     }
 
     public void SetNewMusicTime(float newTime)
     {
+        if (SongManager.instance.music.clip == null)
+            return;
+
         if (SongManager.instance.music.isPlaying)
             SongManager.instance.music.time = Mathf.Min(newTime, SongManager.instance.music.clip.length);
     }
