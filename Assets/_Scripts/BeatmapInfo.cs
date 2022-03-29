@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.IO;
 
-public class BeatmapInfo : Singleton<BeatmapInfo>
+public class BeatmapInfo : MonoBehaviour
 {
     public string artPath;
     public string artName;
@@ -28,11 +28,6 @@ public class BeatmapInfo : Singleton<BeatmapInfo>
     [ReadOnly] public float beatmapBPM;
     [ReadOnly] public float beatmapFirstBeatOffset;
     [ReadOnly] public float beatmapPreviewStartTime;
-
-    private void Start()
-    {
-        CreateTrackTweens.instance.AnimateBeatmapInfoUI();
-    }
 
     public void SetArt()
     {

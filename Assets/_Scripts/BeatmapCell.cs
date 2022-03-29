@@ -40,19 +40,19 @@ public class BeatmapCell : MonoBehaviour
 
         //Coloring the difficulty text depending on the difficulty
         if (beatmap.difficulty <= 3)
-            difficultyText.color = SongSelectManager.instance.Tier0;
+            difficultyText.color = GameColors.instance.Tier0;
 
         else if (beatmap.difficulty <= 7 && beatmap.difficulty > 3)
-            difficultyText.color = SongSelectManager.instance.Tier1;
+            difficultyText.color = GameColors.instance.Tier1;
 
         else if (beatmap.difficulty <= 11 && beatmap.difficulty > 7)
-            difficultyText.color = SongSelectManager.instance.Tier2;
+            difficultyText.color = GameColors.instance.Tier2;
 
         else if (beatmap.difficulty <= 15 && beatmap.difficulty > 11)
-            difficultyText.color = SongSelectManager.instance.Tier3;
+            difficultyText.color = GameColors.instance.Tier3;
 
         else if (beatmap.difficulty <= 19)
-            difficultyText.color = SongSelectManager.instance.Tier4;
+            difficultyText.color = GameColors.instance.Tier4;
 
         else
             textEffect.enabled = true;

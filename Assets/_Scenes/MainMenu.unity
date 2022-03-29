@@ -1021,6 +1021,11 @@ MonoBehaviour:
   laneColor2: {r: 0, g: 11.984314, b: 0, a: 1}
   laneColor3: {r: 4.1411767, g: 14.807843, b: 32, a: 1}
   laneColor4: {r: 15.874511, g: 12.716231, b: 4.0725183, a: 1}
+  Tier0: {r: 0, g: 0, b: 0, a: 0}
+  Tier1: {r: 0, g: 0, b: 0, a: 0}
+  Tier2: {r: 0, g: 0, b: 0, a: 0}
+  Tier3: {r: 0, g: 0, b: 0, a: 0}
+  Tier4: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &77646736
 Transform:
   m_ObjectHideFlags: 0
@@ -1257,7 +1262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1050, y: -205}
+  m_AnchoredPosition: {x: -1049.9999, y: -205}
   m_SizeDelta: {x: 1050, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &130807897
@@ -2243,29 +2248,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 795422846}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1585275749}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: SwitchMenu
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: UploadMusic
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 565924059}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 795422848}
         m_TargetAssemblyTypeName: CreateTrackTweens, Assembly-CSharp
@@ -2364,7 +2357,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1920, y: -30}
+  m_AnchoredPosition: {x: -1919.9999, y: -30}
   m_SizeDelta: {x: 1920, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &219853711
@@ -2416,7 +2409,7 @@ GameObject:
   - component: {fileID: 222868963}
   - component: {fileID: 222868964}
   m_Layer: 5
-  m_Name: BeatmapInfo
+  m_Name: BeatmapInfoScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2648,7 +2641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -1050, y: -205}
+  m_AnchoredPosition: {x: -1049.9999, y: -205}
   m_SizeDelta: {x: 1050, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &270210215
@@ -3620,7 +3613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &375103276
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4568,12 +4561,12 @@ GameObject:
   - component: {fileID: 452632361}
   - component: {fileID: 452632360}
   m_Layer: 5
-  m_Name: UploadMusic
+  m_Name: UploadMusicScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &452632359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4738,7 +4731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c23386036e53a43bc5a5b3709188db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 1957585081}
   scrollView: {fileID: 1479064332}
   audioFileCell: {fileID: 7616651195605201768, guid: 654c74c492c497646a1bc1faee520443, type: 3}
   previewAudioButton: {fileID: 354683970}
@@ -5832,7 +5824,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -6365,7 +6357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 565924060}
   m_Layer: 5
-  m_Name: MainMenu
+  m_Name: MainMenuScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8891,12 +8883,12 @@ GameObject:
   - component: {fileID: 795422847}
   - component: {fileID: 795422848}
   m_Layer: 5
-  m_Name: CreateTrack
+  m_Name: CreateTrack (Group)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &795422847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12905,7 +12897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6524131673697897050, guid: 80b98c545b5d00341bb823bda0248556, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6524131673697897053, guid: 80b98c545b5d00341bb823bda0248556, type: 3}
       propertyPath: m_Pivot.x
@@ -14129,7 +14121,7 @@ GameObject:
   - component: {fileID: 1472221233}
   - component: {fileID: 1472221232}
   m_Layer: 5
-  m_Name: BottomPanel
+  m_Name: GlobalBottomPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14974,29 +14966,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 452632358}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1585275749}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: SwitchMenu
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: BeatmapInfo
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 222868962}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1.5
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 421991292}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -15013,6 +14993,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1288566726}
         m_TargetAssemblyTypeName: SongManager, Assembly-CSharp
         m_MethodName: StopMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 795422848}
+        m_TargetAssemblyTypeName: CreateTrackTweens, Assembly-CSharp
+        m_MethodName: AnimateBeatmapInfoUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15072,8 +15064,9 @@ GameObject:
   - component: {fileID: 1585275747}
   - component: {fileID: 1585275746}
   - component: {fileID: 1585275745}
+  - component: {fileID: 1585275749}
   m_Layer: 5
-  m_Name: ---CANVAS---
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15163,6 +15156,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1585275749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585275744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831512db71c3b8147a2b03d8210846c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 1957585081}
+  mainMenu: {fileID: 565924059}
+  uploadMusic: {fileID: 452632358}
+  beatmapInfo: {fileID: 222868962}
+  songSelect: {fileID: 1907845308}
 --- !u!1 &1587587212
 GameObject:
   m_ObjectHideFlags: 0
@@ -15500,6 +15510,102 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1643747509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1643747513}
+  - component: {fileID: 1643747512}
+  - component: {fileID: 1643747511}
+  - component: {fileID: 1643747510}
+  m_Layer: 0
+  m_Name: Quad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &1643747510
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643747509}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1643747511
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643747509}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 827fc3ffe31780e47ab57eb38248f989, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1643747512
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643747509}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1643747513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643747509}
+  m_LocalRotation: {x: 0.14889742, y: 0.16187148, z: 0.21742457, w: 0.9509752}
+  m_LocalPosition: {x: 14, y: 16.4, z: 128.5}
+  m_LocalScale: {x: 478.09518, y: 478.09518, z: 478.09518}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 12.287, y: 22.418, z: 28.201}
 --- !u!1 &1650933105
 GameObject:
   m_ObjectHideFlags: 0
@@ -17476,7 +17582,7 @@ GameObject:
   - component: {fileID: 1907845311}
   - component: {fileID: 1907845310}
   m_Layer: 5
-  m_Name: SongSelect
+  m_Name: SongSelectScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17552,11 +17658,6 @@ MonoBehaviour:
   pf_horizontalPanel: {fileID: 3421624167315421697, guid: afb05c40435169e4ba58e42d9841622e, type: 3}
   pf_beatmapCell: {fileID: 8219686472043354248, guid: 1c85fa2d6f9512c4381e3043b992c068, type: 3}
   currentHorizontalPanel: {fileID: 488310528}
-  Tier0: {r: 0.27058825, g: 0.76862746, b: 0.5111511, a: 1}
-  Tier1: {r: 0.23921569, g: 0.75686276, b: 0.827451, a: 1}
-  Tier2: {r: 0.76862746, g: 0.27058825, b: 0.4117647, a: 1}
-  Tier3: {r: 0.34117648, g: 0.29411766, b: 0.5647059, a: 1}
-  Tier4: {r: 0.972549, g: 0.64705884, b: 0.7607843, a: 1}
   bigArt: {fileID: 574423358}
   beatmapName: {fileID: 1450494322}
   beatmapBPM: {fileID: 1674609081}

@@ -122,19 +122,19 @@ public class Hitline : MonoBehaviour
             if (lane == 0)
             {
                 if (HitlineColor == 0)
-                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorOne);
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColor1);
 
                 else if (HitlineColor == 1)
-                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorTwo);
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColor2);
             }
 
             else if (lane == 1)
             {
                 if (HitlineColor == 0)
-                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorThree);
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColor3);
 
                 else if (HitlineColor == 1)
-                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorFour);
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColor4);
             }
         }
 
@@ -146,13 +146,13 @@ public class Hitline : MonoBehaviour
                 if (sublane == 0)
                 {
                     hitlineColor = 0;
-                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorOne);
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColor1);
                 }
 
                 else if (sublane == 1)
                 {
                     hitlineColor = 1;
-                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorTwo);
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColor2);
                 }
 
             }
@@ -161,13 +161,13 @@ public class Hitline : MonoBehaviour
                 if (sublane == 0)
                 {
                     hitlineColor = 0;
-                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorThree);
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColor3);
                 }
 
                 else if (sublane == 1)
                 {
                     hitlineColor = 1;
-                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColorFour);
+                    _renderer.material.SetColor("_BaseColor", GameColors.instance.hitlineColor4);
                 }
             }
         }

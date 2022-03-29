@@ -8,19 +8,16 @@ using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.InputSystem;
 
-public class SelectMusic : Singleton<SelectMusic>
+public class UploadMusic : MonoBehaviour
 {
+    [SerializeField] private GameObject scrollView;
+    [SerializeField] private GameObject audioFileCell;
+
     private AudioSource _audioSource;
 
     private string _musicPath;
     private string _musicName;
-    private string _tracksPath;
     private string _songsPath;
-
-    public GameObject eventSystem;
-
-    public GameObject scrollView;
-    public GameObject audioFileCell;
 
     public Button previewAudioButton;
     public Button stopPreviewButton;
@@ -49,10 +46,7 @@ public class SelectMusic : Singleton<SelectMusic>
 
     void Start()
     {
-        CreateTrackTweens.instance.AnimateUploadMusicUI();
-
         _audioSource = GetComponent<AudioSource>();
-        _tracksPath = MapMakerManager.instance.TracksPath;
         _songsPath = MapMakerManager.instance.g_SongsPath;
         RefreshDirectory();
     }
@@ -189,7 +183,8 @@ public class SelectMusic : Singleton<SelectMusic>
 
     public void OnEscape(InputValue value)
     {
-        SceneManager.instance.ChangeScene("MainMenu");
+        CreateTrackTweens.instance.StopAnimatingUI();
+        MenuManager.instance.SwitchMenu("MainMenu");
     }
 
     public void PlayButtonAudio() //Add onClick to a function that plays the button sound, so every AudioFileCell doesn't need its own AudioSource.
