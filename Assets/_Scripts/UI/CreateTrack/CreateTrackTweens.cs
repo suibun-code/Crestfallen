@@ -8,16 +8,18 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
 {
     private void Start()
     {
+        //upload music
         titlePosUM = titleUM.transform.position;
         topMessagePosUM = topMessageUM.transform.position;
         mainMessagePosUM = mainMessageUM.transform.position;
         oneTextPosUM = oneTextUM.transform.position;
 
+        titleTextUM = titleUM.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+        //beatmap info
         topMessagePosBI = topMessageBI.transform.position;
         og_mainMessagePosBI = mainMessageBI.transform.position;
         og_oneTextPosBI = oneTextBI.transform.position;
-
-        titleTextUM = titleUM.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     public void StopAnimatingUI()

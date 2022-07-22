@@ -1,5 +1,5 @@
 {
-    "m_SGVersion": 2,
+    "m_SGVersion": 3,
     "m_Type": "UnityEditor.ShaderGraph.GraphData",
     "m_ObjectId": "5f4b1feab993456089816d9520385ede",
     "m_Properties": [
@@ -11,6 +11,12 @@
         }
     ],
     "m_Keywords": [],
+    "m_Dropdowns": [],
+    "m_CategoryData": [
+        {
+            "m_Id": "6b64195d9b7d414388ee65116dc224e3"
+        }
+    ],
     "m_Nodes": [
         {
             "m_Id": "b84d768dfdcb44a6800f5f430648f4ee"
@@ -123,10 +129,11 @@
         "serializedMesh": {
             "m_SerializedMesh": "{\"mesh\":{\"instanceID\":0}}",
             "m_Guid": ""
-        }
+        },
+        "preventRotation": false
     },
     "m_Path": "Sub Graphs",
-    "m_ConcretePrecision": 0,
+    "m_GraphPrecision": 0,
     "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": "b84d768dfdcb44a6800f5f430648f4ee"
@@ -395,9 +402,13 @@
         "m_GuidSerialized": "c12ddbec-0354-4595-9f7a-4dea5c0caa0e"
     },
     "m_Name": "Speed",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector2_66f31e7780d8483f904a80c645b34ff2",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
@@ -446,6 +457,21 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "6b64195d9b7d414388ee65116dc224e3",
+    "m_Name": "",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "66f31e7780d8483f904a80c645b34ff2"
+        },
+        {
+            "m_Id": "f1d7cf4d9d144ce88fe8c9894f16d062"
+        }
+    ]
 }
 
 {
@@ -715,9 +741,13 @@
         "m_GuidSerialized": "59b75faa-1188-4e74-abc3-c9c72baf1abf"
     },
     "m_Name": "Scale",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector2_f1d7cf4d9d144ce88fe8c9894f16d062",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,

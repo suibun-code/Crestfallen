@@ -2,7 +2,8 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
+/[Ll]ibrary
+!Library/PackageCache/com.unity.render-pipelines.universal@10.8.1/Shaders/**
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
