@@ -10,6 +10,7 @@ public class SliderEffect : MonoBehaviour
 
     public void SetScrollValue()
     {
+        Debug.Log(slider.normalizedValue);
         material.SetFloat("ScrollValue", slider.normalizedValue);
     }
 }
