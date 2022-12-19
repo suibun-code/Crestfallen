@@ -56,7 +56,7 @@ public class UploadMusic : MonoBehaviour
         currentCell = audioFileCell;
         _musicName = currentCell.fileName;
         _musicPath = System.IO.Path.Combine(_songsPath, _musicName);
-        
+
         LoadMusic();
 
         SongManager.instance.music.clip.name = _musicName;
@@ -186,7 +186,9 @@ public class UploadMusic : MonoBehaviour
     public void OnEscape(InputValue value)
     {
         CreateTrackTweens.instance.StopAnimatingUI();
-        MenuManager.instance.SwitchMenu("MainMenu");
+
+        //Switch menu, print debug error if scene from string not found
+        MenuManager.instance.SwitchMenu("///MainMenu (Scene)");
     }
 
     public void PlayButtonAudio() //Add onClick to a function that plays the button sound, so every AudioFileCell doesn't need its own AudioSource.

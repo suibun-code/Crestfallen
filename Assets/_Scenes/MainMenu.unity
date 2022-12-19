@@ -2084,7 +2084,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UploadMusic
+          m_StringArgument: ///UploadMusic (Scene)
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 795422848}
@@ -2237,7 +2237,7 @@ GameObject:
   - component: {fileID: 222868963}
   - component: {fileID: 222868964}
   m_Layer: 5
-  m_Name: //BeatmapInfoScene
+  m_Name: ///BeatmapInfo (Scene)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4281,7 +4281,7 @@ GameObject:
   - component: {fileID: 452632361}
   - component: {fileID: 452632360}
   m_Layer: 5
-  m_Name: //UploadMusicScene
+  m_Name: ///UploadMusic (Scene)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6237,7 +6237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 565924060}
   m_Layer: 5
-  m_Name: ///MainMenuScene
+  m_Name: ///MainMenu (Scene)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6937,7 +6937,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 15438a566b8f0f841b49082d25ec7375, type: 3}
+  m_Texture: {fileID: 2800000, guid: c8eb0370abd61234e957508c04026f30, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -8783,7 +8783,7 @@ GameObject:
   - component: {fileID: 795422847}
   - component: {fileID: 795422848}
   m_Layer: 5
-  m_Name: ///CreateTrack (Group)
+  m_Name: //CreateTrack (Group)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14949,7 +14949,7 @@ GameObject:
   - component: {fileID: 1585275745}
   - component: {fileID: 1585275749}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: '@Canvas'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15053,10 +15053,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 1957585081}
-  mainMenu: {fileID: 565924059}
-  uploadMusic: {fileID: 452632358}
-  beatmapInfo: {fileID: 222868962}
-  songSelect: {fileID: 1907845308}
+  menus:
+  - {fileID: 565924059}
+  - {fileID: 452632358}
+  - {fileID: 222868962}
+  - {fileID: 1907845308}
 --- !u!1 &1587587212
 GameObject:
   m_ObjectHideFlags: 0
@@ -17506,7 +17507,7 @@ GameObject:
   - component: {fileID: 1907845311}
   - component: {fileID: 1907845310}
   m_Layer: 5
-  m_Name: ///SongSelectScene
+  m_Name: ///SongSelect (Scene)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19517,16 +19518,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1144064493}
-        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
-        m_MethodName: SwitchScene
+      - m_Target: {fileID: 1585275749}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: SwitchMenu
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SongSelect
+          m_StringArgument: ///SongSelect (Scene)
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2123471506

@@ -38,6 +38,8 @@ public class SongSelectManager : MonoBehaviour
 
     public void LoadBeatmaps()
     {
+        Debug.Log("LOADING BEATMAPS");
+
         foreach (Beatmap beatmap in TrackLoader.instance.beatmaps)
         {
             //Create new row of songs when the horizontal size is reached
@@ -100,6 +102,7 @@ public class SongSelectManager : MonoBehaviour
 
     public void OnEscape(InputValue value)
     {
-        SceneManager.instance.ChangeScene("MainMenu");
+        //Switch menu, print debug error if scene from string not found
+        MenuManager.instance.SwitchMenu("///MainMenu (Scene)");
     }
 }
