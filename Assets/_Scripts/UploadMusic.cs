@@ -56,8 +56,11 @@ public class UploadMusic : MonoBehaviour
         currentCell = audioFileCell;
         _musicName = currentCell.fileName;
         _musicPath = System.IO.Path.Combine(_songsPath, _musicName);
+        
         LoadMusic();
-        Debug.Log(_musicPath);
+
+        SongManager.instance.music.clip.name = _musicName;
+        Debug.Log(SongManager.instance.music.clip.name);
     }
 
     public void OpenAudioPath()
@@ -116,7 +119,6 @@ public class UploadMusic : MonoBehaviour
         {
             //Get the clip and assign it to the song manager's AudioSource
             SongManager.instance.SetMusic(DownloadHandlerAudioClip.GetContent(www));
-            Debug.Log(SongManager.instance.music.clip.length);
 
             //Make buttons associated with select music to interactable once something is selected
             previewAudioButton.interactable = true;

@@ -30,6 +30,7 @@ public class MusicProgressBar : MonoBehaviour
             return;
 
         if (SongManager.instance.music.isPlaying)
-            SongManager.instance.music.time = Mathf.Min(newTime, SongManager.instance.music.clip.length);
+            SongManager.instance.music.time = 
+                Mathf.Min(newTime, SongManager.instance.music.clip.length);
     }
 }

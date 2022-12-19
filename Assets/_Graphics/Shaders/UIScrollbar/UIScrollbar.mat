@@ -92,7 +92,7 @@ Material:
     m_Ints: []
     m_Floats:
     - ScrollBarPosY: 0
-    - ScrollValue: 0.008187289
+    - ScrollValue: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1

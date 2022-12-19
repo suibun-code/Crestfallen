@@ -14,12 +14,12 @@ public class SongSelectManager : MonoBehaviour
     public GameObject pf_horizontalPanel;
     public GameObject pf_beatmapCell;
     public GameObject currentHorizontalPanel;
-    
+
     public RawImage bigArt;
     public TextMeshProUGUI beatmapName;
     public TextMeshProUGUI beatmapBPM;
 
-    private void OnEnable() 
+    private void OnEnable()
     {
         TrackLoader.onLoadedNewFile += LoadBeatmaps;
         BeatmapCell.OnClick += PreviewSong;
@@ -40,6 +40,8 @@ public class SongSelectManager : MonoBehaviour
     {
         foreach (Beatmap beatmap in TrackLoader.instance.beatmaps)
         {
+            //Create new row of songs when the horizontal size is reached
+            //Set new row to current horizontal panel
             if (cellCount == cellsPerHorizontal)
             {
                 currentHorizontalPanel = Instantiate(pf_horizontalPanel);
@@ -47,8 +49,8 @@ public class SongSelectManager : MonoBehaviour
                 cellCount = 0;
             }
 
-            var beatmapCell = Instantiate(pf_beatmapCell);
-
+            //Create new beatmap UI item, assign properties to reflect what the beatmap should have
+            GameObject beatmapCell = Instantiate(pf_beatmapCell);
             beatmapCell.GetComponent<BeatmapCell>().beatmap = beatmap;
             beatmapCell.transform.SetParent(currentHorizontalPanel.transform, false);
             beatmapCell.GetComponent<RawImage>().texture = beatmap.art;
@@ -56,7 +58,7 @@ public class SongSelectManager : MonoBehaviour
             cellCount++;
         }
 
-        TrackLoader.instance.beatmaps.Clear();
+        //TrackLoader.instance.beatmaps.Clear();
     }
 
     public void PreviewSong(BeatmapCell beatmapCell)

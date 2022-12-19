@@ -14,6 +14,7 @@ public class TrackLoader : Singleton<TrackLoader>
     public string tracksPath;
     public string folderPath;
     public Beatmap beatmap;
+
     public List<Beatmap> beatmaps;
 
     override protected void Awake()
@@ -38,11 +39,15 @@ public class TrackLoader : Singleton<TrackLoader>
         var info = new DirectoryInfo(tracksPath);
         DirectoryInfo[] trackDirectories = info.GetDirectories();
 
-        foreach (DirectoryInfo trackDirectory in trackDirectories)//************************************************************************************************************************************************
+        //***********************************************************************************************
+        foreach (DirectoryInfo trackDirectory in trackDirectories)
         {
-            folderPath = Path.Combine(tracksPath, trackDirectory.Name); //USE THIS FOR THE NOSOUNDSFOUND TEXT IN SONGSELECT. FIND OUT HOW TO MAKE IT DISPLAY IF THERE ARE NO TRACKS TO BE FOUND.
+            //USE THIS FOR THE NOSOUNDSFOUND TEXT IN SONGSELECT.
+            //FIND OUT HOW TO MAKE IT DISPLAY IF THERE ARE NO TRACKS TO BE FOUND.
+            folderPath = Path.Combine(tracksPath, trackDirectory.Name);
 
-            string jsonDataPath = ScanFilesOfDirectoryForGSTFile(folderPath); //Scan the files in the track folder to find the .gst
+            //Scan the files in the track folder to find the .gst
+            string jsonDataPath = ScanFilesOfDirectoryForGSTFile(folderPath);
             string jsonData = ReadGSTFile(jsonDataPath);
 
             yield return StartCoroutine(LoadTrack(jsonData));
@@ -50,6 +55,8 @@ public class TrackLoader : Singleton<TrackLoader>
             if (onLoadedNewFile != null)
                 onLoadedNewFile();
         }
+
+        SongManager.instance.SelectRandomSongAndPlay();
     }
 
     public string ScanFilesOfDirectoryForGSTFile(string trackFolderPath)
@@ -74,7 +81,7 @@ public class TrackLoader : Singleton<TrackLoader>
     public IEnumerator LoadTrack(string jsonData)
     {
         beatmap = ScriptableObject.CreateInstance<Beatmap>();
-        
+
         JsonUtility.FromJsonOverwrite(jsonData, beatmap);
 
         if (beatmap.music != null)

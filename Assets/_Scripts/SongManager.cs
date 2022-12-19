@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SongManager : Singleton<SongManager>
 {
+    public delegate void NewSong();
+    public static event NewSong OnNewSong;
+
     public BeatmapCell currentBeatmapCell;
 
     public AudioSource music;
@@ -17,6 +20,15 @@ public class SongManager : Singleton<SongManager>
     {
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    //Start music from a random loaded beatmap. Called after all beatmaps loaded.
+    public void SelectRandomSongAndPlay()
+    {
+        int r = Random.Range(0, TrackLoader.instance.beatmaps.Count);
+        music.clip = TrackLoader.instance.beatmaps[r].music;
+        music.clip.name = TrackLoader.instance.beatmaps[r].musicName;
+        PlayMusic();
     }
 
     public void PlayHitSound()
@@ -35,6 +47,9 @@ public class SongManager : Singleton<SongManager>
     {
         if (music != null)
             music.Play();
+
+        if (OnNewSong != null)
+            OnNewSong();
     }
 
     public void StopMusic()
@@ -47,6 +62,12 @@ public class SongManager : Singleton<SongManager>
     {
         if (music != null)
             music.time = 0;
+    }
+
+    public void PauseMusic()
+    {
+        if (music != null)
+            music.Pause();
     }
 
     public void SetMusic(AudioClip newClip)
