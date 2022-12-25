@@ -69,7 +69,7 @@ public class MapMakerManager : Singleton<MapMakerManager>
         beatmap.firstBeatOffset = firstBeatOffset;
         beatmap.previewStartTime = previewStartTime;
         beatmap.artName = artName;
-        beatmap.musicName = musicName;
+        beatmap.audioFileName = musicName;
 
         /*Creates a json from the object and saves it to the beatmap 
         name's directory. Also saves audio and image file to same path*/

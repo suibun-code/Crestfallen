@@ -8,8 +8,6 @@ public class SongManager : Singleton<SongManager>
     public delegate void NewSong();
     public static event NewSong OnNewSong;
 
-    public BeatmapCell currentBeatmapCell;
-
     public AudioSource music;
     public AudioSource hitSound;
 
@@ -27,7 +25,7 @@ public class SongManager : Singleton<SongManager>
     {
         int r = Random.Range(0, TrackLoader.instance.beatmaps.Count);
         music.clip = TrackLoader.instance.beatmaps[r].music;
-        music.clip.name = TrackLoader.instance.beatmaps[r].musicName;
+        music.clip.name = TrackLoader.instance.beatmaps[r].audioFileName;
         PlayMusic();
     }
 

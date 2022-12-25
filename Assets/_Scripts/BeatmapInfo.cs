@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.IO;
+using UnityEngine.InputSystem;
 
 public class BeatmapInfo : MonoBehaviour
 {
@@ -100,5 +101,22 @@ public class BeatmapInfo : MonoBehaviour
             Debug.Log(www.error);
         else
             beatmapArt.texture = DownloadHandlerTexture.GetContent(www);
+    }
+
+    public void OnEscape(InputValue value)
+    {
+        CreateTrackTweens.instance.StopAnimatingUI();
+
+        //Switch menu, print debug error if scene from string not found
+        MenuManager.instance.SwitchMenu("///MainMenu (Scene)");
+
+        inputName.text = "";
+        inputDescription.text = "";
+        inputSongArtist.text = "";
+        inputMapperName.text = "";
+        inputDifficulty.text = "";
+        inputSongBPM.text = "";
+        inputFirstBeatOffset.text = "";
+        inputPreviewStartTime.text = "";
     }
 }

@@ -31,7 +31,7 @@ public class CreateTrackTweens : Singleton<CreateTrackTweens>
             StopCoroutine(uploadMusicUI);
     }
 
-    #region SelectMusic
+    #region UploadMusic
     [Space]
     [Header("Upload Music")]
 

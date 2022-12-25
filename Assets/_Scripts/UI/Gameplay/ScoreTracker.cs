@@ -11,6 +11,8 @@ public class ScoreTracker : Singleton<ScoreTracker>
     public TextMeshProUGUI scoreMultiplierText;
     public TextMeshProUGUI accuracyText;
 
+    [SerializeField] private float monoSpaceAmount;
+
     //Colors
     public Color colorPerfect;
     public Color colorGreat;
@@ -71,8 +73,8 @@ public class ScoreTracker : Singleton<ScoreTracker>
 
     public void UpdateTexts()
     {
-        scoreText.SetText(ScoreTracker.instance.score.ToString());
-        comboText.SetText(ScoreTracker.instance.combo.ToString());
-        scoreMultiplierText.SetText(ScoreTracker.instance.scoreMultiplier.ToString() + "x");
+        scoreText.SetText($"<mspace={monoSpaceAmount}em>" + ScoreTracker.instance.score.ToString());
+        comboText.SetText($"<mspace={monoSpaceAmount}em>" + ScoreTracker.instance.combo.ToString());
+        scoreMultiplierText.SetText($"<mspace={monoSpaceAmount}em>" + ScoreTracker.instance.scoreMultiplier.ToString() + "x");
     }
 }

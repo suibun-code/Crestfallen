@@ -93,7 +93,7 @@ public class TrackLoader : Singleton<TrackLoader>
             DestroyImmediate(beatmap.art, false);
 
         yield return StartCoroutine(LoadImage(Path.Combine(folderPath, beatmap.artName)));
-        yield return StartCoroutine(LoadAudioFile(Path.Combine(folderPath, beatmap.musicName)));
+        yield return StartCoroutine(LoadAudioFile(Path.Combine(folderPath, beatmap.audioFileName)));
 
         beatmaps.Add(beatmap);
     }

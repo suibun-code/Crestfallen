@@ -10,6 +10,8 @@ public class SongSelectManager : MonoBehaviour
     public int cellsPerHorizontal;
     private int cellCount = 0;
 
+    [SerializeField] private BeatmapCell currentBeatmapCell;
+
     public Transform parent;
     public GameObject pf_horizontalPanel;
     public GameObject pf_beatmapCell;
@@ -72,7 +74,7 @@ public class SongSelectManager : MonoBehaviour
         Beatmap beatmap = beatmapCell.beatmap;
 
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
-        if (songManager.currentBeatmapCell == beatmapCell)
+        if (currentBeatmapCell == beatmapCell)
         {
             songManager.songBPM = beatmap.songBPM;
             songManager.firstBeatOffset = beatmap.firstBeatOffset;
@@ -87,7 +89,7 @@ public class SongSelectManager : MonoBehaviour
         else
         {
             //Use to track if the same song has been clicked twice
-            SongManager.instance.currentBeatmapCell = beatmapCell;
+            currentBeatmapCell = beatmapCell;
         }
 
         bigArt.texture = beatmap.art;

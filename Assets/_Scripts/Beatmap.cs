@@ -20,5 +20,5 @@ public class Beatmap : ScriptableObject
     public float previewStartTime;
 
     public string artName;
-    public string musicName;
+    public string audioFileName;
 }

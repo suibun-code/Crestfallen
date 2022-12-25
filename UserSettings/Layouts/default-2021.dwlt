@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 64007
+  controlID: 170
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 63972
+  controlID: 145
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 64008
+  controlID: 83
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,8 +245,8 @@ MonoBehaviour:
     y: 0
     width: 513
     height: 576
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -299,8 +299,8 @@ MonoBehaviour:
     y: 0
     width: 499
     height: 1307
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -595,9 +595,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.0039513586, y: 0.0027579581, z: 256.1006}
+    m_Target: {x: -0.0061411206, y: -0.0035762908, z: 1598.6888}
     speed: 2
-    m_Value: {x: 0.0039513586, y: 0.0027579581, z: 256.1006}
+    m_Value: {x: -0.0061411206, y: -0.0035762908, z: 1598.6888}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -648,9 +648,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 0.111492805
+    m_Target: 0.09606502
     speed: 2
-    m_Value: 0.111492805
+    m_Value: 0.09606502
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -889,7 +889,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -589692
+  m_LastSelectedObjectID: -138636
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -921,9 +921,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 0c220100
-      m_LastClickedID: 74252
-      m_ExpandedIDs: 5622f5ff26cff5ff40d7f5ffdcfaf5ff0a03f6ff6c00f7ff8a00f7ffa406f7ff8cddfffff4ffffff408e0000fa8f0000fe9100001a920000e81e0100e41f010036210100d62101007e220100e4230100d09a0100d49a0100e09a01000c9b010032a1010036a1010042a10100f6ba0100d26702003e690200a66a0200
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: f6fafffff4ffffff1c6b0000d86c0000286e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1016,22 +1016,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scripts
+    - Assets/_Art/Textures/MainMenu/anime characters
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_Scripts
+  - Assets/_Art/Textures/MainMenu/anime characters
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Work\College\sem6\Crestfallen
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 80940000
-    m_LastClickedID: 38016
-    m_ExpandedIDs: 000000004a9400004c9400007c940000809400002ea500000818010000ca9a3b
+    m_SelectedIDs: f0810000
+    m_LastClickedID: 33264
+    m_ExpandedIDs: 00000000fa710000fc710000fe710000007200001272000034740000c491000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1059,7 +1059,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004a9400004c94000000ca9a3b
+    m_ExpandedIDs: 00000000fa710000fc710000fe71000000720000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1090,15 +1090,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c62300007687000056550000c45200003a550000326f0000d079010000000000486e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: TrackLoader
-      m_OriginalName: TrackLoader
+      m_Name: Beatmap
+      m_OriginalName: Beatmap
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 9980
+      m_UserData: 4358
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
