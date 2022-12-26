@@ -33,7 +33,7 @@ public class SongNameText : MonoBehaviour
 
     public void SetSongNameText()
     {
-        Debug.Log("Song name: " + SongManager.instance.music.clip.name);
-        textMesh.text = SongManager.instance.music.clip.name;
+        Debug.Log("Song name: " + SongManager.instance.beatmap.songName);
+        textMesh.text = SongManager.instance.beatmap.songName;
     }
 }

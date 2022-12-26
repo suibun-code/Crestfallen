@@ -16,16 +16,14 @@ public class MapMakerManager : Singleton<MapMakerManager>
     }
 
     [ReadOnly] public string musicPath;
-    [ReadOnly] public string musicName;
+    [ReadOnly] public string audioFileName;
 
     [ReadOnly] public string artPath;
     [ReadOnly] public string artName;
-
     [ReadOnly] public string beatmapName;
     [ReadOnly] public string beatmapDescription;
     [ReadOnly] public string songArtist;
     [ReadOnly] public string mapperName;
-
     [ReadOnly] public float songBPM;
     [ReadOnly] public float difficulty;
     [ReadOnly] public float firstBeatOffset;
@@ -53,7 +51,9 @@ public class MapMakerManager : Singleton<MapMakerManager>
         else
         {
             while (Directory.Exists(beatmapPath))
+            {
                 beatmapPath = System.IO.Path.Combine(g_TracksPath, beatmapName + Random.Range(0, 10000));
+            }
 
             Directory.CreateDirectory(beatmapPath);
         }
@@ -69,17 +69,18 @@ public class MapMakerManager : Singleton<MapMakerManager>
         beatmap.firstBeatOffset = firstBeatOffset;
         beatmap.previewStartTime = previewStartTime;
         beatmap.artName = artName;
-        beatmap.audioFileName = musicName;
+        beatmap.audioFileName = audioFileName;
 
         /*Creates a json from the object and saves it to the beatmap 
         name's directory. Also saves audio and image file to same path*/
         var json = JsonUtility.ToJson(beatmap);
 
+        //create the full path of .gst file and write beatmap to json at that path
         string gstFullName = beatmapName + ".gst";
         string gstFullPath = System.IO.Path.Combine(beatmapPath, gstFullName);
         System.IO.File.WriteAllText(gstFullPath, json);
 
-        string musicCopyPath = Path.Combine(beatmapPath, musicName);
+        string musicCopyPath = Path.Combine(beatmapPath, audioFileName);
         string artCopyPath = Path.Combine(beatmapPath, artName);
 
         if (File.Exists(musicPath) && !File.Exists(musicCopyPath))

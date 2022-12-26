@@ -11,7 +11,6 @@ public class Conductor : Singleton<Conductor>
     public List<Hitline> rightHitlines;
 
     //Hitline properties
-    private int currentColor;
     [System.NonSerialized] public float[] notes = new float[15000]; //Stores which beat to spawn hitlines on
     int nextIndex = 0; //Tracks which hitline is next
 
@@ -41,8 +40,8 @@ public class Conductor : Singleton<Conductor>
     void Start()
     {
         //Set values of the song and reset the music time
-        SongBPM = SongManager.instance.songBPM;
-        FirstBeatOffset = SongManager.instance.firstBeatOffset;
+        SongBPM = SongManager.instance.beatmap.songBPM;
+        FirstBeatOffset = SongManager.instance.beatmap.firstBeatOffset;
         SongManager.instance.ResetMusic();
 
         //firstBeatOffset += (crotchet / 10f); //I don't know why

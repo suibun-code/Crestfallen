@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Beatmap : ScriptableObject
 {
     public Texture art;
-    public AudioClip music;
+    public AudioClip clip;
     
     public string folderPath;
     public string songName;

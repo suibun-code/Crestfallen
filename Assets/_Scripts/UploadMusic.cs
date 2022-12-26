@@ -58,9 +58,6 @@ public class UploadMusic : MonoBehaviour
         _musicPath = System.IO.Path.Combine(_songsPath, _musicName);
 
         LoadMusic();
-
-        SongManager.instance.music.clip.name = _musicName;
-        Debug.Log(SongManager.instance.music.clip.name);
     }
 
     public void OpenAudioPath()
@@ -76,7 +73,7 @@ public class UploadMusic : MonoBehaviour
     public void LoadMusic()
     {
         MapMakerManager.instance.musicPath = _musicPath;
-        MapMakerManager.instance.musicName = _musicName;
+        MapMakerManager.instance.audioFileName = _musicName;
 
         //Disable assosciated buttons
         previewAudioButton.interactable = false;

@@ -11,8 +11,10 @@ public class SongManager : Singleton<SongManager>
     public AudioSource music;
     public AudioSource hitSound;
 
-    public float firstBeatOffset;
-    public float songBPM;
+    //public float firstBeatOffset;
+    //public float songBPM;
+
+    public Beatmap beatmap;
 
     protected override void Awake()
     {
@@ -23,9 +25,15 @@ public class SongManager : Singleton<SongManager>
     //Start music from a random loaded beatmap. Called after all beatmaps loaded.
     public void SelectRandomSongAndPlay()
     {
+        //return if no beatmaps to select from
+        if (TrackLoader.instance.beatmaps.Count <= 0) return;
+
         int r = Random.Range(0, TrackLoader.instance.beatmaps.Count);
-        music.clip = TrackLoader.instance.beatmaps[r].music;
+
+        beatmap = TrackLoader.instance.beatmaps[r];
+        music.clip = TrackLoader.instance.beatmaps[r].clip;
         music.clip.name = TrackLoader.instance.beatmaps[r].audioFileName;
+
         PlayMusic();
     }
 
@@ -43,11 +51,13 @@ public class SongManager : Singleton<SongManager>
 
     public void PlayMusic()
     {
-        if (music != null)
-            music.Play();
+        music.clip = beatmap.clip;
 
         if (OnNewSong != null)
             OnNewSong();
+
+        if (music != null)
+            music.Play();
     }
 
     public void StopMusic()

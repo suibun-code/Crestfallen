@@ -68,17 +68,19 @@ public class SongSelectManager : MonoBehaviour
     public void PreviewSong(BeatmapCell beatmapCell)
     {
         if (beatmapCell.beatmap == null)
+        {
+            Debug.LogError("No beatmap found!");
             return;
+        }
 
         SongManager songManager = SongManager.instance;
         Beatmap beatmap = beatmapCell.beatmap;
 
+        songManager.beatmap = beatmap;
+
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
         if (currentBeatmapCell == beatmapCell)
         {
-            songManager.songBPM = beatmap.songBPM;
-            songManager.firstBeatOffset = beatmap.firstBeatOffset;
-
             SceneManager.instance.ChangeScene("Gameplay");
             songManager.StopMusic();
 
@@ -92,13 +94,11 @@ public class SongSelectManager : MonoBehaviour
             currentBeatmapCell = beatmapCell;
         }
 
+        //set the song select screen UI info to match the clicked beatmap
         bigArt.texture = beatmap.art;
         beatmapName.SetText(beatmap.songName);
         beatmapBPM.SetText("BPM: " + beatmap.songBPM.ToString());
 
-        //Set the song to the beatmap's song, and start it at the preview start time.
-        songManager.music.clip = beatmap.music;
-        songManager.music.time = beatmap.previewStartTime;
         songManager.PlayMusic();
     }
 

@@ -56,6 +56,7 @@ public class TrackLoader : Singleton<TrackLoader>
                 onLoadedNewFile();
         }
 
+        //play a random song from the beatmaps found
         SongManager.instance.SelectRandomSongAndPlay();
     }
 
@@ -84,13 +85,13 @@ public class TrackLoader : Singleton<TrackLoader>
 
         JsonUtility.FromJsonOverwrite(jsonData, beatmap);
 
-        if (beatmap.music != null)
+        if (beatmap.clip != null)
         {
-            beatmap.music.UnloadAudioData();
-            DestroyImmediate(beatmap.music, false);
+            beatmap.clip.UnloadAudioData();
+            Destroy(beatmap.clip);
         }
         if (beatmap.art != null)
-            DestroyImmediate(beatmap.art, false);
+            Destroy(beatmap.art);
 
         yield return StartCoroutine(LoadImage(Path.Combine(folderPath, beatmap.artName)));
         yield return StartCoroutine(LoadAudioFile(Path.Combine(folderPath, beatmap.audioFileName)));
@@ -109,7 +110,7 @@ public class TrackLoader : Singleton<TrackLoader>
         while (www.result != UnityWebRequest.Result.ConnectionError && www.downloadedBytes < 1024)
             yield return null;
 
-        beatmap.music = ((DownloadHandlerAudioClip)www.downloadHandler).audioClip;
+        beatmap.clip = ((DownloadHandlerAudioClip)www.downloadHandler).audioClip;
 
     }
 
