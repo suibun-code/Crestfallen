@@ -36,17 +36,23 @@ public class MusicProgressBar : MonoBehaviour
 
     public void SetNewMusicTime(float newTime)
     {
-        if (SongManager.instance.music.clip == null)
-            return;
+        //if (SongManager.instance.music.clip == null)
+        //    return;
 
-        if (SongManager.instance.music.isPlaying)
-            SongManager.instance.music.time = 
-                Mathf.Min(newTime, SongManager.instance.music.clip.length);
+        //Debug.Log("NEW MUSIC TIME");
+
+        //if (SongManager.instance.music.isPlaying)
+        //    SongManager.instance.music.time = 
+        //        Mathf.Min(newTime, SongManager.instance.music.clip.length);
     }
 
     public void SetMusicTime()
     {
-        if (SongManager.instance.beatmap.clip == null)
+        if (SongManager.instance.music.clip == null)
             return;
+
+        Debug.Log("MUSIC TIME");
+
+        songProgressSlider.maxValue = SongManager.instance.music.clip.length;
     }
 }

@@ -8,13 +8,11 @@ public class SongManager : Singleton<SongManager>
     public delegate void NewSong();
     public static event NewSong OnNewSong;
 
+    public Beatmap beatmap;
+
     public AudioSource music;
     public AudioSource hitSound;
 
-    //public float firstBeatOffset;
-    //public float songBPM;
-
-    public Beatmap beatmap;
 
     protected override void Awake()
     {
@@ -31,8 +29,6 @@ public class SongManager : Singleton<SongManager>
         int r = Random.Range(0, TrackLoader.instance.beatmaps.Count);
 
         beatmap = TrackLoader.instance.beatmaps[r];
-        music.clip = TrackLoader.instance.beatmaps[r].clip;
-        music.clip.name = TrackLoader.instance.beatmaps[r].audioFileName;
 
         PlayMusic();
     }

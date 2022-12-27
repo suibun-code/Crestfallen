@@ -97,6 +97,7 @@ public class SongSelectManager : MonoBehaviour
         text_beatmapName.SetText(beatmapCell.beatmap.songName);
         text_beatmapBPM.SetText("BPM: " + beatmapCell.beatmap.songBPM.ToString());
 
+        SongManager.instance.music.time = beatmapCell.beatmap.previewStartTime;
         SongManager.instance.PlayMusic();
     }
 
