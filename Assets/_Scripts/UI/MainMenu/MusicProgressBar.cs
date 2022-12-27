@@ -36,14 +36,14 @@ public class MusicProgressBar : MonoBehaviour
 
     public void SetNewMusicTime(float newTime)
     {
-        //if (SongManager.instance.music.clip == null)
-        //    return;
+        if (SongManager.instance.music.clip == null)
+            return;
 
-        //Debug.Log("NEW MUSIC TIME");
+        Debug.Log("NEW MUSIC TIME");
 
-        //if (SongManager.instance.music.isPlaying)
-        //    SongManager.instance.music.time = 
-        //        Mathf.Min(newTime, SongManager.instance.music.clip.length);
+        if (SongManager.instance.music.isPlaying)
+            SongManager.instance.music.time = 
+                Mathf.Min(newTime, SongManager.instance.music.clip.length);
     }
 
     public void SetMusicTime()
