@@ -7,6 +7,16 @@ public class MusicProgressBar : MonoBehaviour
 {
     Slider songProgressSlider;
 
+    private void OnEnable()
+    {
+        SongManager.OnNewSong += SetMusicTime;
+    }
+
+    private void OnDisable()
+    {
+        SongManager.OnNewSong -= SetMusicTime;
+    }
+
     private void Start()
     {
         songProgressSlider = GetComponent<Slider>();
@@ -32,5 +42,11 @@ public class MusicProgressBar : MonoBehaviour
         if (SongManager.instance.music.isPlaying)
             SongManager.instance.music.time = 
                 Mathf.Min(newTime, SongManager.instance.music.clip.length);
+    }
+
+    public void SetMusicTime()
+    {
+        if (SongManager.instance.beatmap.clip == null)
+            return;
     }
 }

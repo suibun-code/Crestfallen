@@ -17,9 +17,9 @@ public class SongSelectManager : MonoBehaviour
     public GameObject pf_beatmapCell;
     public GameObject currentHorizontalPanel;
 
-    public RawImage bigArt;
-    public TextMeshProUGUI beatmapName;
-    public TextMeshProUGUI beatmapBPM;
+    public RawImage img_bigArt;
+    public TextMeshProUGUI text_beatmapName;
+    public TextMeshProUGUI text_beatmapBPM;
 
     private void OnEnable()
     {
@@ -67,25 +67,23 @@ public class SongSelectManager : MonoBehaviour
 
     public void PreviewSong(BeatmapCell beatmapCell)
     {
+        //return if no beatmap found
         if (beatmapCell.beatmap == null)
         {
             Debug.LogError("No beatmap found!");
             return;
         }
 
-        SongManager songManager = SongManager.instance;
-        Beatmap beatmap = beatmapCell.beatmap;
-
-        songManager.beatmap = beatmap;
+        //set SongManager beatmap to clicked beatmapCell beatmap
+        SongManager.instance.beatmap = beatmapCell.beatmap;
 
         //Check if the same cel has been clicked twice. If it has, change to gameplay scene
         if (currentBeatmapCell == beatmapCell)
         {
             SceneManager.instance.ChangeScene("Gameplay");
-            songManager.StopMusic();
+            SongManager.instance.StopMusic();
 
-            //PLAY SOME SOUND EFFECT HERE INSTEAD OF HITSOUND
-            songManager.PlayHitSound();
+            //PLAY SOME SOUND EFFECT HERE
             return;
         }
         else
@@ -95,11 +93,11 @@ public class SongSelectManager : MonoBehaviour
         }
 
         //set the song select screen UI info to match the clicked beatmap
-        bigArt.texture = beatmap.art;
-        beatmapName.SetText(beatmap.songName);
-        beatmapBPM.SetText("BPM: " + beatmap.songBPM.ToString());
+        img_bigArt.texture = beatmapCell.beatmap.art;
+        text_beatmapName.SetText(beatmapCell.beatmap.songName);
+        text_beatmapBPM.SetText("BPM: " + beatmapCell.beatmap.songBPM.ToString());
 
-        songManager.PlayMusic();
+        SongManager.instance.PlayMusic();
     }
 
     public void OnEscape(InputValue value)
