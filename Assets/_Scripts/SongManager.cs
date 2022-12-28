@@ -74,6 +74,12 @@ public class SongManager : Singleton<SongManager>
             music.Pause();
     }
 
+    public void ResumeMusic()
+    {
+        if (music != null)
+            music.Play();
+    }    
+
     public void SetMusic(AudioClip newClip)
     {
         if (music != null)

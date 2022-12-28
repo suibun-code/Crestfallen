@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class MusicProgressBar : MonoBehaviour
 {
-    Slider songProgressSlider;
+    [SerializeField] private Slider slider;
+    private bool sliderDrag = false;
+    private float newTime;
 
     private void OnEnable()
     {
@@ -19,31 +21,24 @@ public class MusicProgressBar : MonoBehaviour
 
     private void Start()
     {
-        songProgressSlider = GetComponent<Slider>();
+        slider = GetComponent<Slider>();
 
         if (SongManager.instance.music.clip != null)
         {
-            songProgressSlider.minValue = 0;
-            songProgressSlider.maxValue = SongManager.instance.music.clip.length;
+            slider.minValue = 0;
+            slider.maxValue = SongManager.instance.music.clip.length;
         }
     }
 
     private void Update()
     {
-        if (SongManager.instance.music.clip != null)
-            songProgressSlider.value = SongManager.instance.music.time;
-    }
-
-    public void SetNewMusicTime(float newTime)
-    {
-        if (SongManager.instance.music.clip == null)
-            return;
-
-        Debug.Log("NEW MUSIC TIME");
-
-        if (SongManager.instance.music.isPlaying)
-            SongManager.instance.music.time = 
-                Mathf.Min(newTime, SongManager.instance.music.clip.length);
+        /*
+        Move the slider forward according to audio's current time.
+        When the slider is dragged, this pauses so the user can drag the slider.
+        */
+        if (sliderDrag == false)
+            if (SongManager.instance.music.clip != null)
+                slider.value = SongManager.instance.music.time;
     }
 
     public void SetMusicTime()
@@ -53,6 +48,28 @@ public class MusicProgressBar : MonoBehaviour
 
         Debug.Log("MUSIC TIME");
 
-        songProgressSlider.maxValue = SongManager.instance.music.clip.length;
+        slider.maxValue = SongManager.instance.music.clip.length;
+    }
+
+    public void OnBeginDrag()
+    {
+        sliderDrag = true;
+    }
+
+    public void OnEndDrag()
+    {
+        sliderDrag = false;
+
+        SongManager.instance.music.time = slider.value;
+    }
+
+    public void OnPointerDown()
+    {
+        newTime = slider.value;
+    }
+
+    public void OnPointerUp()
+    {
+        SongManager.instance.music.time = newTime;
     }
 }
