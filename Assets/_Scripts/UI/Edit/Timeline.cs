@@ -9,10 +9,17 @@ public class Timeline : MonoBehaviour
 
     public void InitTimeline()
     {
-        float realSongDuration = SongManager.instance.music.clip.length /
-            SongManager.instance.beatmap.songBPM;
+        float crotchet = 60f / SongManager.instance.beatmap.songBPM;
 
-        for (int i = 0; i < SongManager.instance.beatmap.songBPM; i++)
+        float realSongDuration = SongManager.instance.music.clip.length /
+            crotchet;
+
+        Debug.Log("BPM: " + SongManager.instance.beatmap.songBPM);
+        Debug.Log("SONG LENGTH: " + SongManager.instance.beatmap.clip.length);
+        Debug.Log("CROTCHET: " + crotchet);
+        Debug.Log("BEATS IN SONG: " + realSongDuration);
+
+        for (int i = 0; i < realSongDuration; i++)
         {
             GameObject go = Instantiate(pf_timelineBeat);
             go.transform.SetParent(parent, false);
