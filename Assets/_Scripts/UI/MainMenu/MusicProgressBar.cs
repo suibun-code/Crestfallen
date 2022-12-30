@@ -46,8 +46,6 @@ public class MusicProgressBar : MonoBehaviour
         if (SongManager.instance.music.clip == null)
             return;
 
-        Debug.Log("MUSIC TIME");
-
         slider.maxValue = SongManager.instance.music.clip.length;
     }
 
